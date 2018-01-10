@@ -24,24 +24,25 @@ public class AgencyController {
     }
 
     @PostMapping("/findone")
-    public ResultVO findOne(@RequestParam("agencyId") String agencyId){
+    public ResultVO findOne(@RequestParam("agencyid") String agencyId){
         return ResultVOUtil.success(agencyService.findOne(agencyId));
     }
 
-    @PostMapping("/add")
-    public ResultVO add(@RequestBody Agency agency){
-        agencyService.add(agency);
+    @PostMapping("/save")
+    public ResultVO save(@RequestBody Agency agency){
+        System.out.println(agency);
+        agencyService.save(agency);
         return ResultVOUtil.success();
     }
 
     @PostMapping("/update")
-    public ResultVO update(@RequestParam("agencyId") String agencyId, @RequestBody Agency agency){
+    public ResultVO update(@RequestParam("agencyid") String agencyId, @RequestBody Agency agency){
         agencyService.update(agencyId,agency);
         return ResultVOUtil.success();
     }
 
     @PostMapping("/delete")
-    public ResultVO delete(@RequestParam("agencyId") String agencyId){
+    public ResultVO delete(@RequestParam("agencyid") String agencyId){
         agencyService.delete(agencyId);
         return ResultVOUtil.success();
     }

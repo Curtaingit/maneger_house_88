@@ -5,6 +5,7 @@ import com.example.manager_house_88.repository.CommodityRepo;
 import com.example.manager_house_88.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * Created by cx on 18-1-10.
  */
 
+@Service
 public class CommodityServiceImpl implements CommodityService {
 
     @Autowired

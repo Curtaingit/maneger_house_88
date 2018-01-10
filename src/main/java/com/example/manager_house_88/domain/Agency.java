@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 
 @Setter
 @Getter
+@Bostype("A01")
 @Entity(name = "t_agency")
 public class Agency extends BaseEntity {
 

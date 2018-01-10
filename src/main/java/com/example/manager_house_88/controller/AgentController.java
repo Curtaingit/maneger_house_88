@@ -27,9 +27,9 @@ public class AgentController {
         return ResultVOUtil.success(agentService.findOne(agentId));
     }
 
-    @PostMapping("/add")
-    public ResultVO add(@RequestBody Agent agent){
-        agentService.add(agent);
+    @PostMapping("/save")
+    public ResultVO save(@RequestBody Agent agent){
+        agentService.save(agent);
         return ResultVOUtil.success();
     }
 

@@ -11,7 +11,6 @@ import java.util.List;
  * Created by cx on 18-1-10.
  */
 
-@Service
 public interface CommodityService {
 
     Commodity findOne(String commodityId);

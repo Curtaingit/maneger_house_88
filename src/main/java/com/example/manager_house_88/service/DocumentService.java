@@ -10,7 +10,6 @@ import java.util.List;
  * Created by cx on 18-1-10.
  */
 
-@Service
 public interface DocumentService {
 
     Document findOne(String documentId);

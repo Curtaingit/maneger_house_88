@@ -1,5 +1,7 @@
 package com.example.manager_house_88.domain;
 
+import com.example.manager_house_88.bos.BaseEntity;
+import com.example.manager_house_88.bos.Bostype;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +14,9 @@ import javax.persistence.Table;
 
 @Getter
 @Setter
+@Bostype("A07")
 @Entity(name = "t_schedule")
-public class Schedule {
+public class Schedule extends BaseEntity {
 
     /*用户id*/
     String openid;

@@ -3,13 +3,14 @@ package com.example.manager_house_88.service.impl;
 import com.example.manager_house_88.domain.Agency;
 import com.example.manager_house_88.repository.AgencyRepo;
 import com.example.manager_house_88.service.AgencyService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
 public class AgencyServiceImpl implements AgencyService{
 
     @Autowired
@@ -29,7 +30,7 @@ public class AgencyServiceImpl implements AgencyService{
 
     /*添加一个 代办机构*/
     @Override
-    public void add(Agency agency) {
+    public void save(Agency agency) {
         agencyRepo.save(agency);
     }
 

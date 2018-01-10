@@ -5,12 +5,15 @@ import com.example.manager_house_88.repository.DocumentRepo;
 import com.example.manager_house_88.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by cx on 18-1-10.
  */
+
+@Service
 public class DocumentImpl implements DocumentService {
 
 
