@@ -8,8 +8,8 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "t_User")
+
+@Entity(name = "t_user")
 @Getter
 @Setter
 public class User extends BaseEntity {

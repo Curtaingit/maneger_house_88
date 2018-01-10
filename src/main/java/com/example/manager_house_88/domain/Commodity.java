@@ -6,19 +6,21 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 
+/*标的物domain*/
+
 @Getter
 @Setter
-@Entity(name = "t_Agent")
-public class Commodity extends BaseEntity{
+@Entity(name = "t_commodity")
+public class  Commodity extends BaseEntity{
 
     /*标的物图片*/
-    private String image;
+    private String images;
 
     /*标的物描述*/
     private String description;
 
     /*报名人数*/
-    private String enrolment;
+    private int enrolment;
 
     /*标签*/
     private String label;
@@ -33,16 +35,20 @@ public class Commodity extends BaseEntity{
     private String coordinate;
 
     /*热度*/
-    private String sort;
+    private int sort;
 
     /*底价*/
-    private String price;
+    private int price;
 
     /*看房人数*/
-    private String observer;
+    private int observer;
 
     /*房屋编号*/
     private String number;
+
+    /*开标人数*/
+    private int purchaser;
+
 
 
 }
