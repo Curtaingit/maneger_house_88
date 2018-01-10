@@ -6,8 +6,11 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 
+/*评论domain*/
+
 @Setter
 @Getter
-@Entity(name = "t_Comment")
+@Entity(name = "t_comment")
 public class Comment extends BaseEntity {
+
 }

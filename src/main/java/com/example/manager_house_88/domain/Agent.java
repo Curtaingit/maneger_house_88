@@ -6,13 +6,16 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 
+
+/*代理人domian*/
+
 @Getter
 @Setter
-@Entity(name = "t_Agent")
+@Entity(name = "t_agent")
 public class Agent extends BaseEntity{
 
     /*星级*/
-    private String level;
+    private int level;
 
     /*主营楼盘*/
     private String estate;
@@ -24,7 +27,7 @@ public class Agent extends BaseEntity{
     private String declaration;
 
     /*留言*/
-    private String message;
+    private String message;//TODO 留言存在一些问题
 
     /*姓名*/
     private String name;
