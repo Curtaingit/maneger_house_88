@@ -1,4 +1,4 @@
-package com.example.manager_house_88.Enums;
+package com.example.manager_house_88.enums;
 
 /**
  * Created by cx on 18-1-10.
