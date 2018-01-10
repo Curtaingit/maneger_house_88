@@ -1,6 +1,7 @@
 package com.example.manager_house_88.domain;
 
 import com.example.manager_house_88.bos.BaseEntity;
+import com.example.manager_house_88.bos.Bostype;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
+@Bostype("A02")
 @Entity(name = "t_agent")
 public class Agent extends BaseEntity{
 
@@ -42,7 +44,7 @@ public class Agent extends BaseEntity{
     private String store;
 
     /*服务商圈*/
-    private String range;
+    private String serviceRange;
 
     /*头像*/
     private String headImg;

@@ -5,10 +5,12 @@ import com.example.manager_house_88.repository.AgentRepo;
 import com.example.manager_house_88.service.AgentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
 public class AgentServiceImpl implements AgentService {
 
     @Autowired
@@ -28,7 +30,7 @@ public class AgentServiceImpl implements AgentService {
 
     /*添加一个代理人*/
     @Override
-    public void add(Agent agent) {
+    public void save(Agent agent) {
         agentRepo.save(agent);
     }
 

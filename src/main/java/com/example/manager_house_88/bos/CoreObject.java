@@ -20,7 +20,7 @@ public class CoreObject implements ICoreObject,Serializable {
 
     @Id
     @GeneratedValue(generator="bosidgenerator")
-    @GenericGenerator(name="bosidgenerator",strategy="com.example.shop.bos.BosidGenerator")
+    @GenericGenerator(name="bosidgenerator",strategy="com.example.manager_house_88.bos.BosidGenerator")
     @Column(name="id",nullable=false,length=25)
     @Access(AccessType.PROPERTY)
     @Override

@@ -10,7 +10,7 @@ import java.util.List;
  * Created by cx on 18-1-9.
  */
 
-@Service
+
 public interface UserService {
 
     List<User> findAll();

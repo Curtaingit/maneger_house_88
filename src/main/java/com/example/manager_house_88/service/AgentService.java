@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 public interface AgentService {
 
     Agent findOne(String agentId);
 
     List<Agent> findAll(Sort sort);
 
-    void add(Agent agent);
+    void save(Agent agent);
 
     void delete(String agentId);
 

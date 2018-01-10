@@ -1,5 +1,7 @@
 package com.example.manager_house_88.domain;
 
+import com.example.manager_house_88.bos.BaseEntity;
+import com.example.manager_house_88.bos.Bostype;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,8 +17,9 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
+@Bostype("A05")
 @Entity(name = "t_document")
-public class Document {
+public class Document extends BaseEntity {
 
     /*用户id*/
     private String openid;

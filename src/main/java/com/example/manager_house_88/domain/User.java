@@ -2,6 +2,7 @@ package com.example.manager_house_88.domain;
 
 
 import com.example.manager_house_88.bos.BaseEntity;
+import com.example.manager_house_88.bos.Bostype;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @Entity(name = "t_user")
 @Getter
 @Setter
+@Bostype("A07")
 public class User extends BaseEntity {
 
     /*用户姓名*/
