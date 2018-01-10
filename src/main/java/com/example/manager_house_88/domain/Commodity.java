@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 
-/*标的物domain*/
+/*标的物*/
 
 @Getter
 @Setter
