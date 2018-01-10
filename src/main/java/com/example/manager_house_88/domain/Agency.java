@@ -11,11 +11,22 @@ import javax.persistence.Entity;
 @Entity(name = "t_Agency")
 public class Agency extends BaseEntity {
 
+    /*宣言*/
     private String declaration;
+
+    /*公司简介*/
     private String synopsis;
+
+    /*公司图片*/
     private String image;
+
+    /*公司名称*/
     private String name;
+
+    /*公司电话*/
     private String phone;
+
+    /*公司头像*/
     private String headImg;
 
 }
