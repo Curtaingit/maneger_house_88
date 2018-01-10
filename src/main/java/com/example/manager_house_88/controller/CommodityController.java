@@ -34,5 +34,8 @@ public class CommodityController {
         return ResultVOUtil.success(commodityService.findAll(sort)) ;
     }
 
-
+    @PostMapping("/save")
+    public  ResultVO save(@RequestBody Commodity commodity){
+        return ResultVOUtil.success(commodityService.save(commodity));
+    }
 }

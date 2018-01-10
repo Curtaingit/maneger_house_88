@@ -10,7 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 
-@Entity(name = "t_user")
+@Entity
+@Table(name = "t_user")
 @Getter
 @Setter
 @Bostype("A07")
