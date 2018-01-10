@@ -14,18 +14,27 @@ import javax.persistence.Table;
 @Setter
 public class User extends BaseEntity {
 
+    /*用户姓名*/
     private String name;
 
-    private String openId;
+    /*微信openid*/
+    private String openid;
 
+    /*性别*/
     private String sex;
 
+    /*国家*/
     private String country;
 
+    /*省份*/
     private String province;
 
+    /*城市*/
     private String city;
 
+    /*头像*/
     private String headImgUrl;
+
+    //todo 浏览纪录    反馈    收藏
 
 }
