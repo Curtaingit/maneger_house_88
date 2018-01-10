@@ -15,6 +15,9 @@ import javax.persistence.Entity;
 @Entity(name = "t_agency")
 public class Agency extends BaseEntity {
 
+    /*星级*/
+    private int level;
+
     /*描述*/
     private String declaration;
 

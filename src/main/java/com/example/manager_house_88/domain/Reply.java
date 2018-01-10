@@ -10,6 +10,6 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-@Entity(name = "t_Reply")
+@Entity(name = "t_reply")
 public class Reply extends BaseEntity {
 }
