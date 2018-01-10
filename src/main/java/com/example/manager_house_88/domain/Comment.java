@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 
-/*评论domain*/
+/*评论*/
 
 @Setter
 @Getter

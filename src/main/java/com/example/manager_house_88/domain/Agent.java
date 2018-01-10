@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 
 
-/*代理人domian*/
+/*代理人*/
 
 @Getter
 @Setter

@@ -4,17 +4,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * Created by cx on 18-1-10.
  */
 
 
+
+/*标书*/
+
 @Getter
 @Setter
 @Entity(name = "t_document")
 public class Document {
+
+    /*用户id*/
+    private String openid;
 
     /*姓名*/
     private String name;
@@ -51,4 +56,7 @@ public class Document {
 
     /*其他*/
     private String otherMsg;
+
+    /*标书状态*/
+    private String status;
 }
