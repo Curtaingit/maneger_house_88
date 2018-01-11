@@ -42,7 +42,7 @@ public class CommentServiceImpl implements CommentService {
     /*保存评论*/
     @Override
     public void save(Comment comment, String openid) {
-        User user = userService.findOne(openid);
+        User user = userService.findByOpenid(openid);
 
         if(UserEnum.USERASCRIPTION.getCode()==user.getCharacter()){
              /*普通用户评论*/
@@ -66,8 +66,8 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void changeAuditStatus(String commentId) {
         Comment comment = commentRepo.findOne(commentId);
-        if (CommentEnum.WAITAUDITSTATUS.getCode()==comment.getAuditStatus()){
-            comment.setAuditStatus(CommentEnum.AGREEAUDITSTATUS.getCode());
+        if (CommentEnum.WAITAUDITSTATUS.getCode()==comment.getStatus()){
+            comment.setStatus(CommentEnum.AGREEAUDITSTATUS.getCode());
         }
         commentRepo.save(comment);
     }

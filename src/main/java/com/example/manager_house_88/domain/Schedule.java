@@ -19,10 +19,7 @@ import javax.persistence.Table;
 public class Schedule extends BaseEntity {
 
     /*用户id*/
-    String openid;
-
-    /*进度*/
-    String state;
+    String userId;
 
     /*标的物id*/
     String commodityId;
@@ -39,7 +36,10 @@ public class Schedule extends BaseEntity {
     /*看房时间*/
     Long watchTime;
 
-    /*竞拍时间*/
-    Long auctionTime;
+    /*标书Id*/
+    String documentId;
+
+    /*是否中标*/
+    boolean win;
 
 }

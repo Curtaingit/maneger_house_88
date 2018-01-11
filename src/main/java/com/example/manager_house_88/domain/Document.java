@@ -22,7 +22,7 @@ import javax.persistence.Entity;
 public class Document extends BaseEntity {
 
     /*用户id*/
-    private String openid;
+    private String userId;
 
     /*姓名*/
     private String name;
@@ -40,7 +40,7 @@ public class Document extends BaseEntity {
     private int maritalStatus;
 
     /*兴趣爱好*/
-    private String Hobby;
+    private String hobby;
 
     /*宗教信仰*/
     private String religious;
@@ -61,5 +61,8 @@ public class Document extends BaseEntity {
     private String otherMsg;
 
     /*标书状态*/
-    private String status;
+    private int status;
+
+    /*审核通过时间*/
+    private Long time;
 }

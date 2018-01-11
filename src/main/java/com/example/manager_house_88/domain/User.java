@@ -25,7 +25,7 @@ public class User extends BaseEntity {
     private String openid;
 
     /*性别*/
-    private String sex;
+    private boolean gender;
 
     /*国家*/
     private String country;
@@ -41,9 +41,6 @@ public class User extends BaseEntity {
 
     /*手机号*/
     private String phone;
-
-    /*普通用户 or 经纪人*/
-    private int character;
 
     //todo 浏览纪录    反馈    收藏
 

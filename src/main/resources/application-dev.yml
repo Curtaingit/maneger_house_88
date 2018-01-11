@@ -37,7 +37,7 @@ wechat:
     client:
        clientId: wx80684f34298ce2d7
        clientSecret: a73ba9a5f6d09d9e7d698ab8ee213b78
-       accessTokenUri: https://api.weixin.qq.com/sns/oauth2/access_token
+       accessTokenUri: https://api.weixin.qq.com/sns/jscode2session
        userAuthorizationUri: https://open.weixin.qq.com/connect/oauth2/authorize
        authenticationScheme: query
        clientAuthenticationScheme: form
@@ -46,3 +46,8 @@ wechat:
       userInfoUri: https://api.weixin.qq.com/sns/userinfo?lang=zh_CN&openId=$openId$
     accpetcode_url: https://www.embracex.com/gcsweixin/shop/login/wechat
 
+urlpath: https://www.embracex.com/gcsweixin/house/login/wechat
+
+imagepath: /home/cx/jAVA/shop/image/
+
+imageurl: https://www.embracex.com/gcsweixin/shop/image/

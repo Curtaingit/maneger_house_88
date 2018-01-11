@@ -45,12 +45,14 @@ public class  Commodity extends BaseEntity{
     /*看房人数*/
     private int observer;
 
-    /*房屋编号*/
-    private String number;
-
     /*开标人数*/
     private int purchaser;
 
+    /*进度*/
+    private int state;
+
+    /*开标时间*/
+    private Long auctionTime;
 
 
 }

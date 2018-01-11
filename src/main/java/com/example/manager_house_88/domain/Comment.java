@@ -17,12 +17,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 @Entity(name = "t_comment")
 public class Comment extends BaseEntity {
 
-    /*用户id*/
-    private String userId;
-
-    /*经纪人id*/
-    private String agentId;
-
     /*评论内容*/
     private String content;
 
@@ -36,7 +30,7 @@ public class Comment extends BaseEntity {
     private int type;
 
     /*评论归属*/
-    private int ascription;
+    private String ascriptionId;
 
     /*头像 logo*/
     private String headImg;
