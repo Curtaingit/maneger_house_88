@@ -47,4 +47,9 @@ public class AgentServiceImpl implements AgentService {
         agentRepo.save(agent);
         agentRepo.delete(agentId);
     }
+
+    @Override
+    public Agent findByOpenid(String openid) {
+        return agentRepo.findByOpenid(openid);
+    }
 }

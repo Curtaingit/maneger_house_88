@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AgentRepo extends JpaRepository<Agent,String> {
 
+    Agent findByOpenid(String openid);
+
 }

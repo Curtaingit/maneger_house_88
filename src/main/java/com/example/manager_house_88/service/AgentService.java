@@ -18,4 +18,6 @@ public interface AgentService {
     void delete(String agentId);
 
     void update(String agentId, Agent agent);
+
+    Agent findByOpenid(String openid);
 }
