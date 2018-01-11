@@ -1,7 +1,7 @@
 package com.example.manager_house_88.controller;
 
-import com.example.manager_house_88.domain.Agency;
-import com.example.manager_house_88.service.AgencyService;
+import com.example.manager_house_88.domain.Agent;
+import com.example.manager_house_88.service.AgentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,58 +17,59 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @EnableJpaAuditing
-public class AgencyControllerTest {
+public class AgentControllerTest {
 
     @Autowired
-    private AgencyService agencyService;
+    private AgentService agentService;
 
     @Test
     public void findAll() throws Exception {
-        List<Agency> agencyList = agencyService.findAll(new Sort("level"));
-        System.out.println(agencyList);
+        List<Agent> agentList = agentService.findAll(new Sort("level"));
+        System.out.println(agentList);
     }
 
     @Test
     public void findOne() throws Exception {
-        Agency agency = agencyService.findOne("SAKDjdakslJKLSADJ");
-        System.out.println(agency);
+        Agent agent = agentService.findOne("HDKksajkskdnkjAHSO");
+        System.out.println(agent);
     }
 
     @Test
     public void save() throws Exception {
-        String url = "http://localhost:8080/house/agency/save";
+        String url = "http://localhost:8080/house/agent/save";
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.set("Accept", "application/json");
         requestHeaders.set("Content-Type", "application/json;charset=utf-8");
 
         String jsonStr = "{\n" +
-                "\"level\":8,\n" +
-                "\"declaration\":\"傻乎乎\",\n" +
-                "\"synopsis\":\"大西门\",\n" +
-                "\"image\":\"xxxxxxxxx\",\n" +
-                "\"name\":\"xxx中介公司\",\n" +
-                "\"phone\":\"18156532485\",\n" +
-                "\"headImg\":\"xxx\"\n" +
-                "}";
+                "    \"level\": 8,\n" +
+                "    \"estate\": \"瑞宏新城三期\",\n" +
+                "    \"seniority\": \"2012.06.11\",\n" +
+                "    \"declaration\": \"你的意见是我们进步的动力\",\n" +
+                "    \"message\": \"留言。\",\n" +
+                "    \"name\": \"婉格\",\n" +
+                "    \"phone\": \"130\",\n" +
+                "    \"company\": \"xxx中介\",\n" +
+                "    \"store\": \"xxx门店\",\n" +
+                "    \"serviceRange\": \"大南门\",\n" +
+                "    \"headImg\": \"xxx\"\n" +
+                "  }";
 
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<String> httpEntity = new HttpEntity<String>(jsonStr, requestHeaders);
         String jsonData = restTemplate.postForObject(url, httpEntity, String.class);
-
-        System.out.println(jsonData);
     }
 
     @Test
     public void update() throws Exception {
-
     }
 
     @Test
     public void delete() throws Exception {
-
     }
 
 }
