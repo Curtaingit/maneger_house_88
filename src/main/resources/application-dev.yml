@@ -10,7 +10,11 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+  redis:
+    database: 0
+    host: 127.0.0.1
+    password:
+    port: 6379
   jackson:
     serialization:
       fail-on-empty-beans: false
@@ -21,5 +25,24 @@ server:
   port: 8080
 
 
-appid: wx80684f34298ce2d7
-appsecret: a73ba9a5f6d09d9e7d698ab8ee213b78
+wechat:
+#    appId: wx80684f34298ce2d7
+#    secret: a73ba9a5f6d09d9e7d698ab8ee213b78
+#    token: 24c12d745036aff81725d2e82b5a4dba
+#    aesKey: bo3ruxQphpvh2j7LuYWFFOWboCf0WNq4D2Pgnpe4MdU
+#    mchId: 10024153
+#    mchKey: braggadocio345l6ackadaisicalness
+#    keyPath: /home/cx/jAVA/shop/src/main/resources/static/h5.p12
+#    notifyUrl: https://www.embracex.com/gcsweixin/shop/pay/notify
+    client:
+       clientId: wx80684f34298ce2d7
+       clientSecret: a73ba9a5f6d09d9e7d698ab8ee213b78
+       accessTokenUri: https://api.weixin.qq.com/sns/oauth2/access_token
+       userAuthorizationUri: https://open.weixin.qq.com/connect/oauth2/authorize
+       authenticationScheme: query
+       clientAuthenticationScheme: form
+       scope: snsapi_userinfo
+    resource:
+      userInfoUri: https://api.weixin.qq.com/sns/userinfo?lang=zh_CN&openId=$openId$
+    accpetcode_url: https://www.embracex.com/gcsweixin/shop/login/wechat
+

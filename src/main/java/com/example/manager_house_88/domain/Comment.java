@@ -27,12 +27,12 @@ public class Comment extends BaseEntity {
     private String content;
 
     /*审核状态*/
-    private int auditStatus = CommentEnum.WAITAUDITSTATUS.getCode();
+    private int status;
 
     /*点赞数*/
     private int liked;
 
-    /*评论属于 经纪人 or 标的物*/
+    /*评论属于 经纪人 or 用户*/
     private int type;
 
     /*评论归属*/

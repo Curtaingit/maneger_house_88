@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 
 
 public interface UserRepo extends JpaRepository<User, String> {
+    User findByOpenid(String openid);
 }

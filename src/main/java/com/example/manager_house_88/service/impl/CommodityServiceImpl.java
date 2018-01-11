@@ -20,7 +20,7 @@ public class CommodityServiceImpl implements CommodityService {
     @Autowired
     private CommodityRepo commodityRepo;
 
-    /*通过commodityId查找*/
+    /*通过commodityId查找一个标的物*/
     @Override
     public Commodity findOne(String commodityId) {
        Commodity commodity = commodityRepo.findOne(commodityId);
@@ -29,11 +29,13 @@ public class CommodityServiceImpl implements CommodityService {
        return commodity;
     }
 
+    /*查找所有标的物  默认按创建时间排序  倒序*/
     @Override
     public List<Commodity> findAll(Sort sort) {
         return commodityRepo.findAll(sort);
     }
 
+    /*保存一个标的物*/
     @Override
     public Commodity save(Commodity commodity) {
         return commodityRepo.save(commodity);

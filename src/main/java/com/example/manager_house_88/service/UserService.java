@@ -19,6 +19,6 @@ public interface UserService {
 
     void save(User user);
 
-    User findOne(String openid);
+    User findByOpenid(String openid);
 
 }

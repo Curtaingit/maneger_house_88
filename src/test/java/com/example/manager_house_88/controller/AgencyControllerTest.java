@@ -44,6 +44,7 @@ public class AgencyControllerTest {
         requestHeaders.set("Accept", "application/json");
         requestHeaders.set("Content-Type", "application/json;charset=utf-8");
 
+
         String jsonStr = "{\n" +
                 "\"level\":8,\n" +
                 "\"declaration\":\"傻乎乎\",\n" +

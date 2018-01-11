@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findOne(String openid) {
-        return userRepo.findOne(openid);
+    public User findByOpenid(String openid) {
+        return userRepo.findByOpenid(openid);
     }
 }

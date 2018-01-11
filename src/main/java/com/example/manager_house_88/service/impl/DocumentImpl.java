@@ -20,16 +20,19 @@ public class DocumentImpl implements DocumentService {
     @Autowired
     private DocumentRepo documentRepo;
 
+    /*通过documentId查找一个标书*/
     @Override
     public Document findOne(String documentId) {
         return documentRepo.findOne(documentId);
     }
 
+    /*保存一个标书*/
     @Override
     public Document save(Document document) {
         return documentRepo.save(document);
     }
 
+    /*查找所有标书 按时间排序   倒序                       */
     @Override
     public List<Document> findAll(Sort sort) {
         return documentRepo.findAll(sort);
