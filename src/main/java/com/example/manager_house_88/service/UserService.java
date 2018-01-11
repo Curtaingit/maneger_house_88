@@ -19,8 +19,6 @@ public interface UserService {
 
     void save(User user);
 
-    User update(User user);
-
     User findOne(String openid);
 
 }

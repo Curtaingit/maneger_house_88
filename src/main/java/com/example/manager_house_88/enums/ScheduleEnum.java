@@ -1,11 +1,13 @@
 package com.example.manager_house_88.enums;
 
+import lombok.Getter;
+
 /**
  * Created by cx on 18-1-10.
  */
 
 
-
+@Getter
 public enum ScheduleEnum {
 
     NEW(0,"新标的物"),

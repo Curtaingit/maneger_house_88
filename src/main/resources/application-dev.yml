@@ -19,3 +19,7 @@ spring:
 server:
   context-path: /house
   port: 8080
+
+
+appid: wx80684f34298ce2d7
+appsecret: a73ba9a5f6d09d9e7d698ab8ee213b78
