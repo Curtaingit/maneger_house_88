@@ -23,7 +23,7 @@ public class AgentController {
     }
 
     @PostMapping("/findone")
-    public ResultVO findOne(@RequestParam("agentId") String agentId){
+    public ResultVO findOne(@RequestParam("agentid") String agentId){
         return ResultVOUtil.success(agentService.findOne(agentId));
     }
 
@@ -34,13 +34,13 @@ public class AgentController {
     }
 
     @PostMapping("/update")
-    public ResultVO update(@RequestParam("agentId") String agentId, @RequestBody Agent agent){
+    public ResultVO update(@RequestParam("agentid") String agentId, @RequestBody Agent agent){
         agentService.update(agentId,agent);
         return ResultVOUtil.success();
     }
 
     @PostMapping("/delete")
-    public ResultVO delete(@RequestParam("agentId") String agentId){
+    public ResultVO delete(@RequestParam("agentid") String agentId){
         agentService.delete(agentId);
         return ResultVOUtil.success();
     }
