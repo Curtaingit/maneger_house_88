@@ -59,5 +59,11 @@ public class CommodityServiceImpl implements CommodityService {
         return commodityRepo.findAll(pageable);
     }
 
+    /*通过id删除标的物*/
+    @Override
+    public void delete(String commodityId) {
+        commodityRepo.delete(commodityId);
+    }
+
 
 }

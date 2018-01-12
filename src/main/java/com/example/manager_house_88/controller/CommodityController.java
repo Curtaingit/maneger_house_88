@@ -49,4 +49,10 @@ public class CommodityController {
     public ResultVO findbystatus(String status){
         return ResultVOUtil.success(commodityService.findByStatus(status));
     }
+
+    @PostMapping("/delete")
+    public ResultVO delete(@RequestParam(name = "commodityid") String commodityId){
+        commodityService.delete(commodityId);
+        return ResultVOUtil.success();
+    }
 }

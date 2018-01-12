@@ -25,4 +25,6 @@ public interface CommodityService {
     List<Commodity> findByStatus(String status);
 
     Page<Commodity> findAll(Pageable pageable);
+
+    void delete(String commodityId);
 }
