@@ -1,6 +1,6 @@
 package com.example.manager_house_88.controller;
 
-import com.example.manager_house_88.service.UpLoadImageService;
+import com.example.manager_house_88.service.UploadImageService;
 import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-public class UpLoadImageController {
+public class UploadImageController {
 
     @Autowired
-    private UpLoadImageService imageService;
+    private UploadImageService imageService;
 
     @PostMapping("/uploadimage")
     public ResultVO upLoadImage(MultipartFile file){
-        return ResultVOUtil.success(imageService.upLoadImage(file));
+        return ResultVOUtil.success(imageService.uploadImage(file));
     }
 }

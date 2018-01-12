@@ -25,19 +25,22 @@ public class DocumentControllerTest {
         requestHeaders.set("Content-Type", "application/json;charset=utf-8");
 
         String jsonStr = "{\n" +
-                "    \"openid\": \"oCiAMj5DyYWZbPauWbkFO4Y8CrHo\",\n" +
+                "    \"userId\": \"oCiAMj5DyYWZbPauWbkFO4Y8CrHo\",\n" +
                 "    \"name\": \"陈哈哈\",\n" +
                 "    \"phone\": \"12345678910\",\n" +
                 "    \"identityImg\": \"哈哈哈哈哈哈\",\n" +
                 "    \"familySize\": \"4\",\n" +
                 "    \"maritalStatus\":\"1\",\n" +
-                "    \"Hobby\": \"打游戏\",\n" +
+                "    \"hobby\": \"打游戏\",\n" +
                 "    \"religious\": \"无\",\n" +
                 "    \"work\": \"学生\",\n" +
                 "    \"purpose\": \"住\",\n" +
+                "    \"payTime\": \"2222222222\",\n" +
                 "    \"payWay\": \"全额现金\",\n" +
                 "    \"otherMsg\": \"没有(ง •̀_•́)ง\",\n" +
-                "    \"status\": \"审核通过\"\n" +
+                "    \"time\": \"110305025\",\n" +
+                "    \"status\": \"5\",\n" +
+                "    \"time\": \"110305025\"\n" +
                 "  }";
 
         RestTemplate restTemplate = new RestTemplate();

@@ -1,16 +1,15 @@
 package com.example.manager_house_88.service.impl;
 
-import com.example.manager_house_88.service.UpLoadImageService;
+import com.example.manager_house_88.service.UploadImageService;
 import com.example.manager_house_88.utils.FileUtil;
 import com.example.manager_house_88.utils.KeyUtil;
 import com.example.manager_house_88.utils.ResultVOUtil;
-import com.example.manager_house_88.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class UpLoadImageServiceImpl implements UpLoadImageService {
+public class UploadImageServiceImpl implements UploadImageService {
 
     @Value("${imagepath}")
     String filepath;
@@ -19,7 +18,7 @@ public class UpLoadImageServiceImpl implements UpLoadImageService {
     String returnurl;
 
     @Override
-    public String upLoadImage(MultipartFile file) {
+    public String uploadImage(MultipartFile file) {
         String fileName = KeyUtil.genUniqueKey() + file.getOriginalFilename();
         String filePath = filepath;
         try {

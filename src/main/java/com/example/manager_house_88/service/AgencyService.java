@@ -2,6 +2,9 @@ package com.example.manager_house_88.service;
 
 import com.example.manager_house_88.domain.Agency;
 import com.example.manager_house_88.domain.Agent;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +31,5 @@ public interface AgencyService {
     /*根据编号查询一个代理机构*/
     Agency findByNumber(String number);
 
-
+    Page<Agency> findAll(Pageable pageable);
 }

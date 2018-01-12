@@ -3,6 +3,7 @@ package com.example.manager_house_88.service.impl;
 import com.example.manager_house_88.domain.Document;
 import com.example.manager_house_88.repository.DocumentRepo;
 import com.example.manager_house_88.service.DocumentService;
+import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class DocumentImpl implements DocumentService {
     /*保存一个标书*/
     @Override
     public Document save(Document document) {
+        document.setNumber(NumberUtil.getNumber());
         return documentRepo.save(document);
     }
 

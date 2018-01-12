@@ -5,6 +5,9 @@ import com.example.manager_house_88.repository.CommodityRepo;
 import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -49,6 +52,25 @@ public class CommodityServiceImpl implements CommodityService {
         return commodityRepo.save(commodity);
 
     }
+
+    /*根据标的物状态(进度)查找*/
+    @Override
+    public List<Commodity> findByStatus(String status) {
+        return commodityRepo.findByStatus(status);
+    }
+
+    /*查找所有标的物   分页*/
+    @Override
+    public Page<Commodity> findAll(Pageable pageable) {
+        return commodityRepo.findAll(pageable);
+    }
+
+    /*通过id删除标的物*/
+    @Override
+    public void delete(String commodityId) {
+        commodityRepo.delete(commodityId);
+    }
+
 
     /*设置标的物详情*/
     @Override

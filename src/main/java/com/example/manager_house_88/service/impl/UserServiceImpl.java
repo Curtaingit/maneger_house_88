@@ -1,5 +1,6 @@
 package com.example.manager_house_88.service.impl;
 
+import com.example.manager_house_88.utils.NumberUtil;
 import com.example.manager_house_88.utils.PrincipalUtil;
 import com.example.manager_house_88.domain.User;
 import com.example.manager_house_88.repository.UserRepo;
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
+        user.setNumber(NumberUtil.getNumber());
         userRepo.save(user);
     }
 
