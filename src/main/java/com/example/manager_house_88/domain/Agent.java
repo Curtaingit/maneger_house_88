@@ -28,9 +28,6 @@ public class Agent extends BaseEntity{
     /*宣言*/
     private String declaration;
 
-    /*留言*/
-    private String message;//TODO 留言存在一些问题
-
     /*姓名*/
     private String name;
 

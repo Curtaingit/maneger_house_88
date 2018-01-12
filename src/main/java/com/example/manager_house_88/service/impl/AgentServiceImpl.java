@@ -3,6 +3,7 @@ package com.example.manager_house_88.service.impl;
 import com.example.manager_house_88.domain.Agent;
 import com.example.manager_house_88.repository.AgentRepo;
 import com.example.manager_house_88.service.AgentService;
+import com.example.manager_house_88.utils.BeanCopyUtil;
 import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class AgentServiceImpl implements AgentService {
     @Transactional
     public void update(String agentId, Agent agent) {
         Agent result = agentRepo.findOne(agentId);
-        BeanUtils.copyProperties(agent,result);
+        BeanUtils.copyProperties(agent,result, BeanCopyUtil.getNullPropertyNames(agent));
         agentRepo.save(result);
     }
 
