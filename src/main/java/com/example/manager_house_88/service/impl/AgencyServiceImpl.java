@@ -1,6 +1,8 @@
 package com.example.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.Agency;
+import com.example.manager_house_88.enums.ResultExceptionEnum;
+import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import com.example.manager_house_88.repository.AgencyRepo;
 import com.example.manager_house_88.service.AgencyService;
 import com.example.manager_house_88.utils.BeanCopyUtil;
@@ -8,7 +10,6 @@ import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,13 @@ public class AgencyServiceImpl implements AgencyService{
     /*根据id  查找一个代办机构*/
     @Override
     public Agency findOne(String agencyId) {
-        return agencyRepo.findOne(agencyId);
+        Agency agency = agencyRepo.findOne(agencyId);
+        if(agency ==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.AGENCY_NOT_EXIST);
+        }
+
+        return agency;
+
     }
 
     /*查找所有代办机构   默认按星级 从高到低 */

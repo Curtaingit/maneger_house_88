@@ -6,6 +6,8 @@ import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
 import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,10 +28,18 @@ public class DocumentController {
         return ResultVOUtil.success(documentService.findOne(documentId));
     }
 
-    @GetMapping("/findall")
-    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName){
+
+
+    @RequestMapping("/findall")
+    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
+                            @RequestParam(name="size",required = false) Integer size,
+                            @RequestParam(name = "page",required = false) Integer page){
         Sort sort =new Sort(Sort.Direction.DESC,sortName);
-        return ResultVOUtil.success(documentService.findAll(sort)) ;
+        if(size==null||page==null){
+            return  ResultVOUtil.success(documentService.findAll(sort));
+        }
+        Pageable pageable =new PageRequest(page,size,sort);
+        return ResultVOUtil.success(documentService.findAll(pageable)) ;
     }
 
     @PostMapping("/save")

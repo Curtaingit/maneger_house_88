@@ -5,6 +5,8 @@ import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,5 +68,14 @@ public class CommodityController {
     public ResultVO setDetail(@RequestParam(name="commodityid") String commodityId){
 
         return ResultVOUtil.success( commodityService.getDetail(commodityId));
+    }
+
+
+    @PostMapping("/update")
+    public ResultVO update(@RequestParam(name = "commodityid" ) String commodityId,
+                           @RequestBody Commodity commodity){
+
+        return ResultVOUtil.success(commodityService.updata(commodityId,commodity));
+
     }
 }

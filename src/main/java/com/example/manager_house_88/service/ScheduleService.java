@@ -1,6 +1,8 @@
 package com.example.manager_house_88.service;
 
 import com.example.manager_house_88.domain.Schedule;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
@@ -21,4 +23,8 @@ public interface ScheduleService {
 
     /*设置为中标*/
     void changeWin(String scheduleId);
+
+    Page<Schedule> findAll(Pageable pageable);
+
+    List<Schedule> findAll(Sort sort);
 }

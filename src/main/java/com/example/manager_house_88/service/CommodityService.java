@@ -2,6 +2,8 @@ package com.example.manager_house_88.service;
 
 import com.example.manager_house_88.domain.Commodity;
 import jdk.nashorn.internal.runtime.regexp.joni.constants.CCSTATE;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +30,7 @@ public interface CommodityService {
     void setDetail(String commodityId, String detail);
 
     String getDetail(String commodityId);
+
+    Commodity updata(String commodityId,Commodity commodity);
+
 }

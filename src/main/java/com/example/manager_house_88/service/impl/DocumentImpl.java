@@ -5,6 +5,8 @@ import com.example.manager_house_88.repository.DocumentRepo;
 import com.example.manager_house_88.service.DocumentService;
 import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,12 @@ public class DocumentImpl implements DocumentService {
     @Override
     public List<Document> findAll(Sort sort) {
         return documentRepo.findAll(sort);
+    }
+
+    /*查找所有标书    分页*/
+    @Override
+    public Page<Document> findAll(Pageable pageable) {
+        return documentRepo.findAll(pageable);
     }
 
 

@@ -17,5 +17,4 @@ public interface AgentRepo extends JpaRepository<Agent,String> {
     Page<Agent> findAll(Pageable pageable);
 
 
-    Page<Agent> findAll(Pageable pageable);
 }
