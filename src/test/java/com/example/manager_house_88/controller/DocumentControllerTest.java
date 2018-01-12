@@ -1,13 +1,51 @@
 package com.example.manager_house_88.controller;
 
+import com.example.manager_house_88.utils.BeanCopyUtil;
+import lombok.Data;
 import org.junit.Test;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.Assert.*;
 
 public class DocumentControllerTest {
+
+    @Data
+    class A{
+        Integer a;
+        String b;
+        Boolean c;
+    }
+
+    @Data
+    class B{
+        Integer a;
+        String b;
+        Boolean c;
+    }
+
+    /*测试BeanUtils  拷贝时 即使本身字段为null  还是覆盖目标字段*/
+    @Test
+    public void copyProperties () {
+        A a = new A();
+        a.setB("aa");
+        System.out.println(a);
+
+        B b = new B();
+        b.setA(22);
+
+        BeanUtils.copyProperties(b,a, BeanCopyUtil.getNullPropertyNames(b));
+        System.out.println(a);
+        System.out.println(b);
+    }
+
 
     @Test
     public void findOne() {
