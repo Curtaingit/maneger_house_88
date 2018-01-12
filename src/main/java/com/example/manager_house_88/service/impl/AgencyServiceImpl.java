@@ -51,4 +51,10 @@ public class AgencyServiceImpl implements AgencyService{
         BeanUtils.copyProperties(agency,result);
         agencyRepo.save(result);
     }
+
+    /*根据编号查询一个代理机构*/
+    @Override
+    public Agency findByNumber(String number) {
+        return findByNumber(number);
+    }
 }

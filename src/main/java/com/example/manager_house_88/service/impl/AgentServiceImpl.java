@@ -52,4 +52,10 @@ public class AgentServiceImpl implements AgentService {
         agentRepo.save(result);
     }
 
+    /*根据编号查询一个代理人*/
+    @Override
+    public Agent findByNumber(String number) {
+        return agentRepo.findByNumber(number);
+    }
+
 }

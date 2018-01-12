@@ -33,6 +33,7 @@ public class CommentServiceImpl implements CommentService {
         return commentRepo.findByAuditStatus(status);
     }
 
+    /*通过commentId删除一条评论*/
     @Override
     public void delete(String commentId) {
         commentRepo.delete(commentId);
