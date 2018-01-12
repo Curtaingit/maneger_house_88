@@ -35,7 +35,7 @@ public class CommentController {
         return ResultVOUtil.success(commentService.findByType(type));
     }
 
-    @PostMapping("/changeauditsstatus")
+    @PostMapping("/changeauditstatus")
     public ResultVO changeAuditsStatus(@RequestParam("commentid") String commentId){
         commentService.changeAuditStatus(commentId);
         return ResultVOUtil.success();

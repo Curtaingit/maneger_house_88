@@ -53,6 +53,4 @@ urlpath: https://www.embracex.com/gcsweixin/house/login/wechat
 #imageurl: https://www.embracex.com/gcsweixin/shop/image/
 imagepath: U:\images\
 
-file: U:\images\
-
 imageurl: http:/192.168.249.120:8080/house/image/

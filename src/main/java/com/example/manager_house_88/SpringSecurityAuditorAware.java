@@ -5,8 +5,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SpringSecurityAuditorAware implements AuditorAware<String> {
+
+    public static String currentAuditor = "admin";
+
     public String getCurrentAuditor() {
-        return "11111111111111111111";
+        return currentAuditor;
     }
 
 }

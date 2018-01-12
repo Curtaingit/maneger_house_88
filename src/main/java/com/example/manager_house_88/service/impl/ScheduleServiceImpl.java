@@ -15,35 +15,34 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Autowired
     private ScheduleRepo scheduleRepo;
 
+    /*设置为中标*/
+    @Override
+    public void changeWin(String scheduleId) {
+        Schedule schedule = scheduleRepo.findOne(scheduleId);
+        schedule.setWin(true);
+        scheduleRepo.save(schedule);
+    }
+
+    /*查找一条用户进度*/
     @Override
     public Schedule findOne(String scheduleId) {
         return scheduleRepo.findOne(scheduleId);
     }
 
+    /*保存一条记录*/
     @Override
     public Schedule save(Schedule schedule) {
         schedule.setNumber(NumberUtil.getNumber());
         return scheduleRepo.save(schedule);
     }
 
-/*
-    @Override
-    public List<Schedule> findByOpenid(String openid) {
-        return scheduleRepo.findByOpenid(openid);
-    }
-*/
-
-    @Override
-    public void changeStatus(String scheduleId) {
-        Schedule schedule = scheduleRepo.findOne(scheduleId);
-        //todo  修改进度
-    }
-
+    /*查找用户的所有进度信息*/
     @Override
     public List<Schedule> findByUserId(String userId) {
         return findByUserId(userId);
     }
 
+    /*查找用户的所有进度信息*/
     @Override
     public List<Schedule> findByNumber(String number) {
         return findByNumber(number);
