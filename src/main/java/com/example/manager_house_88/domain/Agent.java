@@ -49,6 +49,4 @@ public class Agent extends BaseEntity{
     /*头像*/
     private String headImg;
 
-    /*经纪人对应微信的openid*/
-    private String openid;
 }

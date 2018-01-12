@@ -37,4 +37,7 @@ public class Agency extends BaseEntity {
     /*头像*/
     private String headImg;
 
+    /*地址*/
+    private String address;
+
 }

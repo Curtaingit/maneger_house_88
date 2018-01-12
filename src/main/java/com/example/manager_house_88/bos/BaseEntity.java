@@ -16,8 +16,8 @@ import javax.persistence.*;
 @Access(AccessType.FIELD)
 public class BaseEntity extends CoreObject implements IEntity {
 
-//    @Column(name="number",unique=true,nullable=false,length=40)
-//    private String number;
+    @Column(name="number",unique=true,nullable=false,length=40)
+    private String number;
 
     @CreatedBy
     @Column(name="createactorid",length=25)
@@ -26,9 +26,6 @@ public class BaseEntity extends CoreObject implements IEntity {
     @LastModifiedBy
     @Column(name="updateactorid",length=25)
     private String updateactorid;
-
-
-
 
     @LastModifiedDate
     private long updatetime;
