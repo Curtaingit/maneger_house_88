@@ -5,6 +5,8 @@ import com.example.manager_house_88.service.AgencyService;
 import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +20,15 @@ public class AgencyController {
     private AgencyService agencyService;
 
     @RequestMapping("/findall")
-    public ResultVO findAll(@RequestParam(name = "sort", defaultValue = "level") String sort){
-        List<Agency> agencyList = agencyService.findAll(new Sort(Sort.Direction.DESC,sort));
-        return ResultVOUtil.success(agencyList);
+    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
+                            @RequestParam(name="size",required = false) Integer size,
+                            @RequestParam(name = "page",required = false) Integer page){
+        Sort sort =new Sort(Sort.Direction.DESC,sortName);
+        if(size==null||page==null){
+            return  ResultVOUtil.success(agencyService.findAll(sort));
+        }
+        Pageable pageable =new PageRequest(page,size,sort);
+        return ResultVOUtil.success(agencyService.findAll(pageable)) ;
     }
 
     @PostMapping("/findone")

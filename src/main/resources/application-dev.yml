@@ -4,7 +4,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: 123456
+    password: 1234
     url: jdbc:mysql://127.0.0.1:3306/manager_house?useSSL=false
   jpa:
     show-sql: true
@@ -19,6 +19,13 @@ spring:
     serialization:
       fail-on-empty-beans: false
       indent-output: true
+  http:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+    encoding:
+      enabled: true
+
 
 server:
   context-path: /house
@@ -51,8 +58,7 @@ urlpath: https://www.embracex.com/gcsweixin/house/login/wechat
 #imagepath: /home/cx/jAVA/shop/image/
 #
 #imageurl: https://www.embracex.com/gcsweixin/shop/image/
-imagepath: U:\images\
+imagepath: /home/cx/jAVA/images/
 
-file: U:\images\
+imageurl: https://www.embracex.com/gcsweixin/house/image/
 
-imageurl: http:/192.168.249.120:8080/house/image/

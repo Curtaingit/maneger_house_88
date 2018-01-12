@@ -8,7 +8,7 @@ import lombok.Getter;
 
 
 @Getter
-public enum ScheduleEnum {
+public enum CommodityEnum {
 
     NEW(0,"新标的物"),
     WATCH(1, "看房"),
@@ -21,7 +21,7 @@ public enum ScheduleEnum {
     int code;
     String msg;
 
-    ScheduleEnum(int code, String msg) {
+    CommodityEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }

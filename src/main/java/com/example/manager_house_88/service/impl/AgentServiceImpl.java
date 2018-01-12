@@ -6,6 +6,9 @@ import com.example.manager_house_88.service.AgentService;
 import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,6 +59,12 @@ public class AgentServiceImpl implements AgentService {
     @Override
     public Agent findByNumber(String number) {
         return agentRepo.findByNumber(number);
+    }
+
+    /*查找所有经纪人    分页*/
+    @Override
+    public Page<Agent> findAll(Pageable pageable) {
+        return agentRepo.findAll(pageable);
     }
 
 }
