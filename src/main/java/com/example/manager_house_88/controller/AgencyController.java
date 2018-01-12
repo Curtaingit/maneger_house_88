@@ -55,6 +55,9 @@ public class AgencyController {
         return ResultVOUtil.success();
     }
 
-
+    @PostMapping("/findbynumber")
+    public ResultVO findByNumber(String number){
+        return ResultVOUtil.success(agencyService.findByNumber(number));
+    }
 
 }

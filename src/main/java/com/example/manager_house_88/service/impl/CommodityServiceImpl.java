@@ -5,9 +5,6 @@ import com.example.manager_house_88.repository.CommodityRepo;
 import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,15 +19,19 @@ import java.util.List;
 public class CommodityServiceImpl implements CommodityService {
 
     @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+
+    @Autowired
     private CommodityRepo commodityRepo;
 
     /*通过commodityId查找一个标的物*/
     @Override
     public Commodity findOne(String commodityId) {
-       Commodity commodity = commodityRepo.findOne(commodityId);
-       commodity.setSort(commodity.getSort()+1);
-       commodityRepo.save(commodity);
-       return commodity;
+        Commodity commodity = commodityRepo.findOne(commodityId);
+        commodity.setSort(commodity.getSort() + 1);
+        commodityRepo.save(commodity);
+        return commodity;
     }
 
     /*查找所有标的物  默认按创建时间排序  倒序*/
@@ -66,4 +67,15 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
 
+    /*设置标的物详情*/
+    @Override
+    public void setDetail(String commodityId, String detail) {
+        stringRedisTemplate.opsForValue().set(commodityId,detail);
+    }
+
+    /*过去标的物的详情*/
+    @Override
+    public String getDetail(String commodityId) {
+        return stringRedisTemplate.opsForValue().get(commodityId);
+    }
 }

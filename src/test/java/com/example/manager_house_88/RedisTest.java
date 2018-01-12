@@ -33,8 +33,8 @@ public class RedisTest {
     public void testObj() throws Exception {
        RedisTestDomain user=new RedisTestDomain("aa123456", "123");
         ValueOperations<String, RedisTestDomain> operations=redisTemplate.opsForValue();
-        operations.set("com.neox", user);
-        operations.set("com.neo.f", user,1, TimeUnit.SECONDS);
+        operations.set("x", user);
+        operations.set("x", user,1, TimeUnit.SECONDS);
         Thread.sleep(1000);
         //redisTemplate.delete("com.neo.f");
         boolean exists=redisTemplate.hasKey("com.neo.f");

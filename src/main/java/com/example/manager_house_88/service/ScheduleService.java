@@ -13,12 +13,12 @@ public interface ScheduleService {
     /*保存一条记录*/
     Schedule save(Schedule schedule);
 
-    /*修改进度*/
-    void changeStatus(String scheduleId);
-
     /*查找用户的所有进度信息*/
     List<Schedule> findByUserId(String userId);
 
     /*查找用户的所有进度信息*/
     List<Schedule> findByNumber(String number);
+
+    /*设置为中标*/
+    void changeWin(String scheduleId);
 }

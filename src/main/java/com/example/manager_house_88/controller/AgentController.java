@@ -52,5 +52,9 @@ public class AgentController {
         agentService.delete(agentId);
         return ResultVOUtil.success();
     }
+    @PostMapping("/findbynumber")
+    public ResultVO findByNumber(String number){
+        return ResultVOUtil.success(agentService.findByNumber(number));
+    }
 
 }
