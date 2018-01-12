@@ -2,8 +2,12 @@ package com.example.manager_house_88.utils;
 
 
 import com.example.manager_house_88.vo.ResultVO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class ResultVOUtil {
+
+    @Autowired
+    private ResultVO resultVO;
 
     public static ResultVO success(Object object) {
         ResultVO resultVO = new ResultVO();

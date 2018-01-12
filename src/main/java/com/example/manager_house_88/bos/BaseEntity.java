@@ -16,8 +16,8 @@ import javax.persistence.*;
 @Access(AccessType.FIELD)
 public class BaseEntity extends CoreObject implements IEntity {
 
-//    @Column(name="number",unique=true,nullable=false,length=40)
-//    private String number;
+    @Column(name="number",unique=true,nullable=false,length=40)
+    private String number;
 
     @CreatedBy
     @Column(name="createactorid",length=25)
@@ -40,12 +40,8 @@ public class BaseEntity extends CoreObject implements IEntity {
     @Enumerated(EnumType.STRING)
     private EntityStatus objectstatus;
 
-    public String getNumber() {
-        return number;
-    }
-    public void setNumber(String number) {
-        this.number = number;
-    }
+
+
     public EntityStatus getObjectstatus() {
         return objectstatus;
     }
@@ -68,6 +64,14 @@ public class BaseEntity extends CoreObject implements IEntity {
         return updatetime;
     }
 
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getNumber() {
+        return number;
+    }
 
     /*   public void setUpdatetime(long updatetime) {
            this.updatetime = updatetime;

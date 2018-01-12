@@ -10,7 +10,9 @@ import java.util.List;
 @Repository
 public interface CommentRepo extends JpaRepository<Comment,String> {
 
-//    List<Comment> findByAuditStatus(int status);
+    List<Comment> findByAuditStatus(Integer auditStatus);
 
-    List<Comment> findByType(int type);
+    List<Comment> findByType(Integer type);
+
+    List<Comment> findByCommentStatus(Integer commentStatus);
 }

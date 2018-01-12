@@ -3,6 +3,8 @@ package com.example.manager_house_88.service.impl;
 import com.example.manager_house_88.domain.Agency;
 import com.example.manager_house_88.repository.AgencyRepo;
 import com.example.manager_house_88.service.AgencyService;
+import com.example.manager_house_88.utils.NumberUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,7 @@ public class AgencyServiceImpl implements AgencyService{
     /*添加一个 代办机构*/
     @Override
     public void save(Agency agency) {
+        agency.setNumber(NumberUtil.getNumber());
         agencyRepo.save(agency);
     }
 
@@ -44,7 +47,8 @@ public class AgencyServiceImpl implements AgencyService{
     @Override
     @Transactional
     public void update(String agencyId, Agency agency) {
-        agencyRepo.save(agency);
-        agencyRepo.delete(agencyId);
+        Agency result = agencyRepo.findOne(agencyId);
+        BeanUtils.copyProperties(agency,result);
+        agencyRepo.save(result);
     }
 }
