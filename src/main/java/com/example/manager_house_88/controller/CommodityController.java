@@ -38,4 +38,16 @@ public class CommodityController {
     public  ResultVO save(@RequestBody Commodity commodity){
         return ResultVOUtil.success(commodityService.save(commodity));
     }
+
+    @PostMapping("/setdetail")
+    public ResultVO setDetail(@RequestParam(name="commodityid") String commodityId,@RequestParam String detail){
+        commodityService.setDetail(commodityId,detail);
+        return ResultVOUtil.success();
+    }
+
+    @PostMapping("/getdetail")
+    public ResultVO setDetail(@RequestParam(name="commodityid") String commodityId){
+
+        return ResultVOUtil.success( commodityService.getDetail(commodityId));
+    }
 }

@@ -18,4 +18,8 @@ public interface CommodityService {
     List<Commodity> findAll(Sort sort);
 
     Commodity save(Commodity commodity);
+
+    void setDetail(String commodityId, String detail);
+
+    String getDetail(String commodityId);
 }

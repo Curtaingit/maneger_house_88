@@ -42,13 +42,13 @@ public class ControllerResultAspect {
 
 
 
-    @After("returnResult()")
+/*    @After("returnResult()")
     public void doAfter(ProceedingJoinPoint pjp) throws Throwable {
         Object retVal = pjp.proceed();
 
         logger.info("aspect doAfter");
 
-    }
+    }*/
 
 /*    @AfterReturning(returning = "object", pointcut = "log()")
     public void doAfterReturning(Object object) {
