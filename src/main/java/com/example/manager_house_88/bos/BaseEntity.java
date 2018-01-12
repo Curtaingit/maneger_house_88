@@ -27,9 +27,6 @@ public class BaseEntity extends CoreObject implements IEntity {
     @Column(name="updateactorid",length=25)
     private String updateactorid;
 
-
-
-
     @LastModifiedDate
     private long updatetime;
 
