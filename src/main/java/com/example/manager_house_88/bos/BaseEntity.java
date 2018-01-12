@@ -37,12 +37,8 @@ public class BaseEntity extends CoreObject implements IEntity {
     @Enumerated(EnumType.STRING)
     private EntityStatus objectstatus;
 
-    public String getNumber() {
-        return number;
-    }
-    public void setNumber(String number) {
-        this.number = number;
-    }
+
+
     public EntityStatus getObjectstatus() {
         return objectstatus;
     }
@@ -65,6 +61,14 @@ public class BaseEntity extends CoreObject implements IEntity {
         return updatetime;
     }
 
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getNumber() {
+        return number;
+    }
 
     /*   public void setUpdatetime(long updatetime) {
            this.updatetime = updatetime;

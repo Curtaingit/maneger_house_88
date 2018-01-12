@@ -3,6 +3,8 @@ package com.example.manager_house_88.service.impl;
 import com.example.manager_house_88.domain.Agent;
 import com.example.manager_house_88.repository.AgentRepo;
 import com.example.manager_house_88.service.AgentService;
+import com.example.manager_house_88.utils.NumberUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,7 @@ public class AgentServiceImpl implements AgentService {
     /*添加一个代理人*/
     @Override
     public void save(Agent agent) {
+        agent.setNumber(NumberUtil.getNumber());
         agentRepo.save(agent);
     }
 
@@ -44,12 +47,15 @@ public class AgentServiceImpl implements AgentService {
     @Override
     @Transactional
     public void update(String agentId, Agent agent) {
-        agentRepo.save(agent);
-        agentRepo.delete(agentId);
+        Agent result = agentRepo.findOne(agentId);
+        BeanUtils.copyProperties(agent,result);
+        agentRepo.save(result);
     }
 
+    /*根据编号查询一个代理人*/
     @Override
-    public Agent findByOpenid(String openid) {
-        return agentRepo.findByOpenid(openid);
+    public Agent findByNumber(String number) {
+        return agentRepo.findByNumber(number);
     }
+
 }

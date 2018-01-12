@@ -21,25 +21,43 @@ public class CommentController {
 
     @PostMapping("/save")
     public ResultVO save(@RequestBody Comment comment, Principal principal){
-//        commentService.save(comment, PrincipalUtil.getOpenid(principal));
+        commentService.save(comment, PrincipalUtil.getOpenid(principal));
         return ResultVOUtil.success();
     }
 
-/*    @PostMapping("/findbystatus")
-    public ResultVO findByStatus(int status){
-        return ResultVOUtil.success(commentService.findByStatus(status));
+    @PostMapping("/findbyauditstatus")
+    public ResultVO findByAuditStatus(@RequestParam("auditstatus") Integer auditStatus){
+        return ResultVOUtil.success(commentService.findByAuditStatus(auditStatus));
     }
 
     @PostMapping("/findbytype")
-    public ResultVO findByType(int type){
+    public ResultVO findByType(Integer type){
         return ResultVOUtil.success(commentService.findByType(type));
-    }*/
+    }
 
-    @PostMapping("/changestatus")
-    private ResultVO changeStatus(@RequestParam("commentid") String commentId){
+    @PostMapping("/changeauditsstatus")
+    public ResultVO changeAuditsStatus(@RequestParam("commentid") String commentId){
         commentService.changeAuditStatus(commentId);
         return ResultVOUtil.success();
     }
+
+    @PostMapping("/findbycommentstatus")
+    public ResultVO findByCommentStatus(@RequestParam("commentstatus") Integer commentStatus){
+        return ResultVOUtil.success(commentService.findByCommentStatus(commentStatus));
+    }
+
+    @PostMapping("/changecommentstatus")
+    public ResultVO changeCommentStatus(@RequestParam("commentid") String commentId){
+        commentService.changeCommentStatus(commentId);
+        return ResultVOUtil.success();
+    }
+
+    @PostMapping("/delete")
+    public ResultVO delete(@RequestParam("commentid") String commentId){
+        commentService.delete(commentId);
+        return ResultVOUtil.success();
+    }
+
 
 
 }

@@ -3,6 +3,7 @@ package com.example.manager_house_88.service.impl;
 import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.repository.CommodityRepo;
 import com.example.manager_house_88.service.CommodityService;
+import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,9 @@ public class CommodityServiceImpl implements CommodityService {
     /*保存一个标的物*/
     @Override
     public Commodity save(Commodity commodity) {
+        commodity.setNumber(NumberUtil.getNumber());
         return commodityRepo.save(commodity);
+
     }
 
 }

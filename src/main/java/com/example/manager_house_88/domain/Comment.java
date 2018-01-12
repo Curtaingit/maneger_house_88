@@ -21,7 +21,7 @@ public class Comment extends BaseEntity {
     private String content;
 
     /*审核状态*/
-    private int status;
+    private int auditStatus = CommentEnum.WAITAUDITSTATUS.getCode();
 
     /*点赞数*/
     private int liked;
@@ -37,9 +37,6 @@ public class Comment extends BaseEntity {
 
     /*姓名*/
     private String name;
-
-    /*星级*/
-    private String level;
 
     /*评论的状态  精选  or  普通*/
     private int commentStatus = CommentEnum.GENERAL.getCode();
