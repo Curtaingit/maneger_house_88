@@ -11,7 +11,7 @@ public interface ScheduleService {
 
     Schedule save(Schedule schedule);
 
-    List<Schedule> findByOpenid(String openid);
+/*    List<Schedule> findByOpenid(String openid);*/
 
     Schedule findByCommodityId(String commodityId);
 

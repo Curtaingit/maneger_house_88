@@ -29,12 +29,12 @@ public class ScheduleController {
         scheduleRepo.save(schedule);
         return ResultVOUtil.success();
     }
-
+/*
     @RequestMapping("/findbyopenid")
     public ResultVO findByOpenid(Principal principal){
         List<Schedule> scheduleList = scheduleRepo.findByOpenid(PrincipalUtil.getOpenid(principal));
         return ResultVOUtil.success(scheduleList);
-    }
+    }*/
 
     @PostMapping("/findbycommodityid")
     public ResultVO findByCommodityId(String commodityId){

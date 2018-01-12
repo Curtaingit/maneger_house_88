@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ScheduleRepo extends JpaRepository<Schedule,String> {
 
-    List<Schedule> findByOpenid(String openid);
+/*    List<Schedule> findByOpenid(String openid);*/
 
     Schedule findByCommodityId(String commodityId);
 }

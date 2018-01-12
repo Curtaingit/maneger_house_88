@@ -25,7 +25,7 @@ public class User extends BaseEntity {
     private String openid;
 
     /*性别*/
-    private boolean gender;
+    private String gender;
 
     /*国家*/
     private String country;

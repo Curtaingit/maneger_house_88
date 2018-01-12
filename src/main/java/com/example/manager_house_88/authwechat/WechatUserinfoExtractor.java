@@ -26,7 +26,7 @@ public class WechatUserinfoExtractor implements PrincipalExtractor {
             User user =new User();
             user.setName((String)map.get("nickname"));
             user.setOpenid(openid);
-            user.setSex((map.get("sex").toString()));
+            user.setGender((map.get("sex").toString()));
             user.setCity((String)(map.get("city")));
             user.setProvince((String)(map.get("province")));
             user.setCountry((String)(map.get("country")));

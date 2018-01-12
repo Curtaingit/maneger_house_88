@@ -29,30 +29,35 @@ public class CommentServiceImpl implements CommentService {
 
 
     /*根据评论是否审核 查询*/
-    @Override
-    public List<Comment> findByStatus(Integer status) {
-        return commentRepo.findByAuditStatus(status);
-    }
+//    @Override
+//    public List<Comment> findByStatus(Integer status) {
+//        return commentRepo.findByAuditStatus(status);
+//    }
 
-    @Override
+/*    @Override
     public List<Comment> findByType(Integer type) {
         return commentRepo.findByType(type);
-    }
+    }*/
 
     /*保存评论*/
+/*
     @Override
     public void save(Comment comment, String openid) {
         User user = userService.findByOpenid(openid);
 
         if(UserEnum.USERASCRIPTION.getCode()==user.getCharacter()){
-             /*普通用户评论*/
+             */
+/*普通用户评论*//*
+
             comment.setUserId(user.getId());
             comment.setAscription(CommentEnum.USERASCRIPTION.getCode());
             comment.setName(user.getName());
             comment.setHeadImg(user.getHeadImgUrl());
         }else
         {
-            /*经纪人用户评论*/
+            */
+/*经纪人用户评论*//*
+
             Agent agent = agentService.findByOpenid(openid);
             comment.setAgentId(agent.getId());
             comment.setAscription(CommentEnum.AGENTASCRIPTION.getCode());
@@ -61,6 +66,7 @@ public class CommentServiceImpl implements CommentService {
         }
         commentRepo.save(comment);
     }
+*/
 
     /*评论审核*/
     @Override

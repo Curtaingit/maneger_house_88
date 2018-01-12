@@ -24,10 +24,12 @@ public class ScheduleServiceImpl implements ScheduleService {
         return scheduleRepo.save(schedule);
     }
 
+/*
     @Override
     public List<Schedule> findByOpenid(String openid) {
         return scheduleRepo.findByOpenid(openid);
     }
+*/
 
     @Override
     public Schedule findByCommodityId(String commodityId) {

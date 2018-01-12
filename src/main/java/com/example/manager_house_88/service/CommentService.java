@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface CommentService {
 
-    /*根据审核状态查询 */
+ /*   *//*根据审核状态查询 *//*
     List<Comment> findByStatus(Integer status);
 
-    /*根据评论所属类型查询*/
+    *//*根据评论所属类型查询*//*
     List<Comment> findByType(Integer type);
-
-    /*保存评论*/
-    void save(Comment comment, String openid);
+*/
+/*    *//*保存评论*//*
+    void save(Comment comment, String openid);*/
 
     /*修改审核状态*/
     void changeAuditStatus(String commentId);

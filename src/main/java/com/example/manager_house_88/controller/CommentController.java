@@ -21,11 +21,11 @@ public class CommentController {
 
     @PostMapping("/save")
     public ResultVO save(@RequestBody Comment comment, Principal principal){
-        commentService.save(comment, PrincipalUtil.getOpenid(principal));
+//        commentService.save(comment, PrincipalUtil.getOpenid(principal));
         return ResultVOUtil.success();
     }
 
-    @PostMapping("/findbystatus")
+/*    @PostMapping("/findbystatus")
     public ResultVO findByStatus(int status){
         return ResultVOUtil.success(commentService.findByStatus(status));
     }
@@ -33,7 +33,7 @@ public class CommentController {
     @PostMapping("/findbytype")
     public ResultVO findByType(int type){
         return ResultVOUtil.success(commentService.findByType(type));
-    }
+    }*/
 
     @PostMapping("/changestatus")
     private ResultVO changeStatus(@RequestParam("commentid") String commentId){
