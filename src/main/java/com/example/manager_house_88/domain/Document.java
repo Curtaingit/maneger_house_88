@@ -61,8 +61,9 @@ public class Document extends BaseEntity {
     private String otherMsg;
 
     /*标书状态*/
-    private int status;
+    private boolean status;
 
     /*审核通过时间*/
     private Long time;
+
 }

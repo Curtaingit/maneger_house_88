@@ -1,11 +1,18 @@
 package com.example.manager_house_88.domain;
 
 import com.example.manager_house_88.bos.BaseEntity;
+import com.example.manager_house_88.bos.BosSet;
 import com.example.manager_house_88.bos.Bostype;
+import com.example.manager_house_88.bos.IBosSet;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
+import java.util.Set;
 
 /*标的物*/
 
@@ -54,5 +61,13 @@ public class  Commodity extends BaseEntity{
     /*开标时间*/
     private Long auctionTime;
 
+    /*用户付款流程进度*/
+    private int process;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent", orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<Schedule> items = new HashSet<>();
+
+    public IBosSet<Schedule> getItems() {
+        return new BosSet(this.items, this);
+    }
 }
