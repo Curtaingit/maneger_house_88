@@ -107,6 +107,18 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+        <!--小程序认证-->
+        <dependency>
+            <groupId>org.codehaus.xfire</groupId>
+            <artifactId>xfire-core</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk16</artifactId>
+            <version>1.46</version>
+        </dependency>
+
     </dependencies>
 
     <build>
