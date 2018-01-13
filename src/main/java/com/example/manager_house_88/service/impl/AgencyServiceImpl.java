@@ -30,7 +30,6 @@ public class AgencyServiceImpl implements AgencyService{
         if(agency ==null){
             throw new ManagerHouse88Exception(ResultExceptionEnum.AGENCY_NOT_EXIST);
         }
-
         return agency;
 
     }

@@ -7,7 +7,7 @@ spring:
     password: 1234
     url: jdbc:mysql://127.0.0.1:3306/manager_house?useSSL=false
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
   redis:
@@ -44,8 +44,9 @@ wechat:
     client:
        clientId: wx80684f34298ce2d7
        clientSecret: a73ba9a5f6d09d9e7d698ab8ee213b78
-       accessTokenUri: https://api.weixin.qq.com/sns/oauth2/access_token
-       userAuthorizationUri: https://open.weixin.qq.com/connect/oauth2/authorize
+       accessTokenUri: https://api.weixin.qq.com/sns/jscode2session
+#  获取code
+#  userAuthorizationUri: https://open.weixin.qq.com/connect/oauth2/authorize
        authenticationScheme: query
        clientAuthenticationScheme: form
        scope: snsapi_userinfo
