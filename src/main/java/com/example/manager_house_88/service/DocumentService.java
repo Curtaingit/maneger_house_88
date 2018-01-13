@@ -18,4 +18,6 @@ public interface DocumentService {
 
     List<Document> findAll(Sort sort);
 
+    void changeStatus(boolean status);
+
 }

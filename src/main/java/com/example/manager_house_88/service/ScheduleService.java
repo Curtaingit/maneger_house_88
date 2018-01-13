@@ -21,4 +21,10 @@ public interface ScheduleService {
 
     /*设置为中标*/
     void changeWin(String scheduleId);
+
+    /*改变保证金审核状态*/
+    void changeAuditBail(boolean auditBail);
+
+    /*改变用户进度*/
+    void changeProcess(Integer process);
 }

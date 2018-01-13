@@ -2,11 +2,12 @@ package com.example.manager_house_88.domain;
 
 import com.example.manager_house_88.bos.BaseEntity;
 import com.example.manager_house_88.bos.Bostype;
+import com.example.manager_house_88.bos.Entry;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by cx on 18-1-10.
@@ -16,30 +17,46 @@ import javax.persistence.Table;
 @Setter
 @Bostype("A07")
 @Entity(name = "t_schedule")
-public class Schedule extends BaseEntity {
+public class Schedule extends Entry {
 
     /*用户id*/
-    String userId;
+    private String userId;
 
     /*标的物id*/
-    String commodityId;
+    private String commodityId;
 
     /*经纪人id*/
-    String agentId;
+    private String agentId;
 
     /*代办机构*/
-    String agencyId;
+    private String agencyId;
 
     /*竞价金额*/
-    Long amount;
+    private Long amount;
 
     /*看房时间*/
-    Long watchTime;
+    private Long watchTime;
 
     /*标书Id*/
-    String documentId;
+    private String documentId;
 
     /*是否中标*/
-    boolean win;
+    private boolean win;
+
+    /*保证金图片*/
+    private String bailImage;
+
+    /*保证金是否审核*/
+    private boolean auditBail;
+
+    /*是否退款*/
+    private boolean isRefund;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Access(AccessType.PROPERTY)
+    @JsonBackReference
+    public Commodity getParent() {
+        return (Commodity) super.getInnerParent();
+    }
 
 }
