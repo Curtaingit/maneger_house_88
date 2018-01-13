@@ -1,6 +1,7 @@
 package com.example.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.Commodity;
+import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.repository.CommodityRepo;
 import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.utils.BeanCopyUtil;
@@ -14,7 +15,9 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by cx on 18-1-10.
@@ -93,6 +96,15 @@ public class CommodityServiceImpl implements CommodityService {
         BeanUtils.copyProperties(commodity,rs, BeanCopyUtil.getNullPropertyNames(commodity));
         commodityRepo.save(rs);
         return rs;
+    }
+
+
+    /*创建一个新的进度*/
+    @Override
+    public void createSchedule(String commodityId, Schedule schedule) {
+        Commodity commodity = commodityRepo.findOne(commodityId);
+        commodity.getItems().add(schedule);
+        commodityRepo.save(commodity);
     }
 
 

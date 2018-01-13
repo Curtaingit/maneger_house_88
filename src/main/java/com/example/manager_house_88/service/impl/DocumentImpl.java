@@ -1,8 +1,11 @@
 package com.example.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.Document;
+import com.example.manager_house_88.domain.Schedule;
+import com.example.manager_house_88.enums.ScheduleEnum;
 import com.example.manager_house_88.repository.DocumentRepo;
 import com.example.manager_house_88.service.DocumentService;
+import com.example.manager_house_88.service.ScheduleService;
 import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +24,9 @@ public class DocumentImpl implements DocumentService {
 
 
     @Autowired
+    private ScheduleService scheduleService;
+
+    @Autowired
     private DocumentRepo documentRepo;
 
     /*通过documentId查找一个标书*/
@@ -31,8 +37,11 @@ public class DocumentImpl implements DocumentService {
 
     /*保存一个标书*/
     @Override
-    public Document save(Document document) {
+    public Document save(String scheduleId,Document document) {
 //        document.setNumber(NumberUtil.getNumber());
+        Schedule schedule = scheduleService.findOne(scheduleId);
+        schedule.setProcess(ScheduleEnum.SUBMIT_DOCUMENT.getCode());
+        document.setScheduleId(scheduleId);
         return documentRepo.save(document);
     }
 
@@ -46,6 +55,11 @@ public class DocumentImpl implements DocumentService {
     @Override
     public Page<Document> findAll(Pageable pageable) {
         return documentRepo.findAll(pageable);
+    }
+
+    @Override
+    public void changeStatus(boolean status) {
+
     }
 
 

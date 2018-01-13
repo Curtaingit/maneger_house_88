@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -36,6 +37,26 @@ public class ScheduleServiceImpl implements ScheduleService {
         return scheduleRepo.findAll(sort);
     }
 
+    @Override
+    public void changeAuditBail(boolean auditBail) {
+        // todo
+    }
+
+    @Override
+    public void changeProcess(String scheduleId,Integer process) {
+        Schedule schedule =scheduleRepo.findOne(scheduleId);
+        schedule.setProcess(process);
+        scheduleRepo.save(schedule);
+    }
+
+    @Override
+    @Transactional
+    public void setAmount(String scheduleId, Long amount) {
+        Schedule schedule = scheduleRepo.findOne(scheduleId);
+        schedule.setAmount(amount);
+        scheduleRepo.save(schedule);
+    }
+
 
     /*查找一条用户进度*/
     @Override
@@ -56,9 +77,5 @@ public class ScheduleServiceImpl implements ScheduleService {
         return findByUserId(userId);
     }
 
-    /*查找用户的所有进度信息*/
-    @Override
-    public List<Schedule> findByNumber(String number) {
-        return findByNumber(number);
-    }
+
 }

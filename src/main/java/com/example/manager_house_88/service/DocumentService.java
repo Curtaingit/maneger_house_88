@@ -16,7 +16,7 @@ public interface DocumentService {
 
     Document findOne(String documentId);
 
-    Document save(Document document);
+    Document save(String scheduleId,Document document);
 
     List<Document> findAll(Sort sort);
 

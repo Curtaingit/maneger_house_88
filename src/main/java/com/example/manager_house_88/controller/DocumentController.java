@@ -43,8 +43,10 @@ public class DocumentController {
     }
 
     @PostMapping("/save")
-    public ResultVO save(@RequestBody Document document){
-        return ResultVOUtil.success(documentService.save(document));
+    public ResultVO save(
+                         @RequestParam(name ="scheduleid") String scheduleId,
+                         @RequestBody Document document ){
+        return ResultVOUtil.success(documentService.save(scheduleId,document));
     }
 
 

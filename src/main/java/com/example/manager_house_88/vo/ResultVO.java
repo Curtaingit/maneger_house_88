@@ -8,16 +8,6 @@ import org.springframework.stereotype.Component;
 @Getter
 public class ResultVO<T> {
 
-    private ResultVO(){
-
-    }
-
-    private static ResultVO resultVO = new ResultVO();
-
-    public static ResultVO getResultVO(){
-        return resultVO;
-    }
-
     //错误码
     private Integer code;
 

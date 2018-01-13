@@ -17,7 +17,7 @@ spring:
     port: 6379
   jackson:
     serialization:
-      fail-on-empty-beans: false
+      fail-on-empty-beans: true
       indent-output: true
   http:
     multipart:

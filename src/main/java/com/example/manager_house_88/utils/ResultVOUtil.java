@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class ResultVOUtil {
 
-    private static ResultVO resultVO = ResultVO.getResultVO();
 
     public static ResultVO success(Object object) {
+        ResultVO resultVO =new ResultVO();
         resultVO.setData(object);
         resultVO.setCode(0);
         resultVO.setMsg("成功");
@@ -20,8 +20,10 @@ public class ResultVOUtil {
     }
 
     public static ResultVO error(String msg){
+        ResultVO resultVO =new ResultVO();
         resultVO.setCode(1);
         resultVO.setMsg(msg);
+
         return resultVO;
     }
 }

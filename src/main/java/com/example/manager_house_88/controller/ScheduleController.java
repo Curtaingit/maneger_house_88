@@ -1,21 +1,14 @@
 package com.example.manager_house_88.controller;
 
-import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
-import com.example.manager_house_88.repository.ScheduleRepo;
 import com.example.manager_house_88.service.ScheduleService;
-import com.example.manager_house_88.utils.PrincipalUtil;
 import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
-import java.util.List;
 
 @RestController
 @RequestMapping("/schedule")
@@ -59,7 +52,19 @@ public class ScheduleController {
         return ResultVOUtil.success(scheduleService.findAll(pageable)) ;
     }
 
+    @PostMapping("/changeprocess")
+    public ResultVO changeProcess(@RequestParam("scheduleid") String scheduleId,
+                                  @RequestParam("process") Integer process){
+        scheduleService.changeProcess(scheduleId,process);
+        return ResultVOUtil.success( );
+    }
 
 
+    @PostMapping("/setamount")
+    public ResultVO setAmount (@RequestParam("scheduleid") String scheduleId,
+                               @RequestParam("amount") Long amount){
+        scheduleService.setAmount(scheduleId,amount);
+        return ResultVOUtil.success();
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.example.manager_house_88.service;
 
 import com.example.manager_house_88.domain.Commodity;
+import com.example.manager_house_88.domain.Schedule;
 import jdk.nashorn.internal.runtime.regexp.joni.constants.CCSTATE;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,4 +34,5 @@ public interface CommodityService {
 
     Commodity update(String commodityId,Commodity commodity);
 
+    void createSchedule(String commodityId, Schedule schedule);
 }

@@ -1,6 +1,8 @@
 package com.example.manager_house_88.service;
 
 import com.example.manager_house_88.domain.Schedule;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
@@ -16,8 +18,6 @@ public interface ScheduleService {
     /*查找用户的所有进度信息*/
     List<Schedule> findByUserId(String userId);
 
-    /*查找用户的所有进度信息*/
-    List<Schedule> findByNumber(String number);
 
     /*设置为中标*/
     void changeWin(String scheduleId);
@@ -30,5 +30,8 @@ public interface ScheduleService {
     void changeAuditBail(boolean auditBail);
 
     /*改变用户进度*/
-    void changeProcess(Integer process);
+    void changeProcess(String schedule,Integer process);
+
+    /*设置竞价*/
+    void setAmount(String scheduleId, Long amount);
 }

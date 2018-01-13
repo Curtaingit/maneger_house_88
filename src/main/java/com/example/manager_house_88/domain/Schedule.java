@@ -22,6 +22,12 @@ public class Schedule extends Entry {
     /*用户id*/
     private String userId;
 
+    /*看房人真实姓名*/
+    private String realName;
+
+    /*用户联系方式*/
+    private String phone;
+
     /*标的物id*/
     private String commodityId;
 
@@ -48,6 +54,9 @@ public class Schedule extends Entry {
 
     /*保证金是否审核*/
     private boolean auditBail;
+
+    /*用户流程进度*/
+    private int process;
 
     /*是否退款*/
     private boolean isRefund;

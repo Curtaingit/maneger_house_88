@@ -1,6 +1,7 @@
 package com.example.manager_house_88.controller;
 
 import com.example.manager_house_88.domain.Commodity;
+import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
@@ -10,7 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by cx on 18-1-10.
@@ -79,5 +82,11 @@ public class CommodityController {
 
 
     @PostMapping("/createschedule")
-    public
+    public    ResultVO createSchedule(@RequestParam (name="commodityid")  String commodityId,
+                                      @RequestBody Schedule schedule){
+        commodityService.createSchedule(commodityId,schedule);
+        return ResultVOUtil.success();
+        //todo 短信验证
+
+    }
 }

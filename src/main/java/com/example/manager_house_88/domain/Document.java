@@ -21,6 +21,9 @@ import javax.persistence.Entity;
 @Entity(name = "t_document")
 public class Document extends BaseEntity {
 
+    /*进程id*/
+    private String scheduleId;
+
     /*用户id*/
     private String userId;
 
