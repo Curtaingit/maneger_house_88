@@ -1,5 +1,6 @@
 package com.example.manager_house_88.controller;
 
+import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.repository.ScheduleRepo;
 import com.example.manager_house_88.service.ScheduleService;

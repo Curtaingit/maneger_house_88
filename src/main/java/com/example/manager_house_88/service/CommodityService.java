@@ -31,6 +31,6 @@ public interface CommodityService {
 
     String getDetail(String commodityId);
 
-    Commodity updata(String commodityId,Commodity commodity);
+    Commodity update(String commodityId,Commodity commodity);
 
 }

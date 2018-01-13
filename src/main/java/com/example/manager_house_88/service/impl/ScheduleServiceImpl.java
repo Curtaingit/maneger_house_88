@@ -46,7 +46,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     /*保存一条记录*/
     @Override
     public Schedule save(Schedule schedule) {
-        schedule.setNumber(NumberUtil.getNumber());
+//        schedule.setNumber(NumberUtil.getNumber());
         return scheduleRepo.save(schedule);
     }
 

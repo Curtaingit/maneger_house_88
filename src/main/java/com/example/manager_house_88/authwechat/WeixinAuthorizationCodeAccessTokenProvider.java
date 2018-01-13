@@ -31,8 +31,11 @@ public class WeixinAuthorizationCodeAccessTokenProvider extends AuthorizationCod
                                 MultiValueMap<String, String> form, HttpHeaders headers) {
                 String clientId = form.getFirst("client_id");
                 String clientSecret = form.getFirst("client_secret");
+                String code = form.getFirst("code");
                 form.set("appid", clientId);
                 form.set("secret", clientSecret);
+                form.set("js_code",code);
+                form.remove("code");
                 form.remove("client_id");
                 form.remove("client_secret");
             }
@@ -47,6 +50,8 @@ public class WeixinAuthorizationCodeAccessTokenProvider extends AuthorizationCod
         List<String>  states=(List<String>)request.get("url");
         try {
             //获取url的内容
+            //todo 添加state
+            request.setStateKey("zzz");
             request.setPreservedState(request.get("state"));
             return super.obtainAccessToken(details, request);
         } catch (UserRedirectRequiredException e) {

@@ -43,7 +43,7 @@ public class AgentServiceImpl implements AgentService {
     /*添加一个代理人*/
     @Override
     public void save(Agent agent) {
-        agent.setNumber(NumberUtil.getNumber());
+//        agent.setNumber(NumberUtil.getNumber());
         agentRepo.save(agent);
 
     }

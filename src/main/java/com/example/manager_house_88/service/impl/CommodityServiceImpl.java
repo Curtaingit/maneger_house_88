@@ -3,6 +3,7 @@ package com.example.manager_house_88.service.impl;
 import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.repository.CommodityRepo;
 import com.example.manager_house_88.service.CommodityService;
+import com.example.manager_house_88.utils.BeanCopyUtil;
 import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class CommodityServiceImpl implements CommodityService {
     /*保存一个标的物*/
     @Override
     public Commodity save(Commodity commodity) {
-        commodity.setNumber(NumberUtil.getNumber());
+//        commodity.setNumber(NumberUtil.getNumber());
         return commodityRepo.save(commodity);
 
     }
@@ -87,9 +88,9 @@ public class CommodityServiceImpl implements CommodityService {
     /*更新标的物*/
     @Override
     @Transactional
-    public Commodity updata(String commodityId,Commodity commodity) {
+    public Commodity update(String commodityId,Commodity commodity) {
         Commodity rs =commodityRepo.findOne(commodityId);
-        BeanUtils.copyProperties(commodity,rs);
+        BeanUtils.copyProperties(commodity,rs, BeanCopyUtil.getNullPropertyNames(commodity));
         commodityRepo.save(rs);
         return rs;
     }

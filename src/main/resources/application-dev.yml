@@ -51,7 +51,7 @@ wechat:
        clientAuthenticationScheme: form
        scope: snsapi_userinfo
     resource:
-      userInfoUri: https://api.weixin.qq.com/sns/userinfo?lang=zh_CN&openId=$openId$
+      userInfoUri: https://api.weixin.qq.com/sns/userinfo?lang=zh_CN&openid=$openid$
     accpetcode_url: https://www.embracex.com/gcsweixin/shop/login/wechat
 
 urlpath: https://www.embracex.com/gcsweixin/house/login/wechat

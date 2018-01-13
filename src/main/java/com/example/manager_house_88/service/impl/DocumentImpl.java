@@ -32,7 +32,7 @@ public class DocumentImpl implements DocumentService {
     /*保存一个标书*/
     @Override
     public Document save(Document document) {
-        document.setNumber(NumberUtil.getNumber());
+//        document.setNumber(NumberUtil.getNumber());
         return documentRepo.save(document);
     }
 

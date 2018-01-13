@@ -43,7 +43,7 @@ public class AgencyServiceImpl implements AgencyService{
     /*添加一个 代办机构*/
     @Override
     public void save(Agency agency) {
-        agency.setNumber(NumberUtil.getNumber());
+//        agency.setNumber(NumberUtil.getNumber());
         agencyRepo.save(agency);
     }
 

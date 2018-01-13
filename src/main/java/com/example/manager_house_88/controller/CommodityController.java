@@ -74,8 +74,10 @@ public class CommodityController {
     @PostMapping("/update")
     public ResultVO update(@RequestParam(name = "commodityid" ) String commodityId,
                            @RequestBody Commodity commodity){
-
-        return ResultVOUtil.success(commodityService.updata(commodityId,commodity));
-
+        return ResultVOUtil.success(commodityService.update(commodityId,commodity));
     }
+
+
+    @PostMapping("/createschedule")
+    public
 }

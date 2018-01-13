@@ -1,10 +1,9 @@
 package com.example.manager_house_88.service.impl;
 
-import com.example.manager_house_88.utils.NumberUtil;
-import com.example.manager_house_88.utils.PrincipalUtil;
 import com.example.manager_house_88.domain.User;
 import com.example.manager_house_88.repository.UserRepo;
 import com.example.manager_house_88.service.UserService;
+import com.example.manager_house_88.utils.PrincipalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
-        user.setNumber(NumberUtil.getNumber());
+//        user.setNumber(NumberUtil.getNumber());
         userRepo.save(user);
     }
 
