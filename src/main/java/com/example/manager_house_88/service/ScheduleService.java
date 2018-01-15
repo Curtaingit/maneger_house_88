@@ -13,7 +13,7 @@ public interface ScheduleService {
     Schedule findOne(String scheduleId);
 
     /*保存一条记录*/
-    Schedule save(Schedule schedule);
+    void create(String commodityId,Schedule schedule);
 
     /*查找用户的所有进度信息*/
     List<Schedule> findByUserId(String userId);

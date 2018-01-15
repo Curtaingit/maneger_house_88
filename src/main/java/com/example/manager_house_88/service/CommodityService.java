@@ -34,5 +34,4 @@ public interface CommodityService {
 
     Commodity update(String commodityId,Commodity commodity);
 
-    void createSchedule(String commodityId, Schedule schedule);
 }

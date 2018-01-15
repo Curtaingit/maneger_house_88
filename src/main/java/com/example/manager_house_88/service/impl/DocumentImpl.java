@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -37,8 +38,7 @@ public class DocumentImpl implements DocumentService {
 
     /*保存一个标书*/
     @Override
-    public Document save(String scheduleId,Document document) {
-//        document.setNumber(NumberUtil.getNumber());
+    public Document save(@RequestParam("scheduleid") String scheduleId, Document document) {
         Schedule schedule = scheduleService.findOne(scheduleId);
         schedule.setProcess(ScheduleEnum.SUBMIT_DOCUMENT.getCode());
         document.setScheduleId(scheduleId);
@@ -57,10 +57,12 @@ public class DocumentImpl implements DocumentService {
         return documentRepo.findAll(pageable);
     }
 
+   /* *//*修改标书审核状态*//*
     @Override
-    public void changeStatus(boolean status) {
-
-    }
+    public void changeStatus(@RequestParam("scheduleid") String scheduleId,boolean status) {
+             Schedule schedule = scheduleService.findOne(scheduleId);
+             schedule.setRefund(status);
+    }*/
 
 
 }

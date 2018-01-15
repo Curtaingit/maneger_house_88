@@ -16,8 +16,8 @@ public interface CommentService {
     /*按类型查询精选或普通评论*/
     List<Comment> findByCommentStatus(Integer commentStatus);
 
-    /*保存评论*/
-    void save(Comment comment, String openid);
+    /*保存评论*//*
+    void save(Comment comment);*/
 
     /*修改审核状态*/
     void changeAuditStatus(String commentId);

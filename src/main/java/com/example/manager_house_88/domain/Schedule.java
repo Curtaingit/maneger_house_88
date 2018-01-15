@@ -28,9 +28,6 @@ public class Schedule extends Entry {
     /*用户联系方式*/
     private String phone;
 
-    /*标的物id*/
-    private String commodityId;
-
     /*经纪人id*/
     private String agentId;
 

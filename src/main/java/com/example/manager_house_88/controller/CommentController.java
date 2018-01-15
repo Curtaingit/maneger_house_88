@@ -20,8 +20,8 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/save")
-    public ResultVO save(@RequestBody Comment comment, Principal principal){
-        commentService.save(comment, PrincipalUtil.getOpenid(principal));
+    public ResultVO save(@RequestBody Comment comment){
+    /*    commentService.save(comment);*/
         return ResultVOUtil.success();
     }
 

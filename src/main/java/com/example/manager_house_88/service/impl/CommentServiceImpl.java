@@ -53,17 +53,21 @@ public class CommentServiceImpl implements CommentService {
         return findByCommentStatus(commentStatus);
     }
 
-    /*保存评论*/
+  /*  @Override
+    public void save(Comment comment) {
+
+    }
+
+    *//*保存评论*//*
     @Override
     public void save(Comment comment, String openid) {
         User user = userService.findByOpenid(openid);
-
         comment.setNumber(NumberUtil.getNumber());
         comment.setAscriptionId(user.getId());
         comment.setName(user.getName());
         comment.setHeadImg(user.getHeadImgUrl());
         commentRepo.save(comment);
-    }
+    }*/
 
     /*评论审核*/
     @Override

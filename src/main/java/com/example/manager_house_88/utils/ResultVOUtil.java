@@ -23,7 +23,7 @@ public class ResultVOUtil {
         ResultVO resultVO =new ResultVO();
         resultVO.setCode(1);
         resultVO.setMsg(msg);
-
         return resultVO;
     }
+
 }

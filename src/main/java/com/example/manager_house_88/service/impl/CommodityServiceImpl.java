@@ -99,13 +99,5 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
 
-    /*创建一个新的进度*/
-    @Override
-    public void createSchedule(String commodityId, Schedule schedule) {
-        Commodity commodity = commodityRepo.findOne(commodityId);
-        commodity.getItems().add(schedule);
-        commodityRepo.save(commodity);
-    }
-
 
 }

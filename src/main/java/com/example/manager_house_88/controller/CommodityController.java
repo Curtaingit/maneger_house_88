@@ -11,10 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 /**
  * Created by cx on 18-1-10.
  */
@@ -62,17 +58,16 @@ public class CommodityController {
     }
 
     @PostMapping("/setdetail")
-    public ResultVO setDetail(@RequestParam(name="commodityid") String commodityId,@RequestParam String detail){
+    public ResultVO setDetail(@RequestParam(name="commodityid") String commodityId,@RequestBody String detail){
         commodityService.setDetail(commodityId,detail);
         return ResultVOUtil.success();
     }
 
     @PostMapping("/getdetail")
-    public ResultVO setDetail(@RequestParam(name="commodityid") String commodityId){
+    public ResultVO getDetail(@RequestParam(name="commodityid") String commodityId){
 
         return ResultVOUtil.success( commodityService.getDetail(commodityId));
     }
-
 
     @PostMapping("/update")
     public ResultVO update(@RequestParam(name = "commodityid" ) String commodityId,
@@ -80,13 +75,4 @@ public class CommodityController {
         return ResultVOUtil.success(commodityService.update(commodityId,commodity));
     }
 
-
-    @PostMapping("/createschedule")
-    public    ResultVO createSchedule(@RequestParam (name="commodityid")  String commodityId,
-                                      @RequestBody Schedule schedule){
-        commodityService.createSchedule(commodityId,schedule);
-        return ResultVOUtil.success();
-        //todo 短信验证
-
-    }
 }

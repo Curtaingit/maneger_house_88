@@ -22,9 +22,10 @@ public class ScheduleController {
        return ResultVOUtil.success(scheduleService.findOne(scheduleId));
     }
 
-    @PostMapping("/save")
-    public ResultVO save(@RequestBody Schedule schedule){
-        scheduleService.save(schedule);
+    @PostMapping("/create")
+    public ResultVO save(@RequestParam("commodityid") String commodityId,@RequestBody Schedule schedule){
+        scheduleService.create(commodityId,schedule);
+        //todo
         return ResultVOUtil.success();
     }
 

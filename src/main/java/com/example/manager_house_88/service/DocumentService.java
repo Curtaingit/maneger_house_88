@@ -22,6 +22,6 @@ public interface DocumentService {
 
     Page<Document> findAll(Pageable pageable);
 
-    void changeStatus(boolean status);
+   /* void changeStatus(boolean status);*/
 
 }

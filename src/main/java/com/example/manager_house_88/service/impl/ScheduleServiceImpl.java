@@ -1,7 +1,9 @@
 package com.example.manager_house_88.service.impl;
 
+import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.repository.ScheduleRepo;
+import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.service.ScheduleService;
 import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Autowired
     private ScheduleRepo scheduleRepo;
+
+    @Autowired
+    private CommodityService commodityService;
 
     /*设置为中标*/
     @Override
@@ -43,8 +48,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void changeProcess(String scheduleId,Integer process) {
-        Schedule schedule =scheduleRepo.findOne(scheduleId);
+    public void changeProcess(String scheduleId, Integer process) {
+        Schedule schedule = scheduleRepo.findOne(scheduleId);
         schedule.setProcess(process);
         scheduleRepo.save(schedule);
     }
@@ -66,9 +71,13 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     /*保存一条记录*/
     @Override
-    public Schedule save(Schedule schedule) {
+    public void create(String commodityId, Schedule schedule) {
 //        schedule.setNumber(NumberUtil.getNumber());
-        return scheduleRepo.save(schedule);
+
+        Commodity commodity = commodityService.findOne(commodityId);
+        commodity.getItems().add(schedule);
+        commodityService.save(commodity);
+
     }
 
     /*查找用户的所有进度信息*/

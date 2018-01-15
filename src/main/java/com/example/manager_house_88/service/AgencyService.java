@@ -28,8 +28,9 @@ public interface AgencyService {
     /*修改一个代办机构的信息*/
     void update(String agencyId, Agency agency);
 
-    /*根据编号查询一个代理机构*/
+    /*根据编号查询一个代办公司*/
     Agency findByNumber(String number);
 
+    /*查找所有代办公司*/
     Page<Agency> findAll(Pageable pageable);
 }
