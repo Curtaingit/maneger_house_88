@@ -4,10 +4,10 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: 123456
+    password: 1234
     url: jdbc:mysql://127.0.0.1:3306/manager_house?useSSL=false
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
   redis:
@@ -17,13 +17,15 @@ spring:
     port: 6379
   jackson:
     serialization:
-      fail-on-empty-beans: false
+      fail-on-empty-beans: true
       indent-output: true
   http:
     multipart:
-      enabled: true
       max-file-size: 5MB
       max-request-size: 5MB
+    encoding:
+      enabled: true
+
 
 server:
   context-path: /house
@@ -42,13 +44,14 @@ wechat:
     client:
        clientId: wx80684f34298ce2d7
        clientSecret: a73ba9a5f6d09d9e7d698ab8ee213b78
-       accessTokenUri: https://api.weixin.qq.com/sns/oauth2/access_token
-       userAuthorizationUri: https://open.weixin.qq.com/connect/oauth2/authorize
+       accessTokenUri: https://api.weixin.qq.com/sns/jscode2session
+#  获取code
+#  userAuthorizationUri: https://open.weixin.qq.com/connect/oauth2/authorize
        authenticationScheme: query
        clientAuthenticationScheme: form
        scope: snsapi_userinfo
     resource:
-      userInfoUri: https://api.weixin.qq.com/sns/userinfo?lang=zh_CN&openId=$openId$
+      userInfoUri: https://api.weixin.qq.com/sns/userinfo?lang=zh_CN&openid=$openid$
     accpetcode_url: https://www.embracex.com/gcsweixin/shop/login/wechat
 
 urlpath: https://www.embracex.com/gcsweixin/house/login/wechat
@@ -56,8 +59,7 @@ urlpath: https://www.embracex.com/gcsweixin/house/login/wechat
 #imagepath: /home/cx/jAVA/shop/image/
 #
 #imageurl: https://www.embracex.com/gcsweixin/shop/image/
-imagepath: U:\images\
+imagepath: /home/cx/jAVA/images/
 
-imageurl: http:/192.168.249.120:8080/house/image/
-
+imageurl: https://www.embracex.com/gcsweixin/house/image/
 

@@ -1,17 +1,14 @@
 package com.example.manager_house_88.controller;
 
 import com.example.manager_house_88.domain.Schedule;
-import com.example.manager_house_88.repository.ScheduleRepo;
 import com.example.manager_house_88.service.ScheduleService;
-import com.example.manager_house_88.utils.PrincipalUtil;
 import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
-import java.util.List;
 
 @RestController
 @RequestMapping("/schedule")
@@ -25,9 +22,10 @@ public class ScheduleController {
        return ResultVOUtil.success(scheduleService.findOne(scheduleId));
     }
 
-    @PostMapping("/save")
-    public ResultVO save(@RequestBody Schedule schedule){
-        scheduleService.save(schedule);
+    @PostMapping("/create")
+    public ResultVO save(@RequestParam("commodityid") String commodityId,@RequestBody Schedule schedule){
+        scheduleService.create(commodityId,schedule);
+        //todo
         return ResultVOUtil.success();
     }
 
@@ -43,8 +41,31 @@ public class ScheduleController {
     }
 
 
+    @RequestMapping("/findall")
+    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
+                            @RequestParam(name="size",required = false) Integer size,
+                            @RequestParam(name = "page",required = false) Integer page){
+        Sort sort =new Sort(Sort.Direction.DESC,sortName);
+        if(size==null||page==null){
+            return  ResultVOUtil.success(scheduleService.findAll(sort));
+        }
+        Pageable pageable =new PageRequest(page,size,sort);
+        return ResultVOUtil.success(scheduleService.findAll(pageable)) ;
+    }
+
+    @PostMapping("/changeprocess")
+    public ResultVO changeProcess(@RequestParam("scheduleid") String scheduleId,
+                                  @RequestParam("process") Integer process){
+        scheduleService.changeProcess(scheduleId,process);
+        return ResultVOUtil.success( );
+    }
 
 
-
+    @PostMapping("/setamount")
+    public ResultVO setAmount (@RequestParam("scheduleid") String scheduleId,
+                               @RequestParam("amount") Long amount){
+        scheduleService.setAmount(scheduleId,amount);
+        return ResultVOUtil.success();
+    }
 
 }

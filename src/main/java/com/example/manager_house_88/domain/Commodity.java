@@ -61,8 +61,7 @@ public class  Commodity extends BaseEntity{
     /*开标时间*/
     private Long auctionTime;
 
-    /*用户付款流程进度*/
-    private int process;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent", orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Schedule> items = new HashSet<>();

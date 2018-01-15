@@ -17,6 +17,7 @@ public class UploadImageServiceImpl implements UploadImageService {
     @Value("${imageurl}")
     String returnurl;
 
+    /*上传图片*/
     @Override
     public String uploadImage(MultipartFile file) {
         String fileName = KeyUtil.genUniqueKey() + file.getOriginalFilename();

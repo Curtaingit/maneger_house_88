@@ -53,8 +53,8 @@ public class CommodityControllerTest {
 
         String jsonStr = "{\n" +
                 "\"images\":\"xxxx\",\n" +
-                "\"description\":\"大房子\",\n" +
-                "\"label\":\"大西门\",\n" +
+                "\"description\":\"小房子\",\n" +
+                "\"label\":\"大东门\",\n" +
                 "\"status\":\"0\",\n" +
                 "\"standard\":\"3室一厅\",\n" +
                 "\"coordinate\":\"225,666\",\n" +
@@ -69,7 +69,6 @@ public class CommodityControllerTest {
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<String> httpEntity = new HttpEntity<String>(jsonStr, requestHeaders);
         String jsonData = restTemplate.postForObject(url, httpEntity, String.class);
-
         System.out.println(jsonData);
     }
 

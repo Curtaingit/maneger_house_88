@@ -1,11 +1,17 @@
 package com.example.manager_house_88.service.impl;
 
+import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.repository.ScheduleRepo;
+import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.service.ScheduleService;
 import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +20,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Autowired
     private ScheduleRepo scheduleRepo;
+
+    @Autowired
+    private CommodityService commodityService;
 
     /*设置为中标*/
     @Override
@@ -24,14 +33,35 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void changeAuditBail(boolean auditBail) {
-
+    public Page<Schedule> findAll(Pageable pageable) {
+        return scheduleRepo.findAll(pageable);
     }
 
     @Override
-    public void changeProcess(Integer process) {
-
+    public List<Schedule> findAll(Sort sort) {
+        return scheduleRepo.findAll(sort);
     }
+
+    @Override
+    public void changeAuditBail(boolean auditBail) {
+        // todo
+    }
+
+    @Override
+    public void changeProcess(String scheduleId, Integer process) {
+        Schedule schedule = scheduleRepo.findOne(scheduleId);
+        schedule.setProcess(process);
+        scheduleRepo.save(schedule);
+    }
+
+    @Override
+    @Transactional
+    public void setAmount(String scheduleId, Long amount) {
+        Schedule schedule = scheduleRepo.findOne(scheduleId);
+        schedule.setAmount(amount);
+        scheduleRepo.save(schedule);
+    }
+
 
     /*查找一条用户进度*/
     @Override
@@ -41,8 +71,13 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     /*保存一条记录*/
     @Override
-    public Schedule save(Schedule schedule) {
-        return scheduleRepo.save(schedule);
+    public void create(String commodityId, Schedule schedule) {
+//        schedule.setNumber(NumberUtil.getNumber());
+
+        Commodity commodity = commodityService.findOne(commodityId);
+        commodity.getItems().add(schedule);
+        commodityService.save(commodity);
+
     }
 
     /*查找用户的所有进度信息*/
@@ -50,5 +85,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     public List<Schedule> findByUserId(String userId) {
         return findByUserId(userId);
     }
+
 
 }
