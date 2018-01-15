@@ -40,5 +40,10 @@ public class DocumentImpl implements DocumentService {
         return documentRepo.findAll(sort);
     }
 
+    @Override
+    public void changeStatus(boolean status) {
+
+    }
+
 
 }

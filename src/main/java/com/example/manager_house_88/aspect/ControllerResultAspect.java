@@ -42,13 +42,12 @@ public class ControllerResultAspect {
 
 
 
-/*    @After("returnResult()")
-    public void doAfter(ProceedingJoinPoint pjp) throws Throwable {
+    /*为所有的Controller类的返回值   做一个统一的处理*/
+    @Around("returnResult()")
+    public Object doAfter(ProceedingJoinPoint pjp) throws Throwable {
         Object retVal = pjp.proceed();
-
-        logger.info("aspect doAfter");
-
-    }*/
+        return ResultVOUtil.success(retVal);
+    }
 
 /*    @AfterReturning(returning = "object", pointcut = "log()")
     public void doAfterReturning(Object object) {

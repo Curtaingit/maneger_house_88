@@ -23,6 +23,16 @@ public class ScheduleServiceImpl implements ScheduleService {
         scheduleRepo.save(schedule);
     }
 
+    @Override
+    public void changeAuditBail(boolean auditBail) {
+
+    }
+
+    @Override
+    public void changeProcess(Integer process) {
+
+    }
+
     /*查找一条用户进度*/
     @Override
     public Schedule findOne(String scheduleId) {
@@ -32,7 +42,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     /*保存一条记录*/
     @Override
     public Schedule save(Schedule schedule) {
-        schedule.setNumber(NumberUtil.getNumber());
         return scheduleRepo.save(schedule);
     }
 
@@ -42,9 +51,4 @@ public class ScheduleServiceImpl implements ScheduleService {
         return findByUserId(userId);
     }
 
-    /*查找用户的所有进度信息*/
-    @Override
-    public List<Schedule> findByNumber(String number) {
-        return findByNumber(number);
-    }
 }

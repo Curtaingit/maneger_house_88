@@ -12,7 +12,6 @@ public interface CommentRepo extends JpaRepository<Comment,String> {
 
     List<Comment> findByAuditStatus(Integer auditStatus);
 
-    List<Comment> findByType(Integer type);
 
     List<Comment> findByCommentStatus(Integer commentStatus);
 }

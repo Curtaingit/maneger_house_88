@@ -26,10 +26,10 @@ public class Comment extends BaseEntity {
     /*点赞数*/
     private int liked;
 
-    /*评论属于 经纪人 or 用户*/
-    private int type;
+    /*用户id*/
+    private String userId;
 
-    /*评论归属*/
+    /*评论归属 经纪人 or 标的物 */
     private String ascriptionId;
 
     /*头像 logo*/
@@ -37,6 +37,8 @@ public class Comment extends BaseEntity {
 
     /*姓名*/
     private String name;
+
+    private String level;
 
     /*评论的状态  精选  or  普通*/
     private int commentStatus = CommentEnum.GENERAL.getCode();

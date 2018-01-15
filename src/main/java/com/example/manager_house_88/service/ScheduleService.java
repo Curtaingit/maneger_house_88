@@ -16,8 +16,7 @@ public interface ScheduleService {
     /*查找用户的所有进度信息*/
     List<Schedule> findByUserId(String userId);
 
-    /*查找用户的所有进度信息*/
-    List<Schedule> findByNumber(String number);
+
 
     /*设置为中标*/
     void changeWin(String scheduleId);
