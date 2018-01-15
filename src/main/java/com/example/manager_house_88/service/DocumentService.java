@@ -22,6 +22,8 @@ public interface DocumentService {
 
     Page<Document> findAll(Pageable pageable);
 
-   /* void changeStatus(boolean status);*/
+    List<Document> findByUserId(String userId);
+
+    void changeStatus(String documentId);
 
 }

@@ -1,13 +1,18 @@
 package com.example.manager_house_88.service.impl;
 
+import com.example.manager_house_88.SpringSecurityAuditorAware;
+import com.example.manager_house_88.domain.Agent;
 import com.example.manager_house_88.domain.Comment;
 import com.example.manager_house_88.enums.CommentEnum;
 import com.example.manager_house_88.repository.CommentRepo;
+import com.example.manager_house_88.service.AgentService;
 import com.example.manager_house_88.service.CommentService;
 import com.example.manager_house_88.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -42,7 +47,7 @@ public class CommentServiceImpl implements CommentService {
     /*按类型查询精选或普通评论*/
     @Override
     public List<Comment> findByCommentStatus(Integer commentStatus) {
-        return findByCommentStatus(commentStatus);
+        return commentRepo.findByCommentStatus(commentStatus);
     }
 
     /*保存评论*/
@@ -71,5 +76,11 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void raiseLiked(String commentId) {
         //todo  限定一个用户 一条评论只能点赞一次
+    }
+
+    /*查询对某个用户或某个经纪人的所有评论*/
+    @Override
+    public List<Comment> findByAscriptionId(String ascriptionId) {
+        return commentRepo.findByAscriptionId(ascriptionId);
     }
 }

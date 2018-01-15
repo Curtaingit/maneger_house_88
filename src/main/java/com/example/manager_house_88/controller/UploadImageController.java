@@ -15,7 +15,7 @@ public class UploadImageController {
     private UploadImageService imageService;
 
     @PostMapping("/uploadimage")
-    public ResultVO upLoadImage(MultipartFile file){
-        return ResultVOUtil.success(imageService.uploadImage(file));
+    public Object upLoadImage(MultipartFile file){
+        return imageService.uploadImage(file);
     }
 }

@@ -38,6 +38,7 @@ public class Comment extends BaseEntity {
     /*姓名*/
     private String name;
 
+    /*星级*/
     private String level;
 
     /*评论的状态  精选  or  普通*/

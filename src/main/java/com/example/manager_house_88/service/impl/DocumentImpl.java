@@ -57,6 +57,17 @@ public class DocumentImpl implements DocumentService {
         return documentRepo.findAll(pageable);
     }
 
+    @Override
+    public List<Document> findByUserId(String userId) {
+        return documentRepo.findByUserId(userId);
+    }
+
+    @Override
+    public void changeStatus(String documentId) {
+        Document document = documentRepo.findOne(documentId);
+        document.setStatus(true);
+    }
+
    /* *//*修改标书审核状态*//*
     @Override
     public void changeStatus(@RequestParam("scheduleid") String scheduleId,boolean status) {

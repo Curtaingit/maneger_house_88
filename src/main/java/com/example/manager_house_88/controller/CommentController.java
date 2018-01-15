@@ -49,6 +49,9 @@ public class CommentController {
         commentService.delete(commentId);
     }
 
-
+    @PostMapping("/findbyascriptionid")
+    public Object findByAscriptionId(@RequestParam("ascriptionid") String ascriptionId){
+       return commentService.findByAscriptionId(ascriptionId);
+    }
 
 }

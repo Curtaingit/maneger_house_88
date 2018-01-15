@@ -25,22 +25,22 @@ public class ScheduleController {
     @PostMapping("/create")
     public void save(@RequestParam("commodityid") String commodityId,@RequestBody Schedule schedule){
         scheduleService.create(commodityId,schedule);
+        //todo
     }
 
     @PostMapping("/changewin")
-    public ResultVO changeWin(@RequestParam("scheduleid") String scheduleId){
+    public void changeWin(@RequestParam("scheduleid") String scheduleId){
         scheduleService.changeWin(scheduleId);
-        return ResultVOUtil.success();
     }
 
     @PostMapping("/findbyuserid")
-    public ResultVO findByUserId(@RequestParam("userid") String userId){
-        return ResultVOUtil.success(scheduleService.findByUserId(userId));
+    public Object findByUserId(@RequestParam("userid") String userId){
+        return scheduleService.findByUserId(userId);
     }
 
 
     @RequestMapping("/findall")
-    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
+    public Object findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
                             @RequestParam(name="size",required = false) Integer size,
                             @RequestParam(name = "page",required = false) Integer page){
         Sort sort =new Sort(Sort.Direction.DESC,sortName);
@@ -48,22 +48,20 @@ public class ScheduleController {
             return  ResultVOUtil.success(scheduleService.findAll(sort));
         }
         Pageable pageable =new PageRequest(page,size,sort);
-        return ResultVOUtil.success(scheduleService.findAll(pageable)) ;
+        return scheduleService.findAll(pageable);
     }
 
     @PostMapping("/changeprocess")
-    public ResultVO changeProcess(@RequestParam("scheduleid") String scheduleId,
+    public void changeProcess(@RequestParam("scheduleid") String scheduleId,
                                   @RequestParam("process") Integer process){
         scheduleService.changeProcess(scheduleId,process);
-        return ResultVOUtil.success( );
     }
 
 
     @PostMapping("/setamount")
-    public ResultVO setAmount (@RequestParam("scheduleid") String scheduleId,
+    public void setAmount (@RequestParam("scheduleid") String scheduleId,
                                @RequestParam("amount") Long amount){
         scheduleService.setAmount(scheduleId,amount);
-        return ResultVOUtil.success();
     }
 
 }
