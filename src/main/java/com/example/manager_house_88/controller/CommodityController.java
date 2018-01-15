@@ -24,8 +24,8 @@ public class CommodityController {
     private CommodityService commodityService;
 
     @PostMapping("/findone")
-    public ResultVO findOne(@RequestParam(name="commodityid") String commodityId){
-       return ResultVOUtil.success(commodityService.findOne(commodityId));
+    public Object findOne(@RequestParam(name="commodityid") String commodityId){
+       return commodityService.findOne(commodityId);
     }
 
 
@@ -42,37 +42,37 @@ public class CommodityController {
     }
 
     @PostMapping("/save")
-    public  ResultVO save(@RequestBody Commodity commodity){
-        return ResultVOUtil.success(commodityService.save(commodity));
+    public  Object save(@RequestBody Commodity commodity){
+        return commodityService.save(commodity);
     }
 
     @PostMapping("/findbystatus")
-    public ResultVO findbystatus(String status){
-        return ResultVOUtil.success(commodityService.findByStatus(status));
+    public Object findbystatus(String status){
+        return commodityService.findByStatus(status);
     }
 
     @PostMapping("/delete")
-    public ResultVO delete(@RequestParam(name = "commodityid") String commodityId){
+    public void delete(@RequestParam(name = "commodityid") String commodityId){
         commodityService.delete(commodityId);
-        return ResultVOUtil.success();
+
     }
 
     @PostMapping("/setdetail")
-    public ResultVO setDetail(@RequestParam(name="commodityid") String commodityId,@RequestBody String detail){
+    public void setDetail(@RequestParam(name="commodityid") String commodityId,@RequestBody String detail){
         commodityService.setDetail(commodityId,detail);
-        return ResultVOUtil.success();
+
     }
 
     @PostMapping("/getdetail")
-    public ResultVO getDetail(@RequestParam(name="commodityid") String commodityId){
+    public Object getDetail(@RequestParam(name="commodityid") String commodityId){
 
-        return ResultVOUtil.success( commodityService.getDetail(commodityId));
+        return  commodityService.getDetail(commodityId);
     }
 
     @PostMapping("/update")
-    public ResultVO update(@RequestParam(name = "commodityid" ) String commodityId,
+    public Object update(@RequestParam(name = "commodityid") String commodityId,
                            @RequestBody Commodity commodity){
-        return ResultVOUtil.success(commodityService.update(commodityId,commodity));
+        return commodityService.update(commodityId,commodity);
     }
 
 }

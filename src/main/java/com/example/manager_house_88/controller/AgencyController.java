@@ -20,44 +20,42 @@ public class AgencyController {
     private AgencyService agencyService;
 
     @RequestMapping("/findall")
-    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
+    public Object findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
                             @RequestParam(name="size",required = false) Integer size,
                             @RequestParam(name = "page",required = false) Integer page){
         Sort sort =new Sort(Sort.Direction.DESC,sortName);
         if(size==null||page==null){
-            return  ResultVOUtil.success(agencyService.findAll(sort));
+            return  agencyService.findAll(sort);
         }
         Pageable pageable =new PageRequest(page,size,sort);
-        return ResultVOUtil.success(agencyService.findAll(pageable)) ;
+        return agencyService.findAll(pageable) ;
     }
 
     @PostMapping("/findone")
-    public ResultVO findOne(@RequestParam("agencyid") String agencyId){
-        return ResultVOUtil.success(agencyService.findOne(agencyId));
+    public Object findOne(@RequestParam("agencyid") String agencyId){
+        return agencyService.findOne(agencyId);
     }
 
     @PostMapping("/save")
-    public ResultVO save(@RequestBody Agency agency){
+    public void save(@RequestBody Agency agency){
         System.out.println(agency);
         agencyService.save(agency);
-        return ResultVOUtil.success();
     }
 
     @PostMapping("/update")
-    public ResultVO update(@RequestParam("agencyid") String agencyId, @RequestBody Agency agency){
+    public void update(@RequestParam("agencyid") String agencyId, @RequestBody Agency agency){
         agencyService.update(agencyId,agency);
-        return ResultVOUtil.success();
     }
 
     @PostMapping("/delete")
-    public ResultVO delete(@RequestParam("agencyid") String agencyId){
+    public void delete(@RequestParam("agencyid") String agencyId){
         agencyService.delete(agencyId);
-        return ResultVOUtil.success();
+
     }
 
     @PostMapping("/findbynumber")
-    public ResultVO findByNumber(String number){
-        return ResultVOUtil.success(agencyService.findByNumber(number));
+    public Object findByNumber(String number){
+        return agencyService.findByNumber(number);
     }
 
 }

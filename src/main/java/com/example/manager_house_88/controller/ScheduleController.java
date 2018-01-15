@@ -18,15 +18,13 @@ public class ScheduleController {
     private ScheduleService scheduleService;
 
     @PostMapping("/findone")
-    public ResultVO findOne(@RequestParam("scheduleid") String scheduleId){
-       return ResultVOUtil.success(scheduleService.findOne(scheduleId));
+    public Object findOne(@RequestParam("scheduleid") String scheduleId){
+       return scheduleService.findOne(scheduleId);
     }
 
     @PostMapping("/create")
-    public ResultVO save(@RequestParam("commodityid") String commodityId,@RequestBody Schedule schedule){
+    public void save(@RequestParam("commodityid") String commodityId,@RequestBody Schedule schedule){
         scheduleService.create(commodityId,schedule);
-        //todo
-        return ResultVOUtil.success();
     }
 
     @PostMapping("/changewin")

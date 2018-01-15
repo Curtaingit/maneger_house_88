@@ -21,35 +21,32 @@ public class CommentController {
 
     @PostMapping("/save")
     public void save(@RequestBody Comment comment){
-        commentService.save(comment, "xx");
+        commentService.save(comment);
     }
 
     @PostMapping("/findbyauditstatus")
-    public ResultVO findByAuditStatus(@RequestParam("auditstatus") Integer auditStatus){
-        return ResultVOUtil.success(commentService.findByAuditStatus(auditStatus));
+    public Object findByAuditStatus(@RequestParam("auditstatus") Integer auditStatus){
+        return commentService.findByAuditStatus(auditStatus);
     }
 
     @PostMapping("/changeauditstatus")
-    public ResultVO changeAuditsStatus(@RequestParam("commentid") String commentId){
+    public void changeAuditsStatus(@RequestParam("commentid") String commentId){
         commentService.changeAuditStatus(commentId);
-        return ResultVOUtil.success();
     }
 
     @PostMapping("/findbycommentstatus")
-    public ResultVO findByCommentStatus(@RequestParam("commentstatus") Integer commentStatus){
-        return ResultVOUtil.success(commentService.findByCommentStatus(commentStatus));
+    public Object findByCommentStatus(@RequestParam("commentstatus") Integer commentStatus){
+        return commentService.findByCommentStatus(commentStatus);
     }
 
     @PostMapping("/changecommentstatus")
-    public ResultVO changeCommentStatus(@RequestParam("commentid") String commentId){
+    public void changeCommentStatus(@RequestParam("commentid") String commentId){
         commentService.changeCommentStatus(commentId);
-        return ResultVOUtil.success();
     }
 
     @PostMapping("/delete")
-    public ResultVO delete(@RequestParam("commentid") String commentId){
+    public void delete(@RequestParam("commentid") String commentId){
         commentService.delete(commentId);
-        return ResultVOUtil.success();
     }
 
 
