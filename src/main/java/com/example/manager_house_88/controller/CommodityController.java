@@ -30,15 +30,15 @@ public class CommodityController {
 
 
     @RequestMapping("/findall")
-    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
+    public Object findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
                             @RequestParam(name="size",required = false) Integer size,
                             @RequestParam(name = "page",required = false) Integer page){
         Sort sort =new Sort(Sort.Direction.DESC,sortName);
         if(size==null||page==null){
-            return  ResultVOUtil.success(commodityService.findAll(sort));
+            return  commodityService.findAll(sort);
         }
         Pageable pageable =new PageRequest(page,size,sort);
-        return ResultVOUtil.success(commodityService.findAll(pageable)) ;
+        return commodityService.findAll(pageable) ;
     }
 
     @PostMapping("/save")

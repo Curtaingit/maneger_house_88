@@ -10,9 +10,6 @@ public interface CommentService {
     /*根据审核状态查询*/
     List<Comment> findByAuditStatus(Integer status);
 
-    /*根据评论所属类型查询*/
-    List<Comment> findByType(Integer type);
-
     /*按类型查询精选或普通评论*/
     List<Comment> findByCommentStatus(Integer commentStatus);
 

@@ -15,10 +15,7 @@ public enum CommentEnum {
     AGREEAUDITSTATUS(4,"审核成功"),
 
     GENERAL(5,"普通评论"),
-    NOBLE(6,"精选评论"),
-
-    USERASCRIPTION(7,"普通用户"),
-    AGENTASCRIPTION(8,"经纪人");
+    NOBLE(6,"精选评论");
 
 
 

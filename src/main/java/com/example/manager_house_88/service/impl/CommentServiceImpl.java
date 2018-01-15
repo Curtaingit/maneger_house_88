@@ -1,15 +1,21 @@
 package com.example.manager_house_88.service.impl;
 
+import com.example.manager_house_88.SpringSecurityAuditorAware;
+import com.example.manager_house_88.domain.Agent;
 import com.example.manager_house_88.domain.Comment;
 import com.example.manager_house_88.domain.User;
 import com.example.manager_house_88.enums.CommentEnum;
+import com.example.manager_house_88.enums.UserEnum;
 import com.example.manager_house_88.repository.CommentRepo;
+import com.example.manager_house_88.service.AgentService;
 import com.example.manager_house_88.service.CommentService;
 import com.example.manager_house_88.service.UserService;
 import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -34,12 +40,6 @@ public class CommentServiceImpl implements CommentService {
         commentRepo.delete(commentId);
     }
 
-    /*根据评论所属类型查询*/
-    @Override
-    public List<Comment> findByType(Integer type) {
-        return commentRepo.findByType(type);
-    }
-
     @Override
     public void changeCommentStatus(String commentId) {
         Comment comment = commentRepo.findOne(commentId);
@@ -53,21 +53,17 @@ public class CommentServiceImpl implements CommentService {
         return findByCommentStatus(commentStatus);
     }
 
-  /*  @Override
-    public void save(Comment comment) {
-
-    }
-
-    *//*保存评论*//*
+    /*保存评论*/
     @Override
     public void save(Comment comment, String openid) {
-        User user = userService.findByOpenid(openid);
-        comment.setNumber(NumberUtil.getNumber());
+        //todo: 暂时取消用过userid获取用户信息  因为小程序认证未完成
+        /*User user = userService.findByOpenid(openid);
+
         comment.setAscriptionId(user.getId());
         comment.setName(user.getName());
-        comment.setHeadImg(user.getHeadImgUrl());
+        comment.setHeadImg(user.getHeadImgUrl());*/
         commentRepo.save(comment);
-    }*/
+    }
 
     /*评论审核*/
     @Override

@@ -20,19 +20,13 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/save")
-    public ResultVO save(@RequestBody Comment comment){
-    /*    commentService.save(comment);*/
-        return ResultVOUtil.success();
+    public void save(@RequestBody Comment comment){
+        commentService.save(comment, "xx");
     }
 
     @PostMapping("/findbyauditstatus")
     public ResultVO findByAuditStatus(@RequestParam("auditstatus") Integer auditStatus){
         return ResultVOUtil.success(commentService.findByAuditStatus(auditStatus));
-    }
-
-    @PostMapping("/findbytype")
-    public ResultVO findByType(Integer type){
-        return ResultVOUtil.success(commentService.findByType(type));
     }
 
     @PostMapping("/changeauditstatus")
