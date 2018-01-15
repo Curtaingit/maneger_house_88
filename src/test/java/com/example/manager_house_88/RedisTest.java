@@ -1,6 +1,5 @@
 package com.example.manager_house_88;
 
-import com.example.manager_house_88.domain.RedisTestDomain;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

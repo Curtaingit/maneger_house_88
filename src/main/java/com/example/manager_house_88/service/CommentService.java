@@ -13,8 +13,8 @@ public interface CommentService {
     /*按类型查询精选或普通评论*/
     List<Comment> findByCommentStatus(Integer commentStatus);
 
-    /*保存评论*//*
-    void save(Comment comment);*/
+   /* 保存评论*/
+    void save(Comment comment);
 
     /*修改审核状态*/
     void changeAuditStatus(String commentId);
@@ -27,5 +27,8 @@ public interface CommentService {
 
     /*删除评论*/
     void delete(String commentId);
+
+    /*查询对某个用户或某个经纪人的所有评论*/
+    List<Comment> findByAscriptionId(String ascriptionId);
 
 }

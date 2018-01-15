@@ -24,30 +24,37 @@ public class DocumentController {
     private DocumentService documentService;
 
     @PostMapping("/findone")
-    public ResultVO findOne(@RequestParam(name = "documentid") String documentId) {
-        return ResultVOUtil.success(documentService.findOne(documentId));
+    public Object findOne(@RequestParam(name = "documentid") String documentId) {
+        return documentService.findOne(documentId);
     }
 
-
-
     @RequestMapping("/findall")
-    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
-                            @RequestParam(name="size",required = false) Integer size,
-                            @RequestParam(name = "page",required = false) Integer page){
-        Sort sort =new Sort(Sort.Direction.DESC,sortName);
-        if(size==null||page==null){
-            return  ResultVOUtil.success(documentService.findAll(sort));
+    public Object findAll(@RequestParam(name = "sort", defaultValue = "createtime") String sortName,
+                          @RequestParam(name = "size", required = false) Integer size,
+                          @RequestParam(name = "page", required = false) Integer page) {
+        Sort sort = new Sort(Sort.Direction.DESC, sortName);
+        if (size == null || page == null) {
+            return ResultVOUtil.success(documentService.findAll(sort));
         }
-        Pageable pageable =new PageRequest(page,size,sort);
-        return ResultVOUtil.success(documentService.findAll(pageable)) ;
+        Pageable pageable = new PageRequest(page, size, sort);
+        return documentService.findAll(pageable);
     }
 
     @PostMapping("/save")
-    public ResultVO save(
-                         @RequestParam(name ="scheduleid") String scheduleId,
-                         @RequestBody Document document ){
-        return ResultVOUtil.success(documentService.save(scheduleId,document));
+    public Object save(
+            @RequestParam(name = "scheduleid") String scheduleId,
+            @RequestBody Document document) {
+        return documentService.save(scheduleId, document);
     }
 
+    @PostMapping("/findbyuserid")
+    public Object findByUserId(@RequestParam("userid") String userId) {
+        return documentService.findByUserId(userId);
+    }
+
+    @PostMapping("/changestatus")
+    public void changeStatus(@RequestParam(name = "documentid") String documentId) {
+        documentService.changeStatus(documentId);
+    }
 
 }

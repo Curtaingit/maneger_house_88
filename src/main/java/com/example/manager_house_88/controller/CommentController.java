@@ -21,7 +21,7 @@ public class CommentController {
 
     @PostMapping("/save")
     public void save(@RequestBody Comment comment){
-        commentService.save(comment, "xx");
+        commentService.save(comment);
     }
 
     @PostMapping("/findbyauditstatus")
@@ -52,6 +52,9 @@ public class CommentController {
         return ResultVOUtil.success();
     }
 
-
+    @PostMapping("/findbyascriptionid")
+    public Object findByAscriptionId(@RequestParam("ascriptionid") String ascriptionId){
+       return commentService.findByAscriptionId(ascriptionId);
+    }
 
 }
