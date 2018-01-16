@@ -58,7 +58,7 @@ public class CommentController {
     }
 
     @RequestMapping("/findall")
-    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
+    public Object findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
                             @RequestParam(name="size",required = false) Integer size,
                             @RequestParam(name = "page",required = false) Integer page){
         Sort sort =new Sort(Sort.Direction.DESC,sortName);
@@ -66,7 +66,7 @@ public class CommentController {
             return  ResultVOUtil.success(commentService.findAll(sort));
         }
         Pageable pageable =new PageRequest(page-1,size,sort);
-        return ResultVOUtil.success(commentService.findAll(pageable)) ;
+        return commentService.findAll(pageable);
     }
 
 }
