@@ -47,7 +47,7 @@ public class ScheduleController {
         if(size==null||page==null){
             return  ResultVOUtil.success(scheduleService.findAll(sort));
         }
-        Pageable pageable =new PageRequest(page,size,sort);
+        Pageable pageable =new PageRequest(page-1,size,sort);
         return scheduleService.findAll(pageable);
     }
 

@@ -9,6 +9,9 @@ import com.example.manager_house_88.service.AgentService;
 import com.example.manager_house_88.service.CommentService;
 import com.example.manager_house_88.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,16 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private UserService userService;
 
+
+    @Override
+    public Page<Comment> findAll(Pageable pageable) {
+        return commentRepo.findAll(pageable);
+    }
+
+    @Override
+    public List<Comment> findAll(Sort sort) {
+        return commentRepo.findAll();
+    }
 
     /*根据评论是否审核 查询*/
     @Override

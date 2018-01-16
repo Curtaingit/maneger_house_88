@@ -1,6 +1,9 @@
 package com.example.manager_house_88.service;
 
 import com.example.manager_house_88.domain.Comment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.security.Principal;
 import java.util.List;
@@ -30,5 +33,9 @@ public interface CommentService {
 
     /*查询对某个用户或某个经纪人的所有评论*/
     List<Comment> findByAscriptionId(String ascriptionId);
+
+    List<Comment> findAll(Sort sort);
+
+    Page<Comment> findAll(Pageable pageable);
 
 }

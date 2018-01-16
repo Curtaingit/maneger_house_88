@@ -4,6 +4,8 @@ import com.example.manager_house_88.bos.BaseEntity;
 import com.example.manager_house_88.bos.BosSet;
 import com.example.manager_house_88.bos.Bostype;
 import com.example.manager_house_88.bos.IBosSet;
+import com.example.manager_house_88.enums.CommodityStateEnum;
+import com.example.manager_house_88.enums.CommodityStatusEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,7 +37,7 @@ public class  Commodity extends BaseEntity{
     private String label;
 
     /*状态*/
-    private String status;
+    private int status = CommodityStatusEnum.LISTED.getCode();
 
     /*规格*/
     private String standard;
@@ -56,12 +58,10 @@ public class  Commodity extends BaseEntity{
     private int purchaser;
 
     /*进度*/
-    private int state;
+    private int state = CommodityStateEnum.NEW.getCode();
 
     /*开标时间*/
     private Long auctionTime;
-
-
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent", orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Schedule> items = new HashSet<>();
