@@ -37,7 +37,7 @@ public class CommodityController {
         if(size==null||page==null){
             return  commodityService.findAll(sort);
         }
-        Pageable pageable =new PageRequest(page,size,sort);
+        Pageable pageable =new PageRequest(page-1,size,sort);
         return commodityService.findAll(pageable) ;
     }
 

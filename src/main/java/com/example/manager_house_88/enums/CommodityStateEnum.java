@@ -7,8 +7,9 @@ import lombok.Getter;
  */
 
 
+/*房屋的进度*/
 @Getter
-public enum CommodityEnum {
+public enum CommodityStateEnum {
 
     NEW(0,"新标的物"),
     WATCH(1, "看房"),
@@ -21,7 +22,7 @@ public enum CommodityEnum {
     int code;
     String msg;
 
-    CommodityEnum(int code, String msg) {
+    CommodityStateEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }

@@ -26,7 +26,7 @@ public class AgentController {
         if(size==null||page==null){
             return  ResultVOUtil.success(agentService.findAll(sort));
         }
-        Pageable pageable =new PageRequest(page,size,sort);
+        Pageable pageable =new PageRequest(page-1,size,sort);
         return ResultVOUtil.success(agentService.findAll(pageable)) ;
     }
 

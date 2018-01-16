@@ -8,6 +8,9 @@ import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
 import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -55,6 +58,18 @@ public class CommentController {
     @PostMapping("/findbyascriptionid")
     public Object findByAscriptionId(@RequestParam("ascriptionid") String ascriptionId){
        return commentService.findByAscriptionId(ascriptionId);
+    }
+
+    @RequestMapping("/findall")
+    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
+                            @RequestParam(name="size",required = false) Integer size,
+                            @RequestParam(name = "page",required = false) Integer page){
+        Sort sort =new Sort(Sort.Direction.DESC,sortName);
+        if(size==null||page==null){
+            return  ResultVOUtil.success(commentService.findAll(sort));
+        }
+        Pageable pageable =new PageRequest(page-1,size,sort);
+        return ResultVOUtil.success(commentService.findAll(pageable)) ;
     }
 
 }

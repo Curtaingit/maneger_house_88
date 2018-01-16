@@ -36,7 +36,7 @@ public class DocumentController {
         if (size == null || page == null) {
             return ResultVOUtil.success(documentService.findAll(sort));
         }
-        Pageable pageable = new PageRequest(page, size, sort);
+        Pageable pageable = new PageRequest(page-1, size, sort);
         return documentService.findAll(pageable);
     }
 
