@@ -81,7 +81,7 @@ public class CommodityServiceImpl implements CommodityService {
         stringRedisTemplate.opsForValue().set(commodityId,detail);
     }
 
-    /*过去标的物的详情*/
+    /*获取标的物的详情*/
     @Override
     public String getDetail(String commodityId) {
         return stringRedisTemplate.opsForValue().get(commodityId);

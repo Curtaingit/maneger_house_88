@@ -19,42 +19,39 @@ public class AgentController {
     private AgentService agentService;
 
     @RequestMapping("/findall")
-    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
+    public Object findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
                             @RequestParam(name="size",required = false) Integer size,
                             @RequestParam(name = "page",required = false) Integer page){
         Sort sort =new Sort(Sort.Direction.DESC,sortName);
         if(size==null||page==null){
-            return  ResultVOUtil.success(agentService.findAll(sort));
+            return  agentService.findAll(sort);
         }
         Pageable pageable =new PageRequest(page-1,size,sort);
-        return ResultVOUtil.success(agentService.findAll(pageable)) ;
+        return agentService.findAll(pageable);
     }
 
     @PostMapping("/findone")
-    public ResultVO findOne(@RequestParam("agentid") String agentId){
-        return ResultVOUtil.success(agentService.findOne(agentId));
+    public Object findOne(@RequestParam("agentid") String agentId){
+        return agentService.findOne(agentId);
     }
 
     @PostMapping("/save")
-    public ResultVO save(@RequestBody Agent agent){
+    public void save(@RequestBody Agent agent){
         agentService.save(agent);
-        return ResultVOUtil.success();
     }
 
     @PostMapping("/update")
-    public ResultVO update(@RequestParam("agentid") String agentId, @RequestBody Agent agent){
+    public void update(@RequestParam("agentid") String agentId, @RequestBody Agent agent){
         agentService.update(agentId,agent);
-        return ResultVOUtil.success();
     }
 
     @PostMapping("/delete")
-    public ResultVO delete(@RequestParam("agentid") String agentId){
+    public void delete(@RequestParam("agentid") String agentId){
         agentService.delete(agentId);
-        return ResultVOUtil.success();
     }
     @PostMapping("/findbynumber")
-    public ResultVO findByNumber(String number){
-        return ResultVOUtil.success(agentService.findByNumber(number));
+    public Object findByNumber(String number){
+        return agentService.findByNumber(number);
     }
 
 }

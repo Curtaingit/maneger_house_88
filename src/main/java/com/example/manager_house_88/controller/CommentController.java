@@ -28,31 +28,28 @@ public class CommentController {
     }
 
     @PostMapping("/findbyauditstatus")
-    public ResultVO findByAuditStatus(@RequestParam("auditstatus") Integer auditStatus){
-        return ResultVOUtil.success(commentService.findByAuditStatus(auditStatus));
+    public Object findByAuditStatus(@RequestParam("auditstatus") Integer auditStatus){
+        return commentService.findByAuditStatus(auditStatus);
     }
 
     @PostMapping("/changeauditstatus")
-    public ResultVO changeAuditsStatus(@RequestParam("commentid") String commentId){
+    public void changeAuditsStatus(@RequestParam("commentid") String commentId){
         commentService.changeAuditStatus(commentId);
-        return ResultVOUtil.success();
     }
 
     @PostMapping("/findbycommentstatus")
-    public ResultVO findByCommentStatus(@RequestParam("commentstatus") Integer commentStatus){
-        return ResultVOUtil.success(commentService.findByCommentStatus(commentStatus));
+    public Object findByCommentStatus(@RequestParam("commentstatus") Integer commentStatus){
+        return commentService.findByCommentStatus(commentStatus);
     }
 
     @PostMapping("/changecommentstatus")
-    public ResultVO changeCommentStatus(@RequestParam("commentid") String commentId){
+    public void changeCommentStatus(@RequestParam("commentid") String commentId){
         commentService.changeCommentStatus(commentId);
-        return ResultVOUtil.success();
     }
 
     @PostMapping("/delete")
-    public ResultVO delete(@RequestParam("commentid") String commentId){
+    public void delete(@RequestParam("commentid") String commentId){
         commentService.delete(commentId);
-        return ResultVOUtil.success();
     }
 
     @PostMapping("/findbyascriptionid")
@@ -61,7 +58,7 @@ public class CommentController {
     }
 
     @RequestMapping("/findall")
-    public ResultVO findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
+    public Object findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
                             @RequestParam(name="size",required = false) Integer size,
                             @RequestParam(name = "page",required = false) Integer page){
         Sort sort =new Sort(Sort.Direction.DESC,sortName);
@@ -69,7 +66,7 @@ public class CommentController {
             return  ResultVOUtil.success(commentService.findAll(sort));
         }
         Pageable pageable =new PageRequest(page-1,size,sort);
-        return ResultVOUtil.success(commentService.findAll(pageable)) ;
+        return commentService.findAll(pageable);
     }
 
 }
