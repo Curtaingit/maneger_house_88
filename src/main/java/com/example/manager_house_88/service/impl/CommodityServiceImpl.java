@@ -1,11 +1,8 @@
 package com.example.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.Commodity;
-import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.repository.CommodityRepo;
 import com.example.manager_house_88.service.CommodityService;
-import com.example.manager_house_88.utils.BeanCopyUtil;
-import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,11 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by cx on 18-1-10.
@@ -78,7 +73,7 @@ public class CommodityServiceImpl implements CommodityService {
     /*设置标的物详情*/
     @Override
     public void setDetail(String commodityId, String detail) {
-        stringRedisTemplate.opsForValue().set(commodityId,detail);
+        stringRedisTemplate.opsForValue().set(commodityId, detail);
     }
 
     /*获取标的物的详情*/
@@ -91,13 +86,21 @@ public class CommodityServiceImpl implements CommodityService {
     /*更新标的物*/
     @Override
     @Transactional
-    public Commodity update(String commodityId,Commodity commodity) {
-        Commodity rs =commodityRepo.findOne(commodityId);
-        BeanUtils.copyProperties(commodity,rs, BeanCopyUtil.getNullPropertyNames(commodity));
-        commodityRepo.save(rs);
-        return rs;
+    public Commodity update(String commodityId, Commodity commodity) {
+        Commodity rs = commodityRepo.findOne(commodityId);
+        rs.setCoordinate(commodity.getCoordinate());
+        rs.setPrice(commodity.getPrice());
+        rs.setSort(commodity.getSort());
+        rs.setDescription(commodity.getDescription());
+        rs.setImages(commodity.getImages());
+        rs.setStatus(commodity.getStatus());
+        rs.setStandard(commodity.getStandard());
+        rs.setState(commodity.getState());
+        rs.setLabel(commodity.getLabel());
+//        BeanUtils.copyProperties(commodity, commodity);
+        Commodity re =commodityRepo.save(rs);
+        return re;
     }
-
 
 
 }

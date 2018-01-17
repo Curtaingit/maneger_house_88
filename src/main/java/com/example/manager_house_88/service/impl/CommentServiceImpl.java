@@ -1,21 +1,17 @@
 package com.example.manager_house_88.service.impl;
 
-import com.example.manager_house_88.SpringSecurityAuditorAware;
-import com.example.manager_house_88.domain.Agent;
 import com.example.manager_house_88.domain.Comment;
+import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.enums.CommentEnum;
 import com.example.manager_house_88.repository.CommentRepo;
-import com.example.manager_house_88.service.AgentService;
 import com.example.manager_house_88.service.CommentService;
 import com.example.manager_house_88.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -95,5 +91,10 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> findByAscriptionId(String ascriptionId) {
         return commentRepo.findByAscriptionId(ascriptionId);
+    }
+
+    @Override
+    public Comment findOne(String commentId){
+        return commentRepo.findOne(commentId);
     }
 }

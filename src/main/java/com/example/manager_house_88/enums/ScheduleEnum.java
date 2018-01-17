@@ -10,7 +10,14 @@ public enum  ScheduleEnum {
     SUBMIT_DOCUMENT(2,"提交标书"),
     PAY_DEPOSIT(3,"缴纳保证金"),
     COMPLETE_JOIN(4,"完成竞价报名"),
-    ACTIONING(5,"竞价中");
+    ACTIONING(5,"竞价中"),
+    SELECT_ANGENT(6,"选择代办公司"),
+    CAPITAL_SUPERVISION(7,"资金监管"),
+    HOUSE_TRANSFER(8,"不动产过户")
+
+
+    ;
+    
 
     private  int code;
     private  String msg;

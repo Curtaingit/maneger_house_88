@@ -4,6 +4,7 @@ import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.service.ScheduleService;
 import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
+import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,14 +24,15 @@ public class ScheduleController {
     }
 
     @PostMapping("/create")
-    public void save(@RequestParam("commodityid") String commodityId,@RequestBody Schedule schedule){
+    public Object save(@RequestParam("commodityid") String commodityId, @RequestBody Schedule schedule){
         scheduleService.create(commodityId,schedule);
-        //todo
+        return "操作成功";
     }
 
     @PostMapping("/changewin")
-    public void changeWin(@RequestParam("scheduleid") String scheduleId){
+    public Object changeWin(@RequestParam("scheduleid") String scheduleId){
         scheduleService.changeWin(scheduleId);
+        return "操作成功";
     }
 
     @PostMapping("/findbyuserid")
@@ -52,16 +54,24 @@ public class ScheduleController {
     }
 
     @PostMapping("/changeprocess")
-    public void changeProcess(@RequestParam("scheduleid") String scheduleId,
+    public Object changeProcess(@RequestParam("scheduleid") String scheduleId,
                                   @RequestParam("process") Integer process){
         scheduleService.changeProcess(scheduleId,process);
+        return "操作成功";
     }
 
 
     @PostMapping("/setamount")
-    public void setAmount (@RequestParam("scheduleid") String scheduleId,
+    public Object setAmount (@RequestParam("scheduleid") String scheduleId,
                                @RequestParam("amount") Long amount){
         scheduleService.setAmount(scheduleId,amount);
+        return "操作成功";
+    }
+
+    @RequestMapping("/changeauditbail")
+    public Object changeAuditBail (@RequestParam("schedule")String scheduleId){
+        scheduleService.changeAuditBail(scheduleId);
+        return "操作成功";
     }
 
 }

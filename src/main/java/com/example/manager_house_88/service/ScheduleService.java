@@ -27,7 +27,7 @@ public interface ScheduleService {
     List<Schedule> findAll(Sort sort);
 
     /*改变保证金审核状态*/
-    void changeAuditBail(boolean auditBail);
+    void changeAuditBail(String scheduleId);
 
     /*改变用户进度*/
     void changeProcess(String schedule,Integer process);

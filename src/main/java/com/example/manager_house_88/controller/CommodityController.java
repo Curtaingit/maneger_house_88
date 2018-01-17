@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by cx on 18-1-10.
  */
-
+@CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
 @RequestMapping("/commodity")
 @RestController
 public class CommodityController {
@@ -52,15 +52,15 @@ public class CommodityController {
     }
 
     @PostMapping("/delete")
-    public void delete(@RequestParam(name = "commodityid") String commodityId){
+    public Object delete(@RequestParam(name = "commodityid") String commodityId){
         commodityService.delete(commodityId);
-
+        return "操作成功";
     }
 
     @PostMapping("/setdetail")
-    public void setDetail(@RequestParam(name="commodityid") String commodityId,@RequestBody String detail){
+    public Object setDetail(@RequestParam(name="commodityid") String commodityId,@RequestBody String detail){
         commodityService.setDetail(commodityId,detail);
-
+        return "操作成功";
     }
 
     @PostMapping("/getdetail")

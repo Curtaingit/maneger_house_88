@@ -4,6 +4,7 @@ import com.example.manager_house_88.domain.Agency;
 import com.example.manager_house_88.service.AgencyService;
 import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
+import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/agency")
+@CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
 public class AgencyController {
 
     @Autowired
@@ -37,19 +39,22 @@ public class AgencyController {
     }
 
     @PostMapping("/save")
-    public void save(@RequestBody Agency agency){
+    public Object save(@RequestBody Agency agency){
         System.out.println(agency);
         agencyService.save(agency);
+        return "操作成功";
     }
 
     @PostMapping("/update")
-    public void update(@RequestParam("agencyid") String agencyId, @RequestBody Agency agency){
+    public Object update(@RequestParam("agencyid") String agencyId, @RequestBody Agency agency){
         agencyService.update(agencyId,agency);
+        return "操作成功";
     }
 
     @PostMapping("/delete")
-    public void delete(@RequestParam("agencyid") String agencyId){
+    public Object delete(@RequestParam("agencyid") String agencyId){
         agencyService.delete(agencyId);
+        return "操作成功";
     }
 
     @PostMapping("/findbynumber")

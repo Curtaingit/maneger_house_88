@@ -43,8 +43,10 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void changeAuditBail(boolean auditBail) {
-        // todo
+    public void changeAuditBail(String scheduleId) {
+        Schedule schedule = scheduleRepo.findOne(scheduleId);
+        schedule.setAuditBail(true);
+        scheduleRepo.save(schedule);
     }
 
     @Override

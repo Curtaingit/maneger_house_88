@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by cx on 18-1-10.
  */
 
-
+@CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
 @RequestMapping("/document")
 @RestController
 public class DocumentController {
@@ -53,8 +53,9 @@ public class DocumentController {
     }
 
     @PostMapping("/changestatus")
-    public void changeStatus(@RequestParam(name = "documentid") String documentId) {
+    public Object changeStatus(@RequestParam(name = "documentid") String documentId) {
         documentService.changeStatus(documentId);
+        return "操作成功";
     }
 
 }

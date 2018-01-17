@@ -3,6 +3,7 @@ package com.example.manager_house_88.controller;
 import com.example.manager_house_88.domain.Comment;
 import com.example.manager_house_88.repository.CommentRepo;
 import com.example.manager_house_88.service.CommentService;
+import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.utils.PrincipalUtil;
 import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
@@ -17,14 +18,17 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/comment")
+@CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
+
 public class CommentController {
 
     @Autowired
     private CommentService commentService;
 
     @PostMapping("/save")
-    public void save(@RequestBody Comment comment){
+    public Object save(@RequestBody Comment comment){
         commentService.save(comment);
+        return "操作成功";
     }
 
     @PostMapping("/findbyauditstatus")
@@ -33,8 +37,9 @@ public class CommentController {
     }
 
     @PostMapping("/changeauditstatus")
-    public void changeAuditsStatus(@RequestParam("commentid") String commentId){
+    public Object changeAuditStatus(@RequestParam("commentid") String commentId){
         commentService.changeAuditStatus(commentId);
+        return "操作成功";
     }
 
     @PostMapping("/findbycommentstatus")
@@ -43,13 +48,15 @@ public class CommentController {
     }
 
     @PostMapping("/changecommentstatus")
-    public void changeCommentStatus(@RequestParam("commentid") String commentId){
+    public Object changeCommentStatus(@RequestParam("commentid") String commentId){
         commentService.changeCommentStatus(commentId);
+        return "操作成功";
     }
 
     @PostMapping("/delete")
-    public void delete(@RequestParam("commentid") String commentId){
+    public Object delete(@RequestParam("commentid") String commentId){
         commentService.delete(commentId);
+        return "操作成功";
     }
 
     @PostMapping("/findbyascriptionid")
@@ -67,6 +74,16 @@ public class CommentController {
         }
         Pageable pageable =new PageRequest(page-1,size,sort);
         return commentService.findAll(pageable);
+    }
+
+
+
+    @RequestMapping("/findone")
+    public Object findOne(@RequestParam("commentid")String commentId){
+
+        return commentService.findOne(commentId);
+
+
     }
 
 }

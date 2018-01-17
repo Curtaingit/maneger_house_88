@@ -14,6 +14,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/agent")
+@CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
+
 public class AgentController {
     @Autowired
     private AgentService agentService;
@@ -36,19 +38,23 @@ public class AgentController {
     }
 
     @PostMapping("/save")
-    public void save(@RequestBody Agent agent){
+    public Object save(@RequestBody Agent agent){
         agentService.save(agent);
+        return "操作成功";
     }
 
     @PostMapping("/update")
-    public void update(@RequestParam("agentid") String agentId, @RequestBody Agent agent){
+    public Object update(@RequestParam("agentid") String agentId, @RequestBody Agent agent){
         agentService.update(agentId,agent);
+        return "操作成功";
     }
 
     @PostMapping("/delete")
-    public void delete(@RequestParam("agentid") String agentId){
+    public Object delete(@RequestParam("agentid") String agentId){
         agentService.delete(agentId);
+        return "操作成功";
     }
+
     @PostMapping("/findbynumber")
     public Object findByNumber(String number){
         return agentService.findByNumber(number);

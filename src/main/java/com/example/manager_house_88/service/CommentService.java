@@ -31,6 +31,8 @@ public interface CommentService {
     /*删除评论*/
     void delete(String commentId);
 
+    Comment findOne(String commentId);
+
     /*查询对某个用户或某个经纪人的所有评论*/
     List<Comment> findByAscriptionId(String ascriptionId);
 

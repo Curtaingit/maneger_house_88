@@ -1,13 +1,14 @@
 package com.example.manager_house_88.controller;
 
-import com.ctc.wstx.util.URLUtil;
-import com.example.manager_house_88.vo.ResultVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
+@CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
 @RequestMapping("wechat")
 public class WeChatMiniController {
 
