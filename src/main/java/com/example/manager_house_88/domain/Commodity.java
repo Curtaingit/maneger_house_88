@@ -49,7 +49,7 @@ public class  Commodity extends BaseEntity{
     private int sort;
 
     /*底价*/
-    private int price;
+    private String price;
 
     /*看房人数*/
     private int observer;

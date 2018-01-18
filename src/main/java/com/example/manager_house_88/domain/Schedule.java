@@ -61,7 +61,7 @@ public class Schedule extends Entry {
     /*进程时间*/
     private long processTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @Access(AccessType.PROPERTY)
     @JsonBackReference
     public Commodity getParent() {

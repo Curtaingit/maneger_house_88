@@ -24,55 +24,54 @@ public class CommodityController {
     private CommodityService commodityService;
 
     @PostMapping("/findone")
-    public Object findOne(@RequestParam(name="commodityid") String commodityId){
-       return commodityService.findOne(commodityId);
+    public Object findOne(@RequestParam(name = "commodityid") String commodityId) {
+        return commodityService.findOne(commodityId);
     }
 
 
     @RequestMapping("/findall")
-    public Object findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
-                            @RequestParam(name="size",required = false) Integer size,
-                            @RequestParam(name = "page",required = false) Integer page){
-        Sort sort =new Sort(Sort.Direction.DESC,sortName);
-        if(size==null||page==null){
-            return  commodityService.findAll(sort);
+    public Object findAll(@RequestParam(name = "sort", defaultValue = "createtime") String sortName,
+                          @RequestParam(name = "size", required = false) Integer size,
+                          @RequestParam(name = "page", required = false) Integer page) {
+        Sort sort = new Sort(Sort.Direction.DESC, sortName);
+        if (size == null || page == null) {
+            return commodityService.findAll(sort);
         }
-        Pageable pageable =new PageRequest(page-1,size,sort);
-        return commodityService.findAll(pageable) ;
+        Pageable pageable = new PageRequest(page - 1, size, sort);
+        return commodityService.findAll(pageable);
     }
 
     @PostMapping("/save")
-    public  Object save(@RequestBody Commodity commodity){
+    public Object save(@RequestBody Commodity commodity) {
         return commodityService.save(commodity);
     }
 
     @PostMapping("/findbystatus")
-    public Object findbystatus(String status){
+    public Object findbystatus(String status) {
         return commodityService.findByStatus(status);
     }
 
     @PostMapping("/delete")
-    public Object delete(@RequestParam(name = "commodityid") String commodityId){
+    public Object delete(@RequestParam(name = "commodityid") String commodityId) {
         commodityService.delete(commodityId);
         return "操作成功";
     }
 
     @PostMapping("/setdetail")
-    public Object setDetail(@RequestParam(name="commodityid") String commodityId,@RequestBody String detail){
-        commodityService.setDetail(commodityId,detail);
+    public Object setDetail(@RequestParam(name = "commodityid") String commodityId, @RequestBody String detail) {
+        commodityService.setDetail(commodityId, detail);
         return "操作成功";
     }
 
     @PostMapping("/getdetail")
-    public Object getDetail(@RequestParam(name="commodityid") String commodityId){
+    public Object getDetail(@RequestParam(name = "commodityid") String commodityId) {
 
-        return  commodityService.getDetail(commodityId);
+        return commodityService.getDetail(commodityId);
     }
 
     @PostMapping("/update")
     public Object update(@RequestParam(name = "commodityid") String commodityId,
-                           @RequestBody Commodity commodity){
-        return commodityService.update(commodityId,commodity);
+                         @RequestBody Commodity commodity) {
+        return commodityService.update(commodityId, commodity);
     }
-
 }

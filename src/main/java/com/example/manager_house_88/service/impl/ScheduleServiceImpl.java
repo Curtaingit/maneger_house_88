@@ -3,6 +3,7 @@ package com.example.manager_house_88.service.impl;
 import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.repository.ScheduleRepo;
+import com.example.manager_house_88.repository.UserRepo;
 import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.service.ScheduleService;
 import com.example.manager_house_88.utils.NumberUtil;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -86,8 +88,16 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     /*查找用户的所有进度信息*/
     @Override
-    public List<Schedule> findByUserId(String userId) {
-        return findByUserId(userId);
+    public List<Commodity> findByUserId(String userId) {
+        List<Commodity> commodityList =new ArrayList<>();
+        List<Schedule> scheduleList=scheduleRepo.findByUserId(userId);
+        for (Schedule schedule:scheduleList){
+            String rs=schedule.getParent().getId();
+            Commodity commodity = commodityService.findOne(rs);
+            commodityList.add(commodity);
+        }
+//        commodityList = commodityService.findAll(new Sort("createtime"));
+        return commodityList;
     }
 
 

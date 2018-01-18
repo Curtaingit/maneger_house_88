@@ -5,6 +5,9 @@ import com.example.manager_house_88.repository.UserRepo;
 import com.example.manager_house_88.service.UserService;
 import com.example.manager_house_88.utils.PrincipalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -21,8 +24,8 @@ public class UserServiceImpl implements UserService {
     UserRepo userRepo;
 
     @Override
-    public List<User> findAll() {
-        return userRepo.findAll();
+    public List<User> findAll(Sort sort) {
+        return  userRepo.findAll(sort);
     }
 
     @Override
@@ -39,5 +42,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByOpenid(String openid) {
         return userRepo.findByOpenid(openid);
+    }
+
+    @Override
+    public Page<User> findAll(Pageable pageable) {
+        return userRepo.findAll(pageable);
     }
 }

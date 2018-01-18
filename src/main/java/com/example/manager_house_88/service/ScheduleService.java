@@ -1,5 +1,6 @@
 package com.example.manager_house_88.service;
 
+import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,8 +17,7 @@ public interface ScheduleService {
     void create(String commodityId,Schedule schedule);
 
     /*查找用户的所有进度信息*/
-    List<Schedule> findByUserId(String userId);
-
+    List<Commodity> findByUserId(String userId);
 
     /*设置为中标*/
     void changeWin(String scheduleId);

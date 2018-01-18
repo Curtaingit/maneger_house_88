@@ -1,7 +1,9 @@
 package com.example.manager_house_88.service;
 
 import com.example.manager_house_88.domain.User;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.security.Principal;
 import java.util.List;
@@ -13,12 +15,15 @@ import java.util.List;
 
 public interface UserService {
 
-    List<User> findAll();
+    List<User> findAll(Sort sort);
 
     User findOne(Principal principal);
 
     void save(User user);
 
     User findByOpenid(String openid);
+
+    Page<User> findAll(Pageable pageable);
+
 
 }
