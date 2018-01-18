@@ -19,4 +19,6 @@ public class WeChatMiniController {
 
         return "redirect:" + url;
     }
+
+
 }

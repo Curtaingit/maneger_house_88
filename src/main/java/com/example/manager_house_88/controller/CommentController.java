@@ -76,14 +76,9 @@ public class CommentController {
         return commentService.findAll(pageable);
     }
 
-
-
     @RequestMapping("/findone")
     public Object findOne(@RequestParam("commentid")String commentId){
-
         return commentService.findOne(commentId);
-
-
     }
 
 }
