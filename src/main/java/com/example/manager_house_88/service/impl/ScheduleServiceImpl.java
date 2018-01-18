@@ -31,7 +31,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void changeWin(String scheduleId) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         schedule.setWin(true);
-        changeProcess(scheduleId,0);
+        changeProcess(scheduleId,6);
         scheduleRepo.save(schedule);
     }
 
@@ -55,7 +55,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void changeProcess(String scheduleId, Integer process) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
-        schedule.setProcessTime(System.currentTimeMillis());
+        schedule.setProcessTime(schedule.getProcessTime()+","+System.currentTimeMillis());
         schedule.setProcess(process);
         scheduleRepo.save(schedule);
     }

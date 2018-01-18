@@ -65,7 +65,7 @@ public class Schedule extends Entry {
     private boolean auditDocument;
 
     /*进程时间*/
-    private long processTime;
+    private String processTime;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @Access(AccessType.PROPERTY)
