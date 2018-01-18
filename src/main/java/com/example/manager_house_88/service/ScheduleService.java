@@ -17,7 +17,7 @@ public interface ScheduleService {
     void create(String commodityId,Schedule schedule);
 
     /*查找用户的所有进度信息*/
-    List<Commodity> findByUserId(String userId);
+    List<Schedule> findByUserId(String userId);
 
     /*设置为中标*/
     void changeWin(String scheduleId);

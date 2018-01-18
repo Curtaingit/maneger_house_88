@@ -97,16 +97,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     /*查找用户的所有进度信息*/
     @Override
-    public List<Commodity> findByUserId(String userId) {
-        List<Commodity> commodityList =new ArrayList<>();
-        List<Schedule> scheduleList=scheduleRepo.findByUserId(userId);
-        for (Schedule schedule:scheduleList){
-            String rs=schedule.getParent().getId();
-            Commodity commodity = commodityService.findOne(rs);
-            commodityList.add(commodity);
-        }
-//        commodityList = commodityService.findAll(new Sort("createtime"));
-        return commodityList;
+    public List<Schedule> findByUserId(String userId) {
+        return scheduleRepo.findByUserId(userId);
     }
 
 

@@ -9,10 +9,7 @@ import com.example.manager_house_88.enums.CommodityStatusEnum;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,6 +22,7 @@ import java.util.Set;
 public class  Commodity extends BaseEntity{
 
     /*标的物图片*/
+    @Column(length = 1024)
     private String images;
 
     /*标的物描述*/
