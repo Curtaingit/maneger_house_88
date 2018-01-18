@@ -19,6 +19,9 @@ import javax.persistence.*;
 @Entity(name = "t_schedule")
 public class Schedule extends Entry {
 
+    /*标的物Id*/
+    private String commodityId;
+
     /*用户id*/
     private String userId;
 
@@ -57,6 +60,9 @@ public class Schedule extends Entry {
 
     /*是否退款*/
     private boolean isRefund;
+
+    /*标书是否审核*/
+    private boolean auditDocument;
 
     /*进程时间*/
     private long processTime;

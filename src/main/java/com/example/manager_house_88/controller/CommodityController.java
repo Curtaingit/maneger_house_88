@@ -74,4 +74,17 @@ public class CommodityController {
                          @RequestBody Commodity commodity) {
         return commodityService.update(commodityId, commodity);
     }
+
+    @PostMapping("/changestate")
+    public Object changeState(@RequestParam(name = "commodityid") String commodityId,@RequestParam("state") int state){
+        commodityService.changeState(commodityId,state);
+        return "操作成功";
+    }
+
+
+    @PostMapping("/changestatus")
+    public Object changeStatus(@RequestParam(name = "commodityid") String commodityId,@RequestParam("status") int status){
+        commodityService.changeStatus(commodityId,status);
+        return "操作成功";
+    }
 }

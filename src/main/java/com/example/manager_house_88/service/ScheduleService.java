@@ -34,4 +34,6 @@ public interface ScheduleService {
 
     /*设置竞价*/
     void setAmount(String scheduleId, Long amount);
+
+    public void save(Schedule schedule);
 }

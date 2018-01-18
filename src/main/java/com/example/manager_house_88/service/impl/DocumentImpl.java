@@ -65,7 +65,11 @@ public class DocumentImpl implements DocumentService {
     @Override
     public void changeStatus(String documentId) {
         Document document = documentRepo.findOne(documentId);
+        Schedule schedule = scheduleService.findOne(document.getScheduleId());
+        schedule.setAuditDocument(true);
         document.setStatus(true);
+        scheduleService.save(schedule);
+        documentRepo.save(document);
     }
 
    /* *//*修改标书审核状态*//*
