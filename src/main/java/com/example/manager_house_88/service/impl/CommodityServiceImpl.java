@@ -69,6 +69,19 @@ public class CommodityServiceImpl implements CommodityService {
         commodityRepo.delete(commodityId);
     }
 
+    @Override
+    public void changeStatus(String commodityId, Integer status) {
+        Commodity commodity = commodityRepo.findOne(commodityId);
+        commodity.setStatus(status);
+        commodityRepo.save(commodity);
+    }
+
+    @Override
+    public void changeState(String commodityId, Integer state) {
+        Commodity commodity = commodityRepo.findOne(commodityId);
+        commodity.setState(state);
+        commodityRepo.save(commodity);
+    }
 
     /*设置标的物详情*/
     @Override

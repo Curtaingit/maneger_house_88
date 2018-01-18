@@ -58,6 +58,9 @@ public class Schedule extends Entry {
     /*是否退款*/
     private boolean isRefund;
 
+    /*进程时间*/
+    private long processTime;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @Access(AccessType.PROPERTY)
     @JsonBackReference

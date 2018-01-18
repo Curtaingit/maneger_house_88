@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
@@ -33,5 +34,11 @@ public interface CommodityService {
     String getDetail(String commodityId);
 
     Commodity update(String commodityId,Commodity commodity);
+
+    /*修改房屋状态*/
+    void changeStatus(String commodityId, Integer status);
+
+    /*修改房屋进度*/
+    void changeState(String commodityId, Integer state);
 
 }
