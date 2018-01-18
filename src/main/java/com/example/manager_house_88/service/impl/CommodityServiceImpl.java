@@ -97,7 +97,7 @@ public class CommodityServiceImpl implements CommodityService {
         rs.setStandard(commodity.getStandard());
         rs.setState(commodity.getState());
         rs.setLabel(commodity.getLabel());
-//        BeanUtils.copyProperties(commodity, commodity);
+//  todo      BeanUtils.copyProperties(commodity, commodity)  存在问题
         Commodity re =commodityRepo.save(rs);
         return re;
     }
