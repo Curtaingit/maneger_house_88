@@ -68,10 +68,12 @@ public class ScheduleController {
         return "操作成功";
     }
 
-    @RequestMapping("/changeauditbail")
+    @PostMapping("/changeauditbail")
     public Object changeAuditBail (@RequestParam("schedule")String scheduleId){
         scheduleService.changeAuditBail(scheduleId);
         return "操作成功";
     }
+
+
 
 }

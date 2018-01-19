@@ -3,10 +3,8 @@ package com.example.manager_house_88.service.impl;
 import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.repository.ScheduleRepo;
-import com.example.manager_house_88.repository.UserRepo;
 import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.service.ScheduleService;
-import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,8 +12,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
@@ -78,12 +77,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     /*保存一条记录*/
     @Override
     public void create(String commodityId, Schedule schedule) {
-//        schedule.setNumber(NumberUtil.getNumber());
-        //todo : 取消一对多关系后 修改
-        Commodity commodity = commodityService.findOne(commodityId);
-        commodity.getItems().add(schedule);
-        commodityService.save(commodity);
-
+        schedule.setCommodityId(commodityId);
+        scheduleRepo.save(schedule);
     }
 
 
@@ -97,8 +92,14 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     /*查找用户的所有进度信息*/
     @Override
-    public List<Schedule> findByUserId(String userId) {
-        return scheduleRepo.findByUserId(userId);
+    public Map findByUserId(String userId) {
+        List<Schedule> schedules =scheduleRepo.findByUserId(userId);
+        Map rs =new HashMap();
+        for (Schedule schedule:schedules){
+            Commodity commodity = commodityService.findOne(schedule.getCommodityId());
+            rs.put(schedule.getId(),commodity);
+        }
+        return rs;
     }
 
 

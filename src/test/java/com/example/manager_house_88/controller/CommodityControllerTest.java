@@ -37,7 +37,7 @@ public class CommodityControllerTest {
         Schedule schedule = new Schedule();
         schedule.setUserId("11111");
         schedule.setProcess(0);
-        commodity.getItems().add(schedule);
+    //    commodity.getItems().add(schedule);
         commodityService.save(commodity);
         System.out.println(commodity);
     }

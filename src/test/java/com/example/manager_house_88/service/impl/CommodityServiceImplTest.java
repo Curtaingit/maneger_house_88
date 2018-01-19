@@ -1,4 +1,4 @@
-package com.example.manager_house_88.service.impl;
+package com.e6yg76QBlEZOoz9mysCEDo2A04xample.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
@@ -35,7 +35,7 @@ public class CommodityServiceImplTest {
         commodity.setCoordinate("xxxx");
         Schedule schedule = new Schedule();
         schedule.setUserId("11111");
-        commodity.getItems().add(schedule);
+     //   commodity.getItems().add(schedule);
         commodityService.update("jE5VcwaBHZyZpnk_2WfRo2A04", commodity);
 //        Commodity rs=commodityRepo.findOne("nRCv_No6GRKAhvQpxHxVx3A04");
 //        Set<Schedule> schedules = rs.getItems();

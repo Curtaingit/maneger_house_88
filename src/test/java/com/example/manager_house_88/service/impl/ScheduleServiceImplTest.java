@@ -59,7 +59,7 @@ public class ScheduleServiceImplTest {
         schedule.setProcess(0);
         schedule.setRealName("testRobot002");
         schedule.setPhone("123445678910");
-        commodity.getItems().add(schedule);
+       // commodity.getItems().add(schedule);
         commodityService.save(commodity);
         System.out.println(commodity);
 
