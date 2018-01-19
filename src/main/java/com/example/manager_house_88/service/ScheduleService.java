@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ScheduleService {
 
@@ -13,7 +14,7 @@ public interface ScheduleService {
     Schedule findOne(String scheduleId);
 
     /*查找用户的所有进度信息*/
-    List<Schedule> findByUserId(String userId);
+    Map findByUserId(String userId);
 
     /*设置为中标*/
     void changeWin(String scheduleId);

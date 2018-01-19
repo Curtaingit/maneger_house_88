@@ -3,10 +3,8 @@ package com.example.manager_house_88.service.impl;
 import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.repository.ScheduleRepo;
-import com.example.manager_house_88.repository.UserRepo;
 import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.service.ScheduleService;
-import com.example.manager_house_88.utils.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -74,13 +72,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Schedule findOne(String scheduleId) {
         return scheduleRepo.findOne(scheduleId);
-    }
-
-    /*保存一条记录*/
-    @Override
-    public void create(String commodityId, Schedule schedule) {
-        schedule.setCommodityId(commodityId);
-        scheduleRepo.save(schedule);
     }
 
 
