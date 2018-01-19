@@ -25,8 +25,7 @@ public class ScheduleController {
 
     @PostMapping("/create")
     public Object save(@RequestParam("commodityid") String commodityId, @RequestBody Schedule schedule){
-        scheduleService.create(commodityId,schedule);
-        return "操作成功";
+        return scheduleService.create(commodityId,schedule);
     }
 
     @PostMapping("/changewin")

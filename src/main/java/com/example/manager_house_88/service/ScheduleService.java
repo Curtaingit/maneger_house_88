@@ -14,7 +14,7 @@ public interface ScheduleService {
     Schedule findOne(String scheduleId);
 
     /*保存一条记录*/
-    void create(String commodityId,Schedule schedule);
+    Schedule create(String commodityId,Schedule schedule);
 
     /*查找用户的所有进度信息*/
     Map findByUserId(String userId);

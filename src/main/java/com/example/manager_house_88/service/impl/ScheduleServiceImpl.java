@@ -76,9 +76,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     /*保存一条记录*/
     @Override
-    public void create(String commodityId, Schedule schedule) {
+    public Schedule create(String commodityId, Schedule schedule) {
+        schedule.setProcess(1);
         schedule.setCommodityId(commodityId);
         scheduleRepo.save(schedule);
+        return scheduleRepo.save(schedule);
     }
 
 
