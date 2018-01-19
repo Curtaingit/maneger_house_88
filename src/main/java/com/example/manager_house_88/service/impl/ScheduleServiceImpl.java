@@ -79,7 +79,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public void uploadBailImage(String scheduleId, String bailImage) {
-        changeProcess(scheduleId,3);
+        //todo: 暂时  排除后台管理
+        changeProcess(scheduleId,ScheduleEnum.COMPLETE_JOIN.getCode());
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         schedule.setBailImage(bailImage);
         scheduleRepo.save(schedule);
@@ -90,7 +91,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void setAmount(String scheduleId, Long amount) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         schedule.setAmount(amount);
-        changeProcess(scheduleId, ScheduleEnum.ACTIONING.getCode());
+        //todo: 暂时  排除后台管理
+        changeProcess(scheduleId, ScheduleEnum.SELECT_ANGENT.getCode());
         scheduleRepo.save(schedule);
     }
 
@@ -104,7 +106,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     /*保存一条记录*/
     @Override
     public Schedule create(String commodityId, Schedule schedule) {
-        schedule.setProcess(1);
+        //todo: 暂时  排除后台管理
+        schedule.setProcess(2);
         schedule.setCommodityId(commodityId);
         scheduleRepo.save(schedule);
         return scheduleRepo.save(schedule);
