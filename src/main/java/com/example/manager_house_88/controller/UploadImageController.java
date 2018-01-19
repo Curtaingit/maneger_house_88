@@ -10,7 +10,6 @@ import java.io.File;
 
 @RestController
 @CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
-
 public class UploadImageController {
 
     @Value("${imagepath}")

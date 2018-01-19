@@ -7,6 +7,7 @@ import com.example.manager_house_88.repository.DocumentRepo;
 import com.example.manager_house_88.service.DocumentService;
 import com.example.manager_house_88.service.ScheduleService;
 import com.example.manager_house_88.utils.NumberUtil;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,7 +30,6 @@ public class DocumentImpl implements DocumentService {
 
     @Autowired
     private DocumentRepo documentRepo;
-
     /*通过documentId查找一个标书*/
     @Override
     public Document findOne(String documentId) {
@@ -39,9 +39,11 @@ public class DocumentImpl implements DocumentService {
     /*保存一个标书*/
     @Override
     public Document save(@RequestParam("scheduleid") String scheduleId, Document document) {
-        Schedule schedule = scheduleService.findOne(scheduleId);
-        schedule.setProcess(ScheduleEnum.SUBMIT_DOCUMENT.getCode());
+        scheduleService.changeProcess(scheduleId,ScheduleEnum.SUBMIT_DOCUMENT.getCode());
         document.setScheduleId(scheduleId);
+        Document rs = documentRepo.save(document);
+        Schedule schedule=scheduleService.findOne(scheduleId);
+        schedule.setDocumentId(rs.getId());
         return documentRepo.save(document);
     }
 

@@ -1,5 +1,6 @@
 package com.example.manager_house_88.service;
 
+import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,4 +41,5 @@ public interface ScheduleService {
     /*上传保证金图片*/
     void uploadBailImage(String scheduleId, String bailImage);
 
+    List<Schedule> finByCommodityId(String commodityId);
 }

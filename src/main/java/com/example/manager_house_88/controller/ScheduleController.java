@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/schedule")
+@CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
 public class ScheduleController {
 
     @Autowired
@@ -79,5 +80,9 @@ public class ScheduleController {
         return "操作成功";
     }
 
+    @PostMapping("/findbycommodityid")
+    public Object findByCommodityId(@RequestParam("commodityid") String commodityId){
+        return scheduleService.finByCommodityId(commodityId);
+    }
 
 }

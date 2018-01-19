@@ -61,6 +61,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public void uploadBailImage(String scheduleId, String bailImage) {
+        changeProcess(scheduleId,3);
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         schedule.setBailImage(bailImage);
         scheduleRepo.save(schedule);
@@ -96,6 +97,12 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void save(Schedule schedule) {
         scheduleRepo.save(schedule);
 
+    }
+
+    @Override
+    public List<Schedule> finByCommodityId(String commodityId) {
+        List<Schedule> schedules =scheduleRepo.findByCommodityId(commodityId);
+        return schedules;
     }
 
 
