@@ -92,7 +92,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         schedule.setAmount(amount);
         //todo: 暂时  排除后台管理
-        changeProcess(scheduleId, ScheduleEnum.FINISH.getCode());
+        changeProcess(scheduleId, ScheduleEnum.SELECT_ANGENT.getCode());
         scheduleRepo.save(schedule);
     }
 
