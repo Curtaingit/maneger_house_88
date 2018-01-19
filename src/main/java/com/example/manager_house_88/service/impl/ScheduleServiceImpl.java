@@ -2,6 +2,7 @@ package com.example.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
+import com.example.manager_house_88.enums.ScheduleEnum;
 import com.example.manager_house_88.repository.ScheduleRepo;
 import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.service.ScheduleService;
@@ -29,8 +30,24 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void changeWin(String scheduleId) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
-        schedule.setWin(true);
-        changeProcess(scheduleId,6);
+
+        String commodityId = schedule.getCommodityId();
+        List<Schedule> scheduleList = finByCommodityId(commodityId);
+
+        for(Schedule sche : scheduleList){
+            if (scheduleId.equals(sche.getId())){
+                sche.setWin(true);
+                changeProcess(scheduleId,ScheduleEnum.SELECT_ANGENT.getCode());
+                scheduleRepo.save(sche);
+            }else {
+                if(schedule.getProcess()>=ScheduleEnum.COMPLETE_JOIN.getCode()){
+                    sche.setProcess(ScheduleEnum.REFUND.getCode());
+                    scheduleRepo.save(sche);
+                }
+            }
+        }
+
+
         scheduleRepo.save(schedule);
     }
 
@@ -46,6 +63,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public void changeAuditBail(String scheduleId) {
+        changeProcess(scheduleId,4);
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         schedule.setAuditBail(true);
         scheduleRepo.save(schedule);
@@ -72,6 +90,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void setAmount(String scheduleId, Long amount) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         schedule.setAmount(amount);
+        changeProcess(scheduleId, ScheduleEnum.ACTIONING.getCode());
         scheduleRepo.save(schedule);
     }
 
