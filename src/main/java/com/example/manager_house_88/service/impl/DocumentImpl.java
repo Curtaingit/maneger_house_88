@@ -4,6 +4,7 @@ import com.example.manager_house_88.domain.Document;
 import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.enums.ScheduleEnum;
 import com.example.manager_house_88.repository.DocumentRepo;
+import com.example.manager_house_88.repository.ScheduleRepo;
 import com.example.manager_house_88.service.DocumentService;
 import com.example.manager_house_88.service.ScheduleService;
 import com.example.manager_house_88.utils.NumberUtil;
@@ -44,6 +45,7 @@ public class DocumentImpl implements DocumentService {
         Document rs = documentRepo.save(document);
         Schedule schedule=scheduleService.findOne(scheduleId);
         schedule.setDocumentId(rs.getId());
+        scheduleService.save(schedule);
         return documentRepo.save(document);
     }
 
