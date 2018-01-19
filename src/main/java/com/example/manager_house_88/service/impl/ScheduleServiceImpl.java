@@ -54,7 +54,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void changeProcess(String scheduleId, Integer process) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
-        schedule.setProcessTime(System.currentTimeMillis());
+        schedule.setProcessTime(schedule.getProcessTime()+","+System.currentTimeMillis());
         schedule.setProcess(process);
         scheduleRepo.save(schedule);
     }
@@ -72,6 +72,15 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Schedule findOne(String scheduleId) {
         return scheduleRepo.findOne(scheduleId);
+    }
+
+    /*保存一条记录*/
+    @Override
+    public Schedule create(String commodityId, Schedule schedule) {
+        schedule.setProcess(1);
+        schedule.setCommodityId(commodityId);
+        scheduleRepo.save(schedule);
+        return scheduleRepo.save(schedule);
     }
 
 
@@ -95,8 +104,5 @@ public class ScheduleServiceImpl implements ScheduleService {
         return rs;
     }
 
-    @Override
-    public List<Schedule> findByCommodityId(String commodityId) {
-        return scheduleRepo.findByCommodityId(commodityId);
-    }
+
 }

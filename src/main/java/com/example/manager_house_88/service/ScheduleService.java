@@ -13,13 +13,15 @@ public interface ScheduleService {
     /*查找一条用户进度*/
     Schedule findOne(String scheduleId);
 
+    /*保存一条记录*/
+    Schedule create(String commodityId,Schedule schedule);
+
     /*查找用户的所有进度信息*/
     Map findByUserId(String userId);
 
     /*设置为中标*/
     void changeWin(String scheduleId);
 
-    /*查找所有*/
     Page<Schedule> findAll(Pageable pageable);
 
     List<Schedule> findAll(Sort sort);
@@ -33,9 +35,6 @@ public interface ScheduleService {
     /*设置竞价*/
     void setAmount(String scheduleId, Long amount);
 
-    /*保存一条*/
-    void save(Schedule schedule);
+     void save(Schedule schedule);
 
-    /*通过标的物id查询所有相关的用户进程*/
-    List<Schedule> findByCommodityId(String commodityId);
 }
