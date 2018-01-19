@@ -65,6 +65,6 @@ public class Schedule extends BaseEntity {
     private boolean auditDocument;
 
     /*进程时间*/
-    private long processTime;
+    private String processTime;
 
 }
