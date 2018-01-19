@@ -80,7 +80,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void uploadBailImage(String scheduleId, String bailImage) {
         //todo: 暂时  排除后台管理
-        changeProcess(scheduleId,ScheduleEnum.COMPLETE_JOIN.getCode());
+        changeProcess(scheduleId,ScheduleEnum.ACTIONING.getCode());
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         schedule.setBailImage(bailImage);
         scheduleRepo.save(schedule);
@@ -92,7 +92,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         schedule.setAmount(amount);
         //todo: 暂时  排除后台管理
-        changeProcess(scheduleId, ScheduleEnum.SELECT_ANGENT.getCode());
+        changeProcess(scheduleId, ScheduleEnum.FINISH.getCode());
         scheduleRepo.save(schedule);
     }
 

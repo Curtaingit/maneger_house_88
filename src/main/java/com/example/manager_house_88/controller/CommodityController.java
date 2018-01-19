@@ -64,7 +64,7 @@ public class CommodityController {
     }
 
     @PostMapping("/getdetail")
-    public Object getDetail(@RequestParam(name = "commodityid") String commodityId) {
+    public Object getDetail(@RequestParam(name = "commodityid",required = false) String commodityId) {
 
         return commodityService.getDetail(commodityId);
     }
