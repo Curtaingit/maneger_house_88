@@ -60,6 +60,13 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public void uploadBailImage(String scheduleId, String bailImage) {
+        Schedule schedule = scheduleRepo.findOne(scheduleId);
+        schedule.setBailImage(bailImage);
+        scheduleRepo.save(schedule);
+    }
+
+    @Override
     @Transactional
     public void setAmount(String scheduleId, Long amount) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);

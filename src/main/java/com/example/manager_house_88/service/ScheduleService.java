@@ -14,7 +14,7 @@ public interface ScheduleService {
     Schedule findOne(String scheduleId);
 
     /*保存一条记录*/
-    Schedule create(String commodityId,Schedule schedule);
+    Schedule create(String commodityId, Schedule schedule);
 
     /*查找用户的所有进度信息*/
     Map findByUserId(String userId);
@@ -30,11 +30,14 @@ public interface ScheduleService {
     void changeAuditBail(String scheduleId);
 
     /*改变用户进度*/
-    void changeProcess(String schedule,Integer process);
+    void changeProcess(String schedule, Integer process);
 
     /*设置竞价*/
     void setAmount(String scheduleId, Long amount);
 
-     void save(Schedule schedule);
+    void save(Schedule schedule);
+
+    /*上传保证金图片*/
+    void uploadBailImage(String scheduleId, String bailImage);
 
 }

@@ -68,11 +68,16 @@ public class ScheduleController {
     }
 
     @PostMapping("/changeauditbail")
-    public Object changeAuditBail (@RequestParam("schedule")String scheduleId){
+    public Object changeAuditBail (@RequestParam("scheduleid")String scheduleId){
         scheduleService.changeAuditBail(scheduleId);
         return "操作成功";
     }
 
+    @PostMapping("/uploadbailimage")
+    public Object uploadBailImage(@RequestParam("scheduleid")String scheduleId,@RequestParam("bailimage") String bailImage){
+        scheduleService.uploadBailImage(scheduleId,bailImage);
+        return "操作成功";
+    }
 
 
 }
