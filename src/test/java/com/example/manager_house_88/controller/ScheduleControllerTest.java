@@ -16,7 +16,7 @@ public class ScheduleControllerTest {
     @Test
     public void save() {
 
-        String url = "http://localhost:8080/house/schedule/create?commodityid=rrV__9viE9WivGIePUyir3A04";
+        String url = "http://localhost:8080/house/schedule/create?commodityid=8ZBhMvwoFYyRvjkoQhpsU2A04";
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.set("Accept", "application/json");
         requestHeaders.set("Content-Type", "application/json;charset=utf-8");
@@ -28,7 +28,8 @@ public class ScheduleControllerTest {
                 "    \"agentId\": \"dgJ3TQtkGRqWS4SUPRm0X2A02\",\n" +
                 "    \"amount\":\"1000000000\",\n" +
                 "    \"watchTime\": \"1523050215253\",\n" +
-                "    \"auctionTime\": \"166555555555\"\n" +
+                "    \"auctionTime\": \"166555555555\",\n" +
+                "    \"processTime\": \"166555555555\"\n" +
                 "  }";
 
         RestTemplate restTemplate = new RestTemplate();

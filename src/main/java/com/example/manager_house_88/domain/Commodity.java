@@ -61,4 +61,5 @@ public class  Commodity extends BaseEntity{
     /*开标时间*/
     private Long auctionTime;
 
+
 }

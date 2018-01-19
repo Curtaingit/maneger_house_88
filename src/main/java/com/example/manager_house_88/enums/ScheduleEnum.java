@@ -16,11 +16,11 @@ public enum  ScheduleEnum {
     HOUSE_TRANSFER(8,"不动产过户"),
     LICENSE(9,"领证"),
     PROPERTYDELIVERY(10,"物业交割"),
-    CONFIRM(11,"确认交易"),
-    COMMENT(12,"评论"),
-    PAYMENTEND(13,"支付完成"),
-    FINISH(14,"完成购房")
-
+    CONFIRM(11,"确认交易,评论"),
+    PAYMENTEND(12,"支付完成"),
+    FINISH(13,"完成购房"),
+    REFUND(14,"退款"),
+    REFUNDFINISH(15,"退款完成")
     ;
     
 

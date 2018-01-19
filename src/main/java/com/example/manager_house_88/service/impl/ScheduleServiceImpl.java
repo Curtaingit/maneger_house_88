@@ -14,8 +14,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
@@ -31,7 +32,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void changeWin(String scheduleId) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         schedule.setWin(true);
-        changeProcess(scheduleId,0);
+        changeProcess(scheduleId,6);
         scheduleRepo.save(schedule);
     }
 
@@ -77,15 +78,30 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     /*保存一条记录*/
     @Override
+    public void create(String commodityId, Schedule schedule) {
+        schedule.setCommodityId(commodityId);
+        scheduleRepo.save(schedule);
+    }
+
+
+    /*保存一条记录*/
+    @Override
     public void save(Schedule schedule) {
         scheduleRepo.save(schedule);
 
     }
 
+
     /*查找用户的所有进度信息*/
     @Override
-    public List<Schedule> findByUserId(String userId) {
-        return scheduleRepo.findByUserId(userId);
+    public Map findByUserId(String userId) {
+        List<Schedule> schedules =scheduleRepo.findByUserId(userId);
+        Map rs =new HashMap();
+        for (Schedule schedule:schedules){
+            Commodity commodity = commodityService.findOne(schedule.getCommodityId());
+            rs.put(schedule.getId(),commodity);
+        }
+        return rs;
     }
 
     @Override
