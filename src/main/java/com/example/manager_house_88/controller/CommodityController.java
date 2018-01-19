@@ -87,4 +87,7 @@ public class CommodityController {
         commodityService.changeStatus(commodityId,status);
         return "操作成功";
     }
+
+
+
 }
