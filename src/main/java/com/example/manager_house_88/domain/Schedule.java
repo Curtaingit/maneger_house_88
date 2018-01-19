@@ -15,9 +15,9 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Bostype("A07")
+@Bostype("A06")
 @Entity(name = "t_schedule")
-public class Schedule extends Entry {
+public class Schedule extends BaseEntity {
 
     /*标的物Id*/
     private String commodityId;
@@ -66,12 +66,5 @@ public class Schedule extends Entry {
 
     /*进程时间*/
     private long processTime;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @Access(AccessType.PROPERTY)
-    @JsonBackReference
-    public Commodity getParent() {
-        return (Commodity) super.getInnerParent();
-    }
 
 }

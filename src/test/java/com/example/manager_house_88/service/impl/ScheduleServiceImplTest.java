@@ -53,15 +53,15 @@ public class ScheduleServiceImplTest {
     @Test
     public void create() {
 
-        Commodity commodity = commodityService.findOne("d9mJD-91G6OPuURLPzX4V2A04");
-        Schedule schedule = new Schedule();
-        schedule.setUserId("123456");
-        schedule.setProcess(0);
-        schedule.setRealName("testRobot002");
-        schedule.setPhone("123445678910");
-        commodity.getItems().add(schedule);
-        commodityService.save(commodity);
-        System.out.println(commodity);
+//        Commodity commodity = commodityService.findOne("d9mJD-91G6OPuURLPzX4V2A04");
+//        Schedule schedule = new Schedule();
+//        schedule.setUserId("123456");
+//        schedule.setProcess(0);
+//        schedule.setRealName("testRobot002");
+//        schedule.setPhone("123445678910");
+//        commodity.getItems().add(schedule);
+//        commodityService.save(commodity);
+//        System.out.println(commodity);
 
 
 

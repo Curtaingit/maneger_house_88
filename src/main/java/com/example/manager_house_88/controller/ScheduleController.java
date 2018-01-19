@@ -24,8 +24,8 @@ public class ScheduleController {
     }
 
     @PostMapping("/create")
-    public Object save(@RequestParam("commodityid") String commodityId, @RequestBody Schedule schedule){
-        scheduleService.create(commodityId,schedule);
+    public Object save(@RequestBody Schedule schedule){
+        scheduleService.save(schedule);
         return "操作成功";
     }
 
@@ -40,6 +40,10 @@ public class ScheduleController {
         return scheduleService.findByUserId(userId);
     }
 
+    @PostMapping("/findbycommodityid")
+    public Object findByCommodityId(@RequestParam("commodityid") String commodityId){
+        return scheduleService.findByCommodityId(commodityId);
+    }
 
     @RequestMapping("/findall")
     public Object findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,

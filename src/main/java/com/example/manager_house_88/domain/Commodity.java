@@ -61,10 +61,4 @@ public class  Commodity extends BaseEntity{
     /*开标时间*/
     private Long auctionTime;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent", orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<Schedule> items = new HashSet<>();
-
-    public IBosSet<Schedule> getItems() {
-        return new BosSet(this.items, this);
-    }
 }

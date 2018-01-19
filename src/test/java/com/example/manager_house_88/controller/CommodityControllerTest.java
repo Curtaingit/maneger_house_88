@@ -33,13 +33,13 @@ public class CommodityControllerTest {
 
     @Test
     public void findOne() throws Exception {
-        Commodity commodity = commodityService.findOne("nRCv_No6GRKAhvQpxHxVx3A04");
-        Schedule schedule = new Schedule();
-        schedule.setUserId("11111");
-        schedule.setProcess(0);
-        commodity.getItems().add(schedule);
-        commodityService.save(commodity);
-        System.out.println(commodity);
+//        Commodity commodity = commodityService.findOne("nRCv_No6GRKAhvQpxHxVx3A04");
+//        Schedule schedule = new Schedule();
+//        schedule.setUserId("11111");
+//        schedule.setProcess(0);
+//        commodity.getItems().add(schedule);
+//        commodityService.save(commodity);
+//        System.out.println(commodity);
     }
 
     @Test

@@ -77,23 +77,10 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     /*保存一条记录*/
     @Override
-    public void create(String commodityId, Schedule schedule) {
-//        schedule.setNumber(NumberUtil.getNumber());
-        //todo : 取消一对多关系后 修改
-        Commodity commodity = commodityService.findOne(commodityId);
-        commodity.getItems().add(schedule);
-        commodityService.save(commodity);
-
-    }
-
-
-    /*保存一条记录*/
-    @Override
     public void save(Schedule schedule) {
         scheduleRepo.save(schedule);
 
     }
-
 
     /*查找用户的所有进度信息*/
     @Override
@@ -101,5 +88,8 @@ public class ScheduleServiceImpl implements ScheduleService {
         return scheduleRepo.findByUserId(userId);
     }
 
-
+    @Override
+    public List<Schedule> findByCommodityId(String commodityId) {
+        return scheduleRepo.findByCommodityId(commodityId);
+    }
 }

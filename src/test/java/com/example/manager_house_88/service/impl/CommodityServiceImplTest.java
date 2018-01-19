@@ -28,15 +28,15 @@ public class CommodityServiceImplTest {
 
     @Test
     public void update() {
-        Commodity commodity = new Commodity();
-        commodity.setSort(2222);
-        commodity.setPrice("10000000");
-        commodity.setDescription("xxxxx");
-        commodity.setCoordinate("xxxx");
-        Schedule schedule = new Schedule();
-        schedule.setUserId("11111");
-        commodity.getItems().add(schedule);
-        commodityService.update("jE5VcwaBHZyZpnk_2WfRo2A04", commodity);
+//        Commodity commodity = new Commodity();
+//        commodity.setSort(2222);
+//        commodity.setPrice("10000000");
+//        commodity.setDescription("xxxxx");
+//        commodity.setCoordinate("xxxx");
+//        Schedule schedule = new Schedule();
+//        schedule.setUserId("11111");
+//        commodity.getItems().add(schedule);
+//        commodityService.update("jE5VcwaBHZyZpnk_2WfRo2A04", commodity);
 //        Commodity rs=commodityRepo.findOne("nRCv_No6GRKAhvQpxHxVx3A04");
 //        Set<Schedule> schedules = rs.getItems();
 //        rs.getItems().clear();
