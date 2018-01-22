@@ -11,7 +11,7 @@ public enum ResultExceptionEnum {
     DOCUMENT_NOT_EXIST(13, "标书不存在"),
     SCHEDULE_NOT_EXIST(14, "进度不存在"),
     USER_NOT_EXIST(15, "用户不存在"),
-
+    COMMENT_NOT_EXIST(16,"评论不存在")
     ;
 
     private Integer code;

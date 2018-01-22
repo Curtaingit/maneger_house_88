@@ -2,7 +2,9 @@ package com.example.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.Document;
 import com.example.manager_house_88.domain.Schedule;
+import com.example.manager_house_88.enums.ResultExceptionEnum;
 import com.example.manager_house_88.enums.ScheduleEnum;
+import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import com.example.manager_house_88.repository.DocumentRepo;
 import com.example.manager_house_88.service.DocumentService;
 import com.example.manager_house_88.service.ScheduleService;
@@ -40,12 +42,15 @@ public class DocumentImpl implements DocumentService {
     @Override
     public Document save(@RequestParam("scheduleid") String scheduleId, Document document) {
         Schedule schedule = scheduleService.findOne(scheduleId);
+        if (schedule==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
+        }
         schedule.setProcess(ScheduleEnum.SUBMIT_DOCUMENT.getCode());
         document.setScheduleId(scheduleId);
         return documentRepo.save(document);
     }
 
-    /*查找所有标书 按时间排序   倒序                       */
+    /*查找所有标书 按时间排序   倒序*/
     @Override
     public List<Document> findAll(Sort sort) {
         return documentRepo.findAll(sort);
@@ -65,19 +70,16 @@ public class DocumentImpl implements DocumentService {
     @Override
     public void changeStatus(String documentId) {
         Document document = documentRepo.findOne(documentId);
+        if (document==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.DOCUMENT_NOT_EXIST);
+        }
         Schedule schedule = scheduleService.findOne(document.getScheduleId());
+        if (schedule==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
+        }
         schedule.setAuditDocument(true);
         document.setStatus(true);
         scheduleService.save(schedule);
         documentRepo.save(document);
     }
-
-   /* *//*修改标书审核状态*//*
-    @Override
-    public void changeStatus(@RequestParam("scheduleid") String scheduleId,boolean status) {
-             Schedule schedule = scheduleService.findOne(scheduleId);
-             schedule.setRefund(status);
-    }*/
-
-
 }
