@@ -3,6 +3,8 @@ package com.example.manager_house_88.service.impl;
 import com.example.manager_house_88.domain.Comment;
 import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.enums.CommentEnum;
+import com.example.manager_house_88.enums.ResultExceptionEnum;
+import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import com.example.manager_house_88.repository.CommentRepo;
 import com.example.manager_house_88.service.CommentService;
 import com.example.manager_house_88.service.UserService;
@@ -49,6 +51,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void changeCommentStatus(String commentId) {
         Comment comment = commentRepo.findOne(commentId);
+        if (comment == null) {
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMENT_NOT_EXIST);
+        }
         comment.setCommentStatus(CommentEnum.NOBLE.getCode());
         commentRepo.save(comment);
     }
@@ -75,6 +80,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void changeAuditStatus(String commentId) {
         Comment comment = commentRepo.findOne(commentId);
+        if(comment==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMENT_NOT_EXIST);
+        }
         if (CommentEnum.WAITAUDITSTATUS.getCode() == comment.getAuditStatus()) {
             comment.setAuditStatus(CommentEnum.AGREEAUDITSTATUS.getCode());
         }
@@ -95,6 +103,11 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Comment findOne(String commentId){
-        return commentRepo.findOne(commentId);
+
+        Comment comment = commentRepo.findOne(commentId);
+        if(comment==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMENT_NOT_EXIST);
+        }
+        return comment;
     }
 }

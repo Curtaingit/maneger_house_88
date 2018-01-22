@@ -66,7 +66,11 @@ public class AgencyServiceImpl implements AgencyService{
     /*根据编号查询一个代办机构*/
     @Override
     public Agency findByNumber(String number) {
-        return findByNumber(number);
+        Agency agency = agencyRepo.findByNumber(number);
+        if (agency==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.AGENCY_NOT_EXIST);
+        }
+        return agency;
     }
 
     /*查找所有代办机构   分页*/

@@ -1,8 +1,11 @@
 package com.example.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.Commodity;
+import com.example.manager_house_88.enums.ResultExceptionEnum;
+import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import com.example.manager_house_88.repository.CommodityRepo;
 import com.example.manager_house_88.service.CommodityService;
+import com.example.manager_house_88.utils.BeanCopyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,6 +35,9 @@ public class CommodityServiceImpl implements CommodityService {
     @Override
     public Commodity findOne(String commodityId) {
         Commodity commodity = commodityRepo.findOne(commodityId);
+        if(commodity==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST);
+        }
         commodity.setSort(commodity.getSort() + 1);
         commodityRepo.save(commodity);
         return commodity;
@@ -79,6 +85,9 @@ public class CommodityServiceImpl implements CommodityService {
     @Override
     public void changeState(String commodityId, Integer state) {
         Commodity commodity = commodityRepo.findOne(commodityId);
+        if(commodity==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST);
+        }
         commodity.setState(state);
         commodityRepo.save(commodity);
     }
@@ -101,18 +110,11 @@ public class CommodityServiceImpl implements CommodityService {
     @Transactional
     public Commodity update(String commodityId, Commodity commodity) {
         Commodity rs = commodityRepo.findOne(commodityId);
-        rs.setCoordinate(commodity.getCoordinate());
-        rs.setPrice(commodity.getPrice());
-        rs.setSort(commodity.getSort());
-        rs.setDescription(commodity.getDescription());
-        rs.setImages(commodity.getImages());
-        rs.setStatus(commodity.getStatus());
-        rs.setStandard(commodity.getStandard());
-        rs.setState(commodity.getState());
-        rs.setLabel(commodity.getLabel());
-//  todo      BeanUtils.copyProperties(commodity, commodity)  存在问题
-        Commodity re =commodityRepo.save(rs);
-        return re;
+        if(rs==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST);
+        }
+        BeanUtils.copyProperties(commodity,rs,BeanCopyUtil.getNullPropertyNames(commodity));
+        return commodityRepo.save(rs);
     }
 
 

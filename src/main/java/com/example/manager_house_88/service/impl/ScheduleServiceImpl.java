@@ -2,7 +2,8 @@ package com.example.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
-import com.example.manager_house_88.enums.ScheduleEnum;
+import com.example.manager_house_88.enums.ResultExceptionEnum;
+import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import com.example.manager_house_88.repository.ScheduleRepo;
 import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.service.ScheduleService;
@@ -48,6 +49,11 @@ public class ScheduleServiceImpl implements ScheduleService {
         }
 
 
+        if (schedule==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
+        }
+        schedule.setWin(true);
+        changeProcess(scheduleId,6);
         scheduleRepo.save(schedule);
     }
 
@@ -63,8 +69,10 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public void changeAuditBail(String scheduleId) {
-        changeProcess(scheduleId,4);
         Schedule schedule = scheduleRepo.findOne(scheduleId);
+        if (schedule==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
+        }
         schedule.setAuditBail(true);
         scheduleRepo.save(schedule);
     }
@@ -72,6 +80,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void changeProcess(String scheduleId, Integer process) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
+        if (schedule==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
+        }
         schedule.setProcessTime(schedule.getProcessTime()+","+System.currentTimeMillis());
         schedule.setProcess(process);
         scheduleRepo.save(schedule);
@@ -79,9 +90,10 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public void uploadBailImage(String scheduleId, String bailImage) {
-        //todo: 暂时  排除后台管理
-        changeProcess(scheduleId,ScheduleEnum.ACTIONING.getCode());
         Schedule schedule = scheduleRepo.findOne(scheduleId);
+        if (schedule==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
+        }
         schedule.setBailImage(bailImage);
         scheduleRepo.save(schedule);
     }
@@ -90,9 +102,10 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Transactional
     public void setAmount(String scheduleId, Long amount) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
+        if (schedule==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
+        }
         schedule.setAmount(amount);
-        //todo: 暂时  排除后台管理
-        changeProcess(scheduleId, ScheduleEnum.ACTIONING.getCode());
         scheduleRepo.save(schedule);
     }
 
@@ -100,14 +113,21 @@ public class ScheduleServiceImpl implements ScheduleService {
     /*查找一条用户进度*/
     @Override
     public Schedule findOne(String scheduleId) {
-        return scheduleRepo.findOne(scheduleId);
+        Schedule schedule = scheduleRepo.findOne(scheduleId);
+        if (schedule==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
+        }
+        return schedule;
     }
 
     /*保存一条记录*/
     @Override
     public Schedule create(String commodityId, Schedule schedule) {
-        //todo: 暂时  排除后台管理
-        schedule.setProcess(2);
+        Commodity commodity = commodityService.findOne(commodityId);
+        if(commodity==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST);
+        }
+        schedule.setProcess(1);
         schedule.setCommodityId(commodityId);
         scheduleRepo.save(schedule);
         return scheduleRepo.save(schedule);
@@ -119,12 +139,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void save(Schedule schedule) {
         scheduleRepo.save(schedule);
 
-    }
-
-    @Override
-    public List<Schedule> finByCommodityId(String commodityId) {
-        List<Schedule> schedules =scheduleRepo.findByCommodityId(commodityId);
-        return schedules;
     }
 
 
