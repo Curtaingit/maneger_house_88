@@ -23,7 +23,7 @@ public class UserController {
                           @RequestParam(name = "page",required = false) Integer page){
         Sort sort =new Sort(Sort.Direction.DESC,sortName);
         if(size==null||page==null){
-            return  ResultVOUtil.success(  userService.findAll(sort));
+            return    userService.findAll(sort);
         }
         Pageable pageable =new PageRequest(page-1,size,sort);
         return userService.findAll(pageable);

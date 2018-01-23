@@ -70,7 +70,7 @@ public class CommentController {
                             @RequestParam(name = "page",required = false) Integer page){
         Sort sort =new Sort(Sort.Direction.DESC,sortName);
         if(size==null||page==null){
-            return  ResultVOUtil.success(commentService.findAll(sort));
+            return  commentService.findAll(sort);
         }
         Pageable pageable =new PageRequest(page-1,size,sort);
         return commentService.findAll(pageable);

@@ -6,6 +6,7 @@ import com.example.manager_house_88.enums.ResultExceptionEnum;
 import com.example.manager_house_88.enums.ScheduleEnum;
 import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import com.example.manager_house_88.repository.DocumentRepo;
+import com.example.manager_house_88.repository.ScheduleRepo;
 import com.example.manager_house_88.service.DocumentService;
 import com.example.manager_house_88.service.ScheduleService;
 import com.example.manager_house_88.utils.NumberUtil;
@@ -47,7 +48,10 @@ public class DocumentImpl implements DocumentService {
         }
         schedule.setProcess(ScheduleEnum.SUBMIT_DOCUMENT.getCode());
         document.setScheduleId(scheduleId);
-        return documentRepo.save(document);
+        Document rs = documentRepo.save(document);
+        schedule.setDocumentId(rs.getId());
+        scheduleService.save(schedule);
+        return rs;
     }
 
     /*查找所有标书 按时间排序   倒序*/

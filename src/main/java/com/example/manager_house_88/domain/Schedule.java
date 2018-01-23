@@ -65,6 +65,7 @@ public class Schedule extends BaseEntity {
     private boolean auditDocument;
 
     /*进程时间*/
+    @Column(length = 1024)
     private String processTime;
 
 }

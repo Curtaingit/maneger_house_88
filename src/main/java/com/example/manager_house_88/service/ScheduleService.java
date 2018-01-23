@@ -31,7 +31,7 @@ public interface ScheduleService {
     void changeAuditBail(String scheduleId);
 
     /*改变用户进度*/
-    void changeProcess(String schedule, Integer process);
+    void changeProcess(String schedule);
 
     /*设置竞价*/
     void setAmount(String scheduleId, Long amount);
@@ -42,4 +42,8 @@ public interface ScheduleService {
     void uploadBailImage(String scheduleId, String bailImage);
 
     List<Schedule> finByCommodityId(String commodityId);
+
+    void setAgency(String scheduleId, String agencyId);
+
+    Schedule getSchedule(String userId,String commodityId);
 }

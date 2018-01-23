@@ -34,7 +34,7 @@ public class DocumentController {
                           @RequestParam(name = "page", required = false) Integer page) {
         Sort sort = new Sort(Sort.Direction.DESC, sortName);
         if (size == null || page == null) {
-            return ResultVOUtil.success(documentService.findAll(sort));
+            return documentService.findAll(sort);
         }
         Pageable pageable = new PageRequest(page-1, size, sort);
         return documentService.findAll(pageable);
@@ -51,6 +51,8 @@ public class DocumentController {
     public Object findByUserId(@RequestParam("userid") String userId) {
         return documentService.findByUserId(userId);
     }
+
+
 
     @PostMapping("/changestatus")
     public Object changeStatus(@RequestParam(name = "documentid") String documentId) {

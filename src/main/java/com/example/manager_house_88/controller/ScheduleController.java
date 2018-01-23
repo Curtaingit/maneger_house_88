@@ -5,6 +5,7 @@ import com.example.manager_house_88.service.ScheduleService;
 import com.example.manager_house_88.utils.ResultVOUtil;
 import com.example.manager_house_88.vo.ResultVO;
 import org.omg.CORBA.OBJ_ADAPTER;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +41,11 @@ public class ScheduleController {
         return scheduleService.findByUserId(userId);
     }
 
+    @PostMapping("/setagency")
+    public Object setAgency(@RequestParam("scheduleid") String scheduleId,@RequestParam("agencyid") String agencyId){
+        scheduleService.setAgency(scheduleId,agencyId);
+        return "操作成功";
+    }
 
     @RequestMapping("/findall")
     public Object findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
@@ -47,16 +53,15 @@ public class ScheduleController {
                             @RequestParam(name = "page",required = false) Integer page){
         Sort sort =new Sort(Sort.Direction.DESC,sortName);
         if(size==null||page==null){
-            return  ResultVOUtil.success(scheduleService.findAll(sort));
+            return  scheduleService.findAll(sort);
         }
         Pageable pageable =new PageRequest(page-1,size,sort);
         return scheduleService.findAll(pageable);
     }
 
     @PostMapping("/changeprocess")
-    public Object changeProcess(@RequestParam("scheduleid") String scheduleId,
-                                  @RequestParam("process") Integer process){
-        scheduleService.changeProcess(scheduleId,process);
+    public Object changeProcess(@RequestParam("scheduleid") String scheduleId){
+        scheduleService.changeProcess(scheduleId);
         return "操作成功";
     }
 
@@ -83,6 +88,11 @@ public class ScheduleController {
     @PostMapping("/findbycommodityid")
     public Object findByCommodityId(@RequestParam("commodityid") String commodityId){
         return scheduleService.finByCommodityId(commodityId);
+    }
+
+    @PostMapping("/getschedule")
+    public Object getSchedule(@RequestParam("userid") String userId,@RequestParam("commodityid") String commodityId){
+        return scheduleService.getSchedule(userId,commodityId);
     }
 
 }

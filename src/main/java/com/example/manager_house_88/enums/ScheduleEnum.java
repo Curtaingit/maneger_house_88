@@ -3,6 +3,8 @@ package com.example.manager_house_88.enums;
 
 import lombok.Getter;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 @Getter
 public enum  ScheduleEnum {
     NEW(0,"报名看房"),
@@ -24,10 +26,10 @@ public enum  ScheduleEnum {
     ;
     
 
-    private  int code;
+    private Integer code;
     private  String msg;
 
-     ScheduleEnum(int code,String msg){
+     ScheduleEnum(Integer code,String msg){
         this.code = code;
         this.msg =msg;
     }
