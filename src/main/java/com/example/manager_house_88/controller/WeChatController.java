@@ -21,4 +21,6 @@ public class WeChatController {
     public Object createJsapiSignature(@RequestParam("url") String url) throws WxErrorException {
         return this.wxMpService.createJsapiSignature(url);
     }
+
+
 }

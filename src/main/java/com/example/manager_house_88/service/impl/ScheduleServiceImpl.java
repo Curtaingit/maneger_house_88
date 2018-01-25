@@ -43,6 +43,7 @@ public class ScheduleServiceImpl implements ScheduleService {
                 if (!ScheduleEnum.ACTIONING.getCode().equals(sche.getProcess())) {
                    throw new ManagerHouse88Exception(ResultExceptionEnum.PROCESS_NOT_TRUE);
                 }
+                changeProcess(scheduleId);
                 scheduleRepo.save(sche);
 
             }else {
@@ -94,9 +95,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Schedule getSchedule(String userId, String commodityId) {
         Schedule schedule = scheduleRepo.findByUserIdAndCommodityId(userId, commodityId);
-        if (schedule==null) {
-            throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
-        }
             return schedule;
     }
 

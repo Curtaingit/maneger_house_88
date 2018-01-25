@@ -1,9 +1,7 @@
 package com.example.manager_house_88.config;
 
 
-import com.example.manager_house_88.authwechat.WechatOAuth2ClientAuthenticationProcessingFilter;
-import com.example.manager_house_88.authwechat.WechatUserinfoExtractor;
-import com.example.manager_house_88.authwechat.WeixinOAuth2RestTemplate;
+import com.example.manager_house_88.authwechat.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
@@ -14,6 +12,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,6 +25,7 @@ import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilt
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,11 +66,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
 
+
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        AuthenticationManager am=http.getSharedObject(AuthenticationManager.class);
+
         http.cors().and()
                 .csrf().disable()
-                .addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(ssoFilter(am), BasicAuthenticationFilter.class)
                 .exceptionHandling()
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
@@ -84,6 +89,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(authenticationFailureHandler)
                 .and()
                 .logout();
+
+
+
+        WechatMiniAuthenticationProvider wechatMiniAuthenticationProvider =new WechatMiniAuthenticationProvider();
+        http.authenticationProvider(wechatMiniAuthenticationProvider);
     }
 
     @Bean
@@ -98,7 +108,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    //    auth.userDetailsService(this.roleService);
+        //auth.userDetailsService(this.roleService);
+
     }
 
 
@@ -149,7 +160,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return oAuth2ClientAuthenticationFilter;
     }
 
-    private Filter ssoFilter() {
+
+
+    private Filter ssoFilter(AuthenticationManager am) {
         CompositeFilter filter = new CompositeFilter();
         List<Filter> filters = new ArrayList<>();
 
@@ -158,6 +171,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         filters.add(ssoFilter(github(), "/login/github"));
         */
         filters.add(ssoFilterForWechat(wechat(), "/login/wechat"));
+        WechatMiniAuthenticationFilter wmaFilter=new WechatMiniAuthenticationFilter();
+        wmaFilter.setAuthenticationManager(am);
+        filters.add(wmaFilter);
         filter.setFilters(filters);
         return filter;
     }
