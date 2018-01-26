@@ -2,15 +2,8 @@ package com.example.manager_house_88.authwechat;
 
 
 import com.alibaba.fastjson.JSON;
-import com.example.manager_house_88.domain.User;
-import com.example.manager_house_88.exception.ManagerHouse88Exception;
-import com.example.manager_house_88.service.UserService;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
@@ -19,6 +12,11 @@ import org.springframework.util.Assert;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Map;
 
 
 public class WechatMiniAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
@@ -62,7 +60,16 @@ public class WechatMiniAuthenticationFilter extends AbstractAuthenticationProces
 
 
     protected String obtainCode(HttpServletRequest request) {
-        return request.getParameter(codeParameter);
+        String code = null;
+        try { InputStream inputStream = request.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+            String line=br.readLine();
+            Map map = (Map) JSON.parse(line.toString());
+            code = (String) map.get("code");
+        } catch (IOException e) {
+           throw new BadCredentialsException("bad code");
+        }
+        return code;
     }
 
 
@@ -83,18 +90,6 @@ public class WechatMiniAuthenticationFilter extends AbstractAuthenticationProces
     }
 
 
-    /**
-     * Defines whether only HTTP POST requests will be allowed by this filter. If set to
-     * true, and an authentication request is received which is not a POST request, an
-     * exception will be raised immediately and authentication will not be attempted. The
-     * <tt>unsuccessfulAuthentication()</tt> method will be called as if handling a failed
-     * authentication.
-     * <p>
-     * Defaults to <tt>true</tt> but may be overridden by subclasses.
-     */
-    public void setPostOnly(boolean postOnly) {
-        this.postOnly = postOnly;
-    }
 
     public final String codeParameter() {
         return codeParameter;
