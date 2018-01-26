@@ -19,11 +19,12 @@ public interface UserService {
 
     User findOne(Principal principal);
 
-    void save(User user);
+    User save(User user);
 
     User findByOpenid(String openid);
 
     Page<User> findAll(Pageable pageable);
+
 
 
 }

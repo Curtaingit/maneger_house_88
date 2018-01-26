@@ -17,7 +17,7 @@ import java.util.List;
  * Created by cx on 18-1-9.
  */
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -34,9 +34,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
 //        user.setNumber(NumberUtil.getNumber());
-        userRepo.save(user);
+       return userRepo.save(user);
     }
 
     @Override

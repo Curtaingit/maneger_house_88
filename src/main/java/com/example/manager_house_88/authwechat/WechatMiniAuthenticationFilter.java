@@ -1,11 +1,14 @@
 package com.example.manager_house_88.authwechat;
 
 
-
 import com.alibaba.fastjson.JSON;
+import com.example.manager_house_88.domain.User;
+import com.example.manager_house_88.exception.ManagerHouse88Exception;
+import com.example.manager_house_88.service.UserService;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
@@ -24,7 +27,6 @@ public class WechatMiniAuthenticationFilter extends AbstractAuthenticationProces
     public static final String SPRING_SECURITY_FORM_CODE_KEY = "code";
 
     private String codeParameter = SPRING_SECURITY_FORM_CODE_KEY;
-
 
 
     private boolean postOnly = true;
@@ -49,15 +51,17 @@ public class WechatMiniAuthenticationFilter extends AbstractAuthenticationProces
 
         code = code.trim();
 
-        WechatMiniAuthenticationToken  authRequest =new WechatMiniAuthenticationToken(code);
+        WechatMiniAuthenticationToken authRequest = new WechatMiniAuthenticationToken(code, false);
 
-         setDetails(request, authRequest);
+        setDetails(request, authRequest);
 
         return this.getAuthenticationManager().authenticate(authRequest);
+
+
     }
 
 
-    protected String obtainCode(HttpServletRequest request){
+    protected String obtainCode(HttpServletRequest request) {
         return request.getParameter(codeParameter);
     }
 

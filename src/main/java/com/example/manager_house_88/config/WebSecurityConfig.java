@@ -25,7 +25,6 @@ import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilt
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,17 +46,7 @@ import java.util.List;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    OAuth2ClientContext oauth2ClientContext;
-
-    @Autowired
-    private WechatUserinfoExtractor wechatUserinfoExtractor;
-
-//    @Autowired
-//    private RoleService roleService;
-
-    @Autowired
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
-
 
     @Autowired
     private MySavedRequestAwareAuthenticationSuccessHandler
@@ -66,13 +55,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
 
-
-
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        AuthenticationManager am=http.getSharedObject(AuthenticationManager.class);
-
+        AuthenticationManager am = this.authenticationManager();
         http.cors().and()
                 .csrf().disable()
                 .addFilterBefore(ssoFilter(am), BasicAuthenticationFilter.class)
@@ -80,8 +65,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/order/**", "/pay/**", "/address/**", "/user/**","/product/**").permitAll()
-                .antMatchers("/wechat/**", "/login**","/image/**").permitAll()
+                .antMatchers("/order/**", "/pay/**", "/address/**", "/user/**", "/product/**").permitAll()
+                .antMatchers("/wechat/**", "/login**", "/image/**").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -89,11 +74,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(authenticationFailureHandler)
                 .and()
                 .logout();
-
-
-
-        WechatMiniAuthenticationProvider wechatMiniAuthenticationProvider =new WechatMiniAuthenticationProvider();
-        http.authenticationProvider(wechatMiniAuthenticationProvider);
     }
 
     @Bean
@@ -108,8 +88,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //auth.userDetailsService(this.roleService);
-
+        auth.authenticationProvider(new WechatMiniAuthenticationProvider());
     }
 
 
@@ -137,62 +116,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Bean
-    @ConfigurationProperties("wechat")
-    public ClientResources wechat() {
-        return new ClientResources();
-    }
-
-
-   @Value("${urlpath}")
-   String hendlercodeurl;
-
-    private Filter ssoFilterForWechat(ClientResources client, String path) {
-        OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationFilter = new WechatOAuth2ClientAuthenticationProcessingFilter(path);
-        oAuth2ClientAuthenticationFilter.setAuthenticationSuccessHandler(new MySavedRequestAwareAuthenticationSuccessHandler(true));
-        OAuth2RestTemplate oAuth2RestTemplate = new WeixinOAuth2RestTemplate(client.getClient(), oauth2ClientContext,hendlercodeurl);
-        oAuth2ClientAuthenticationFilter.setRestTemplate(oAuth2RestTemplate);
-        UserInfoTokenServices tokenServices = new UserInfoTokenServices(client.getResource().getUserInfoUri(),
-                client.getClient().getClientId());
-        tokenServices.setPrincipalExtractor(wechatUserinfoExtractor);
-        tokenServices.setRestTemplate(oAuth2RestTemplate);
-        oAuth2ClientAuthenticationFilter.setTokenServices(tokenServices);
-        return oAuth2ClientAuthenticationFilter;
-    }
-
-
-
     private Filter ssoFilter(AuthenticationManager am) {
         CompositeFilter filter = new CompositeFilter();
         List<Filter> filters = new ArrayList<>();
-
         /*facebok，github的第三方登录
         filters.add(ssoFilter(facebook(), "/login/facebook"));
         filters.add(ssoFilter(github(), "/login/github"));
         */
-        filters.add(ssoFilterForWechat(wechat(), "/login/wechat"));
-        WechatMiniAuthenticationFilter wmaFilter=new WechatMiniAuthenticationFilter();
+        WechatMiniAuthenticationFilter wmaFilter = new WechatMiniAuthenticationFilter();
         wmaFilter.setAuthenticationManager(am);
+        wmaFilter.setAuthenticationSuccessHandler(this.authenticationSuccessHandler);
+        wmaFilter.setAuthenticationFailureHandler(this.authenticationFailureHandler);
         filters.add(wmaFilter);
         filter.setFilters(filters);
         return filter;
-    }
-
-    class ClientResources {
-
-        @NestedConfigurationProperty
-        private AuthorizationCodeResourceDetails client = new AuthorizationCodeResourceDetails();
-
-        @NestedConfigurationProperty
-        private ResourceServerProperties resource = new ResourceServerProperties();
-
-        public AuthorizationCodeResourceDetails getClient() {
-            return client;
-        }
-
-        public ResourceServerProperties getResource() {
-            return resource;
-        }
     }
 
 }
