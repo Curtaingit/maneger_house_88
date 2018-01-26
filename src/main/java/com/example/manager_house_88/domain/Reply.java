@@ -26,7 +26,7 @@ public class Reply extends BaseEntity{
     private String answer;
 
     /*是否显示*/
-    private int show;
+    private Integer isShow;
 
     /*是否已回答*/
     private int status;

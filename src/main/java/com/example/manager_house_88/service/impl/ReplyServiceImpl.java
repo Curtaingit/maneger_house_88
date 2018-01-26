@@ -7,7 +7,6 @@ import com.example.manager_house_88.enums.ResultExceptionEnum;
 import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import com.example.manager_house_88.repository.ReplyRepo;
 import com.example.manager_house_88.service.ReplyService;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +47,7 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public List<Reply> findByShowAndCommodityId(Integer show, String commodityId) {
-        return replyRepo.findByShowAndCommodityId(show,commodityId);
+        return replyRepo.findByIsShowAndCommodityId(show,commodityId);
     }
 
     @Override
@@ -57,13 +56,13 @@ public class ReplyServiceImpl implements ReplyService {
         if (reply==null){
             throw new ManagerHouse88Exception(ResultExceptionEnum.REPLY_NOT_EXIST);
         }
-        reply.setShow(ReplyShowEnum.SHOW.getCode());
+        reply.setIsShow(ReplyShowEnum.SHOW.getCode());
         replyRepo.save(reply);
     }
 
     @Override
     public Reply save(Reply reply) {
-        reply.setShow(ReplyShowEnum.NOT_SHOW.getCode());
+        reply.setIsShow(ReplyShowEnum.NOT_SHOW.getCode());
         reply.setStatus(ReplyStatusEnum.NOT_REPLY.getCode());
         return replyRepo.save(reply);
     }

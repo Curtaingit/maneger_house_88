@@ -16,6 +16,6 @@ public interface ReplyRepo  extends JpaRepository<Reply, String> {
 
     List<Reply> findByStatus(Integer status);
 
-    List<Reply> findByShowAndCommodityId(Integer show,String commodityId);
+    List<Reply> findByIsShowAndCommodityId(Integer show,String commodityId);
 
 }
