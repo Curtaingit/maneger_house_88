@@ -2,6 +2,7 @@ package com.example.manager_house_88.config;
 
 
 import com.example.manager_house_88.authwechat.*;
+import com.example.manager_house_88.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
@@ -49,6 +50,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
     @Autowired
+    private AdminService adminservice;
+
+    @Autowired
     private MySavedRequestAwareAuthenticationSuccessHandler
             authenticationSuccessHandler;
 
@@ -89,7 +93,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(new WechatMiniAuthenticationProvider());
+         auth.userDetailsService(this.adminservice);
+         auth.authenticationProvider(new WechatMiniAuthenticationProvider());
     }
 
 
