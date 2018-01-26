@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import javax.jws.soap.SOAPBinding;
 import java.security.Principal;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public interface UserService {
 
     Page<User> findAll(Pageable pageable);
 
+    void update(Principal principal, User user);
 
 
 }

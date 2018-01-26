@@ -17,7 +17,7 @@ import java.util.Map;
  * Created by cx on 17-12-29.
  */
 
-public class WechatMiniUserinfo {
+public class WechatMiniUserInfo {
 
     public String getId(String openid) {
         UserService userService = (UserService) SpringUtil.getBean("userService");
