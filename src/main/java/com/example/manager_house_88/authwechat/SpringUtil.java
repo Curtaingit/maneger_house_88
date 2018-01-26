@@ -1,10 +1,10 @@
 package com.example.manager_house_88.authwechat;
 
-        import org.springframework.beans.BeansException;
-        import org.springframework.beans.factory.NoSuchBeanDefinitionException;
-        import org.springframework.context.ApplicationContext;
-        import org.springframework.context.ApplicationContextAware;
-        import org.springframework.stereotype.Component;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by Administrator on 2017/9/29.
@@ -42,7 +42,7 @@ public class SpringUtil implements ApplicationContextAware {
         return applicationContext.isSingleton(name);
     }
 
-    public static Class getType(String name)    throws NoSuchBeanDefinitionException {
+    public static Class getType(String name) throws NoSuchBeanDefinitionException {
         return applicationContext.getType(name);
     }
 

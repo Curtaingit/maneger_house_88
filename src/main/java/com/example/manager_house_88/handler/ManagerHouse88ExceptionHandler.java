@@ -14,7 +14,7 @@ public class ManagerHouse88ExceptionHandler {
     @ResponseBody
     @ExceptionHandler
     public ResultVO handler(Exception e){
-        log.info("Controller : " + e.getMessage());
+        log.info("Controller :message = " + e.getMessage() + "cause = "+ e.getCause());
         return ResultVOUtil.error(e.getMessage());
     }
 }

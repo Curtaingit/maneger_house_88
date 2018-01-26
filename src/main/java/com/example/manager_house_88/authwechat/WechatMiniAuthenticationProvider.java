@@ -1,9 +1,7 @@
 package com.example.manager_house_88.authwechat;
 
 import com.alibaba.fastjson.JSON;
-import com.example.manager_house_88.domain.User;
 import com.example.manager_house_88.exception.ManagerHouse88Exception;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -25,8 +23,8 @@ public class WechatMiniAuthenticationProvider implements AuthenticationProvider 
         if (openid == null) {
             throw new ManagerHouse88Exception("Unable to obtain open information");
         }
-        WechatMiniUserinfo userinfo = new WechatMiniUserinfo();
-        String userId = userinfo.getId(openid);
+        WechatMiniUserInfo userInfo = new WechatMiniUserInfo();
+        String userId = userInfo.getId(openid);
 
         WechatMiniAuthenticationToken authenticationResult = new WechatMiniAuthenticationToken(userId,true);
         return authenticationResult;

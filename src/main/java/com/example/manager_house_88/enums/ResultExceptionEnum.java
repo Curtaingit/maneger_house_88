@@ -12,7 +12,8 @@ public enum ResultExceptionEnum {
     SCHEDULE_NOT_EXIST(14, "进度不存在"),
     USER_NOT_EXIST(15, "用户不存在"),
     COMMENT_NOT_EXIST(16,"评论不存在"),
-    PROCESS_NOT_TRUE(17,"进度不正确")
+    PROCESS_NOT_TRUE(17,"进度不正确"),
+    REPLY_NOT_EXIST(18,"答复记录不存在")
     ;
 
     private Integer code;

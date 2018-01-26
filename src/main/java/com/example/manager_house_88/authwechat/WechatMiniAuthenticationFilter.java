@@ -54,8 +54,6 @@ public class WechatMiniAuthenticationFilter extends AbstractAuthenticationProces
         setDetails(request, authRequest);
 
         return this.getAuthenticationManager().authenticate(authRequest);
-
-
     }
 
 

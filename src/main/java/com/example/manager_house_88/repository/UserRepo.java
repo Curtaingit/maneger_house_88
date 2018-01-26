@@ -4,11 +4,17 @@ import com.example.manager_house_88.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by cx on 18-1-10.
  */
 
 @Repository
 public interface UserRepo extends JpaRepository<User, String> {
+
     User findByOpenid(String openid);
+
+
+
 }

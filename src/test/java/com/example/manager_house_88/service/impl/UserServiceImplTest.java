@@ -8,5 +8,9 @@ public class UserServiceImplTest {
 
     @Test
     public void save() {
+        if(true){
+            System.out.println("11");
+        }else
+        System.out.println("22");
     }
 }
