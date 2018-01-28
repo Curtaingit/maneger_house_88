@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,11 +26,14 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Override
     public List<User> findAll(Sort sort) {
-        return  userRepo.findAll(sort);
+        return userRepo.findAll(sort);
     }
 
     @Override
@@ -38,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-       return userRepo.save(user);
+        return userRepo.save(user);
     }
 
     @Override
@@ -52,10 +57,39 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    public List<String> findHistory(String userId) {
+        /*设置redis存储时  采用的序列化方式*/
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new StringRedisSerializer());
+        List<String> rs = redisTemplate.opsForList().range(userId,0,15);
+        return rs;
+    }
+
+    @Override
+    public void addHistory(String userId, String commodityId) {
+        String key = userId;
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new StringRedisSerializer());
+        List<String> rs = redisTemplate.opsForList().range(key,0,30);
+        /*当记录超过30条时  对数据库进行删除*/
+        if (rs.size()>=30){
+            redisTemplate.opsForList().trim(key,0,15);
+        }
+        /*删除重复的记录*/
+        for (String s : rs) {
+            if (s.equals(commodityId)) {
+                redisTemplate.opsForList().remove(key, 0, commodityId);
+            }
+
+        }
+        /*添加记录*/
+        redisTemplate.opsForList().leftPush(key,commodityId);
+    }
+
+    @Override
     public void update(Principal principal, User user) {
-       User rs = findOne(principal);
-        BeanUtils.copyProperties(user,rs, BeanCopyUtil.getNullPropertyNames(user));
+        User rs = findOne(principal);
+        BeanUtils.copyProperties(user, rs, BeanCopyUtil.getNullPropertyNames(user));
         save(rs);
     }
 }
