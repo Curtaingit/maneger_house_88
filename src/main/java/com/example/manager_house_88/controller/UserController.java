@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -36,6 +37,17 @@ public class UserController {
     @PostMapping("/findone")
     public Object findone(Principal principal){
         return userService.findOne(principal);
+    }
+
+    @PostMapping("/findhistory")
+    public Object findHistory(@RequestParam("userid") String  userId){
+        return userService.findHistory(userId);
+    }
+
+    @PostMapping("/addhistory")
+    public Object addHistory(@RequestParam("userid") String  userId,@RequestParam("commodityid") String commodityId){
+        userService.addHistory(userId,commodityId);
+        return null;
     }
 
     @PostMapping("/save")

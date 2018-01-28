@@ -46,4 +46,6 @@ public interface ScheduleService {
     void setAgency(String scheduleId, String agencyId);
 
     Schedule getSchedule(String userId,String commodityId);
+
+    List<Schedule> resultPublicized(String commodityId);
 }

@@ -8,6 +8,9 @@ import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import com.example.manager_house_88.repository.ReplyRepo;
 import com.example.manager_house_88.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,6 +71,11 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
+    public List<Reply> findByUserId(String userId) {
+        return replyRepo.findByUserId(userId);
+    }
+
+    @Override
     public void answer(String replyId,String answer) {
         Reply reply = replyRepo.findOne(replyId);
         if (reply==null){
@@ -79,7 +87,12 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<Reply> findAll() {
-        return replyRepo.findAll();
+    public List<Reply> findAll(Sort sort) {
+        return replyRepo.findAll(sort);
+    }
+
+    @Override
+    public Page<Reply> findAll(Pageable pageable) {
+        return replyRepo.findAll(pageable);
     }
 }

@@ -28,5 +28,8 @@ public interface UserService {
 
     void update(Principal principal, User user);
 
+    void addHistory(String userId,String commodityId);
+
+    List<String> findHistory(String userId);
 
 }

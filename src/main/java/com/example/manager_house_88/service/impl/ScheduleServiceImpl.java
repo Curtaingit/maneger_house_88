@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -131,6 +132,18 @@ public class ScheduleServiceImpl implements ScheduleService {
             throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
         }
         return schedules;
+    }
+
+    @Override
+    public List<Schedule> resultPublicized(String commodityId) {
+        List<Schedule> schedules = scheduleRepo.findByCommodityId(commodityId);
+        List<Schedule> rs = new ArrayList<>();
+        for (Schedule schedule :schedules){
+            if (schedule.getProcess()>=ScheduleEnum.ACTIONING.getCode()){
+                rs.add(schedule);
+            }
+        }
+        return rs;
     }
 
     @Override

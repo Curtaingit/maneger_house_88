@@ -36,6 +36,11 @@ public class ScheduleController {
         return "操作成功";
     }
 
+    @PostMapping("/resultpublicized")
+    public Object resultPublicized(@RequestParam("commodityid") String commodityId){
+        return scheduleService.resultPublicized(commodityId);
+    }
+
     @PostMapping("/findbyuserid")
     public Object findByUserId(@RequestParam("userid") String userId){
         return scheduleService.findByUserId(userId);
@@ -94,5 +99,6 @@ public class ScheduleController {
     public Object getSchedule(@RequestParam("userid") String userId,@RequestParam("commodityid") String commodityId){
         return scheduleService.getSchedule(userId,commodityId);
     }
+
 
 }
