@@ -1,12 +1,8 @@
 package com.example.manager_house_88.controller;
 
 
-import com.example.manager_house_88.domain.CustomerManager;
 import com.example.manager_house_88.domain.Reply;
 import com.example.manager_house_88.enums.ReplyShowEnum;
-import com.example.manager_house_88.enums.ResultExceptionEnum;
-import com.example.manager_house_88.exception.ManagerHouse88Exception;
-import com.example.manager_house_88.service.CustomerManagerService;
 import com.example.manager_house_88.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

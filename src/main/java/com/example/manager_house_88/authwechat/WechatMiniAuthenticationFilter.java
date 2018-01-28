@@ -40,7 +40,6 @@ public class WechatMiniAuthenticationFilter extends AbstractAuthenticationProces
                     "Authentication method not supported: " + request.getMethod());
         }
 
-
         String code = obtainCode(request);
 
         if (code == null) {

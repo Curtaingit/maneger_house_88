@@ -1,7 +1,6 @@
 package com.example.manager_house_88.service;
 
 import com.example.manager_house_88.domain.Reply;
-import com.sun.org.apache.regexp.internal.RE;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public interface ReplyService {
 
     List<Reply> findByCustomerManagerId(String customerManagerId);
 
-    List<Reply> findByShowAndCommodityId(Integer show,String commodityId);
+    List<Reply> findByShowAndCommodityId(Integer show, String commodityId);
 
     List<Reply> findByStatus(Integer status);
 

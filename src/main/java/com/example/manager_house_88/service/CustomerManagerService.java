@@ -1,7 +1,6 @@
 package com.example.manager_house_88.service;
 
 import com.example.manager_house_88.domain.CustomerManager;
-import com.example.manager_house_88.domain.Reply;
 
 import java.util.List;
 
@@ -14,4 +13,6 @@ public interface CustomerManagerService {
     List<CustomerManager> findAll();
 
     CustomerManager save(CustomerManager customerManager);
+
+    CustomerManager update(String customerManagerId, CustomerManager customerManager);
 }

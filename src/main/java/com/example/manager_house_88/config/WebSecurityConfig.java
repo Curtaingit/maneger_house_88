@@ -70,8 +70,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/order/**", "/pay/**", "/address/**", "/user/**", "/product/**").permitAll()
-                .antMatchers("/wechat/**", "/login**", "/image/**").permitAll()
+                .antMatchers("/**").permitAll()
+                .antMatchers("/wechatmini/**", "/login**", "/image/**").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -104,7 +104,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
         configuration.addAllowedHeader("x-auth-token");
-        configuration.addAllowedHeader("abc");
         configuration.addExposedHeader("x-auth-token");
         configuration.addAllowedHeader("content-type");
         configuration.setAllowCredentials(true);

@@ -37,4 +37,9 @@ public class CustomerManagerController {
         return customerManagerService.findOne(customerManagerId);
     }
 
+    @PostMapping("/update")
+    public Object update(@RequestParam("customermanagerid") String customerManagerId,
+                         @RequestBody CustomerManager customerManager){
+        return customerManagerService.update(customerManagerId,customerManager);
+    }
 }
