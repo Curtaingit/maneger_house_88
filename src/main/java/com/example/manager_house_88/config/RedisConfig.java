@@ -8,6 +8,9 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import javax.annotation.PostConstruct;
 
 
 @Configuration
@@ -22,6 +25,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
         public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
             RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
             redisTemplate.setConnectionFactory(factory);
+            redisTemplate.setKeySerializer(new StringRedisSerializer());
+            redisTemplate.setValueSerializer(new StringRedisSerializer());
             return redisTemplate;
         }
         @Bean

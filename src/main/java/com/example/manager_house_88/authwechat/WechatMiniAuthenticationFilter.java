@@ -58,13 +58,14 @@ public class WechatMiniAuthenticationFilter extends AbstractAuthenticationProces
 
     protected String obtainCode(HttpServletRequest request) {
         String code = null;
-        try { InputStream inputStream = request.getInputStream();
+        try {
+            InputStream inputStream = request.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-            String line=br.readLine();
+            String line = br.readLine();
             Map map = (Map) JSON.parse(line.toString());
             code = (String) map.get("code");
         } catch (IOException e) {
-           throw new BadCredentialsException("bad code");
+            throw new BadCredentialsException("bad code");
         }
         return code;
     }
@@ -85,7 +86,6 @@ public class WechatMiniAuthenticationFilter extends AbstractAuthenticationProces
         Assert.hasText(codeParameter, "code parameter must not be empty or null");
         this.codeParameter = codeParameter;
     }
-
 
 
     public final String codeParameter() {

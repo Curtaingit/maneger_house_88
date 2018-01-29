@@ -70,8 +70,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/wechatmini/**", "/login**", "/image/**").permitAll()
+                .antMatchers("/agency/**","/agent/**","/collection/**","/comment/**",
+                        "/commodity/**","/customermanager/**","/document/**","/reply/**","/schedule/**","/user/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")

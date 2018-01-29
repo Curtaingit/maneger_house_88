@@ -2,16 +2,20 @@ package com.example.manager_house_88.controller;
 
 
 import com.example.manager_house_88.domain.User;
+import com.example.manager_house_88.javabean.Feedback;
 import com.example.manager_house_88.service.UserService;
 import com.example.manager_house_88.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import java.security.Principal;
+import java.util.List;
 
 @CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
 @RequestMapping("/user")
@@ -34,21 +38,30 @@ public class UserController {
 
     }
 
-    @PostMapping("/findone")
-    public Object findone(Principal principal){
-        return userService.findOne(principal);
-    }
 
-    @PostMapping("/findhistory")
-    public Object findHistory(@RequestParam("userid") String  userId){
-        return userService.findHistory(userId);
-    }
 
-    @PostMapping("/addhistory")
-    public Object addHistory(@RequestParam("userid") String  userId,@RequestParam("commodityid") String commodityId){
-        userService.addHistory(userId,commodityId);
-        return null;
-    }
+//    @PostMapping("/findone")
+//    public Object findone(Principal principal){
+//        return userService.findOne(principal);
+//    }
+//
+//    @PostMapping("/findhistory")
+//    public Object findHistory(Principal principal){
+//        return userService.findHistory(principal.getName());
+//    }
+//
+//    @PostMapping("/addhistory")
+//    public Object addHistory(Principal principal ,@RequestParam("commodityid") String commodityId){
+//        userService.addHistory(principal.getName(),commodityId);
+//        return null;
+//    }
+//
+//    @PostMapping("/addmsg")
+//    public Object addMsg(Principal principal,String msg){
+//        userService.addMsg(principal.getName(),msg);
+//        return "操作成功";
+//    }
+
 
     @PostMapping("/save")
     public Object update(Principal principal, @RequestBody User user){
@@ -57,4 +70,40 @@ public class UserController {
     }
 
 
+
+//userId方法
+
+    @PostMapping("/addhistory")
+    public Object addHistory(@RequestParam("userid") String userId ,@RequestParam("commodityid") String commodityId){
+        userService.addHistory(userId,commodityId);
+        return null;
+    }
+
+    @PostMapping("/addmsg")
+    public Object addMsg(@RequestParam("userid") String userId,String msg){
+        userService.addMsg(userId,msg);
+        return "操作成功";
+    }
+
+    @PostMapping("/getmsg")
+    public Object getMsg(@RequestParam("userid") String userId){
+       return userService.getMsg(userId);
+    }
+
+
+    @PostMapping("/addfeedback")
+    public Object addFeedback(@RequestParam("userid")String userId,String msg){
+        userService.addFeedback(userId,msg);
+        return "操作成功!";
+    }
+
+    @PostMapping("/getfeedback")
+    public List<Feedback> getFeedback(){ ;
+        return userService.getFeedback();
+    }
+
+    @PostMapping("/gethistory")
+    public Object getHistory(@RequestParam("userid")String userId){
+        return userService.getHistory(userId);
+    }
 }

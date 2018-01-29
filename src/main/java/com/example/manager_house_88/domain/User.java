@@ -41,6 +41,8 @@ public class User extends BaseEntity {
     /*手机号*/
     private String phone;
 
+    /*是否有新消息*/
+    private boolean newMsg = false;
 
     //todo 浏览纪录    反馈
 

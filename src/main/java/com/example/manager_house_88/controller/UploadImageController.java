@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 
 @RestController
-@CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
+@CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST,  RequestMethod.OPTIONS})
 public class UploadImageController {
 
     @Value("${imagepath}")

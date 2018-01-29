@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -174,12 +175,17 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     /*保存一条记录*/
     @Override
-    public Schedule create(String commodityId, Schedule schedule) {
+    public Schedule create(String commodityId, Schedule schedule, String userId) {
         Commodity commodity = commodityService.findOne(commodityId);
+        Schedule rs =scheduleRepo.findByUserIdAndCommodityId(userId,commodityId);
         if(commodity==null){
             throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST);
         }
+        if (rs!=null){
+            return rs;
+        }
         schedule.setProcess(ScheduleEnum.NEW.getCode());
+        schedule.setUserId(userId);
         schedule.setCommodityId(commodityId);
         schedule.setProcessTime(String.valueOf(System.currentTimeMillis()));
         return scheduleRepo.save(schedule);

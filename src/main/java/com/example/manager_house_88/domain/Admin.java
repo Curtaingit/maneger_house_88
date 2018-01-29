@@ -1,6 +1,7 @@
 package com.example.manager_house_88.domain;
 
 import com.example.manager_house_88.bos.BaseEntity;
+import com.example.manager_house_88.bos.Bostype;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.Value;
@@ -17,6 +18,7 @@ import java.util.List;
 @Entity(name = "t_admin")
 @Getter
 @Setter
+@Bostype("A11")
 public class Admin extends BaseEntity implements UserDetails {
 
     private String username;

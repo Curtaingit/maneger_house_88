@@ -1,6 +1,8 @@
 package com.example.manager_house_88.service;
 
 import com.example.manager_house_88.domain.User;
+import com.example.manager_house_88.javabean.Feedback;
+import com.example.manager_house_88.javabean.Message;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -30,6 +32,13 @@ public interface UserService {
 
     void addHistory(String userId,String commodityId);
 
-    List<String> findHistory(String userId);
+    List<String> getHistory(String userId);
 
+    void addMsg(String userId,String msg);
+
+    List<Message> getMsg(String userId);
+
+    void addFeedback(String userId,String msg);
+
+    List<Feedback> getFeedback();
 }

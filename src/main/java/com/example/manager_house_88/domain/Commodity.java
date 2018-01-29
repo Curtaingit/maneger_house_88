@@ -61,5 +61,7 @@ public class  Commodity extends BaseEntity{
     /*开标时间*/
     private Long auctionTime;
 
+    /*客服经理id*/
+    private String customerManagerId;
 
 }

@@ -3,6 +3,7 @@ package com.example.manager_house_88.authwechat;
 import com.alibaba.fastjson.JSON;
 import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.client.RestTemplate;
@@ -21,7 +22,7 @@ public class WechatMiniAuthenticationProvider implements AuthenticationProvider 
         Map map = (Map) JSON.parse(jsonData);
         String openid = (String) map.get("openid");
         if (openid == null) {
-            throw new ManagerHouse88Exception("Unable to obtain open information");
+            throw new BadCredentialsException("Unable to obtain open information");
         }
         WechatMiniUserInfo userInfo = new WechatMiniUserInfo();
         String userId = userInfo.getId(openid);

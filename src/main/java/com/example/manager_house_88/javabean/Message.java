@@ -1,24 +1,25 @@
 package com.example.manager_house_88.javabean;
 
-
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.io.Serializable;
 
 @Setter
 @Getter
-public class Feedback {
+public class Message implements Serializable{
+
     private String createTime;
 
     private String message;
 
-    private String userId;
-    public Feedback(String createTime, String message,String userId) {
+    public Message(String createTime, String message) {
         this.createTime = createTime;
         this.message = message;
-        this.userId=userId;
     }
 
-    public Feedback () {
+    public Message() {
 
     }
 }
