@@ -2,11 +2,6 @@ package com.example.manager_house_88.controller;
 
 import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.service.ScheduleService;
-import com.example.manager_house_88.utils.ResultVOUtil;
-import com.example.manager_house_88.vo.ResultVO;
-import org.apache.http.protocol.HTTP;
-import org.omg.CORBA.OBJ_ADAPTER;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,16 +23,16 @@ public class ScheduleController {
        return scheduleService.findOne(scheduleId);
     }
 
-//    @PostMapping("/create")
-//    public Object save(@RequestParam("commodityid") String commodityId, @RequestBody Schedule schedule,Principal principal){
-//        return scheduleService.create(commodityId,schedule,principal.getName());
-//    }
-
     @PostMapping("/create")
-    public Object save(@RequestParam("commodityid") String commodityId, @RequestBody Schedule schedule,@RequestParam("userid")String userId
-    ){
-        return scheduleService.create(commodityId,schedule,userId);
+    public Object save(@RequestParam("commodityid") String commodityId, @RequestBody Schedule schedule,Principal principal){
+        return scheduleService.create(commodityId,schedule,principal.getName());
     }
+
+//    @PostMapping("/create")
+//    public Object save(@RequestParam("commodityid") String commodityId, @RequestBody Schedule schedule,@RequestParam("userid")String userId
+//    ){
+//        return scheduleService.create(commodityId,schedule,userId);
+//    }
 
     @PostMapping("/changewin")
     public Object changeWin(@RequestParam("scheduleid") String scheduleId){
@@ -52,17 +47,17 @@ public class ScheduleController {
         return scheduleService.resultPublicized(commodityId);
     }
 
-//    @PostMapping("/findbyuserid")
-//    public Object findByUserId(Principal principal){
-//        return scheduleService.findByUserId(principal.getName());
-//    }
+    @PostMapping("/findbyuserid")
+    public Object findByUserId(Principal principal){
+        return scheduleService.findByUserId(principal.getName());
+    }
 
     //userId方法
-    @PostMapping("/findbyuserid")
-    public Object findByUserId(@RequestParam("userid") String userId
-    ){
-        return scheduleService.findByUserId(userId);
-    }
+//    @PostMapping("/findbyuserid")
+//    public Object findByUserId(@RequestParam("userid") String userId
+//    ){
+//        return scheduleService.findByUserId(userId);
+//    }
 
 
     @PostMapping("/setagency")

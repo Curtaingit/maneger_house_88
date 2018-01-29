@@ -45,7 +45,6 @@ public class ScheduleServiceImpl implements ScheduleService {
                 if (!ScheduleEnum.ACTIONING.getCode().equals(sche.getProcess())) {
                    throw new ManagerHouse88Exception(ResultExceptionEnum.PROCESS_NOT_TRUE);
                 }
-                changeProcess(scheduleId);
                 scheduleRepo.save(sche);
 
             }else {

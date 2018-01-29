@@ -14,19 +14,19 @@ public class CollectionController  {
     @Autowired
     private CollectionService collectionService;
 
-//    @PostMapping("/save")
-//    public Object save(Principal principal, @RequestParam("commodityid") String commodityId){
-//        collectionService.save(principal.getName(),commodityId);
-//        return "操作成功!";
-//    }
+    @PostMapping("/save")
+    public Object save(Principal principal, @RequestParam("commodityid") String commodityId){
+        collectionService.save(principal.getName(),commodityId);
+        return "操作成功!";
+    }
 
 
     //userid方法
-    @PostMapping("/save")
-    public Object save(@RequestParam("userid") String userId, @RequestParam("commodityid") String commodityId){
-        collectionService.save(userId,commodityId);
-        return "操作成功!";
-    }
+//    @PostMapping("/save")
+//    public Object save(@RequestParam("userid") String userId, @RequestParam("commodityid") String commodityId){
+//        collectionService.save(userId,commodityId);
+//        return "操作成功!";
+//    }
 
 
     @PostMapping("/delete")

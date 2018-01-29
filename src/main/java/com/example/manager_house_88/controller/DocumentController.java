@@ -49,17 +49,17 @@ public class DocumentController {
         return documentService.save(scheduleId, document);
     }
 
-//    @PostMapping("/findbyuserid")
-//    public Object findByUserId(Principal principal) {
-//        return documentService.findByUserId(principal.getName());
-//    }
-
-    //userId方法
     @PostMapping("/findbyuserid")
-    public Object findByUserId(@RequestParam("userid") String userId) {
-        return documentService.findByUserId(userId);
+    public Object findByUserId(Principal principal) {
+        return documentService.findByUserId(principal.getName());
     }
 
+//    //userId方法
+//    @PostMapping("/findbyuserid")
+//    public Object findByUserId(@RequestParam("userid") String userId) {
+//        return documentService.findByUserId(userId);
+//    }
+//
 
 
     @PostMapping("/changestatus")
