@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: 1234
-    url: jdbc:mysql://127.0.0.1:3306/manager_house?useSSL=false&chatacer
+    url: jdbc:mysql://127.0.0.1:3306/manager_house?useSSL=false&characterEncoding=UTF-8
   jpa:
     show-sql: false
     hibernate:
@@ -42,8 +42,8 @@ wechat:
 #    mchKey: braggadocio345l6ackadaisicalness
 #    keyPath: /home/cx/jAVA/shop/src/main/resources/static/h5.p12
 #    notifyUrl: https://www.embracex.com/gcsweixin/shop/pay/notify
-    appId: wx80684f34298ce2d7
-    secret: a73ba9a5f6d09d9e7d698ab8ee213b78
+    appId: wx007de3f944b85ec6
+    secret: 32d982af1871c587dddd7caa92d9e89e
     client:
        clientId: wx80684f34298ce2d7
        clientSecret: a73ba9a5f6d09d9e7d698ab8ee213b78

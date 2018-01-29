@@ -16,7 +16,7 @@ public class WechatMiniAuthenticationProvider implements AuthenticationProvider 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         WechatMiniAuthenticationToken authenticationToken = (WechatMiniAuthenticationToken) authentication;
         String code = (String) authenticationToken.getPrincipal();
-        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=wx80684f34298ce2d7&secret=a73ba9a5f6d09d9e7d698ab8ee213b78&js_code=" + code + "&grant_type=authorization_code";
+        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=wx007de3f944b85ec6&secret=32d982af1871c587dddd7caa92d9e89e&js_code=" + code + "&grant_type=authorization_code";
         RestTemplate restTemplate = new RestTemplate();
         String jsonData = restTemplate.getForObject(url, String.class);
         Map map = (Map) JSON.parse(jsonData);
