@@ -11,6 +11,11 @@ public class ManagerHouse88ApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
+		 String rs =InvitationCodeUtil.toSerialCode(100L);
+		System.out.println(rs);
+
+
 	}
 
 }

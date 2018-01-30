@@ -34,16 +34,16 @@ server:
 
 
 wechat:
-#    appId: wx80684f34298ce2d7
-#    secret: a73ba9a5f6d09d9e7d698ab8ee213b78
+#    appId:                        wx80684f34298ce2d7
+#    secret:                       a73ba9a5f6d09d9e7d698ab8ee213b78
 #    token: 24c12d745036aff81725d2e82b5a4dba
 #    aesKey: bo3ruxQphpvh2j7LuYWFFOWboCf0WNq4D2Pgnpe4MdU
 #    mchId: 10024153
 #    mchKey: braggadocio345l6ackadaisicalness
 #    keyPath: /home/cx/jAVA/shop/src/main/resources/static/h5.p12
 #    notifyUrl: https://www.embracex.com/gcsweixin/shop/pay/notify
-    appId: wx80684f34298ce2d7
-    secret: a73ba9a5f6d09d9e7d698ab8ee213b78
+    appId: wx007de3f944b85ec6
+    secret: 32d982af1871c587dddd7caa92d9e89e
     client:
 #       clientId: wx80684f34298ce2d7
 #       clientSecret: a73ba9a5f6d09d9e7d698ab8ee213b78

@@ -4,7 +4,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: 1234
+    password: babadangjia
     url: jdbc:mysql://127.0.0.1:3306/manager_house?useSSL=false&characterEncoding=UTF-8
   jpa:
     show-sql: false
@@ -57,12 +57,12 @@ wechat:
       userInfoUri: https://api.weixin.qq.com/sns/userinfo?lang=zh_CN&openid=$openid$
     accpetcode_url: https://www.embracex.com/gcsweixin/shop/login/wechat
 
-urlpath: https://www.embracex.com/gcsweixin/house/login/wechat
+urlpath: https://xcx.wzlzfc.com/bbdj/house/login/wechat
 
 #imagepath: /home/cx/jAVA/shop/image/
 #
 #imageurl: https://www.embracex.com/gcsweixin/shop/image/
-imagepath: /home/cx/jAVA/images/
+imagepath: /home/babawu/maneger_house_88/images/
 
-imageurl: https://www.embracex.com/gcsweixin/house/image/
+imageurl: https://xcx.wzlzfc.com/bbdj/house/image/
 

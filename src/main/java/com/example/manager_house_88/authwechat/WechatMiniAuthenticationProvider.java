@@ -12,11 +12,18 @@ import java.util.Map;
 
 public class WechatMiniAuthenticationProvider implements AuthenticationProvider {
 
+    private String appId;
+    private String secret;
+
+    public WechatMiniAuthenticationProvider() {
+
+    }
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         WechatMiniAuthenticationToken authenticationToken = (WechatMiniAuthenticationToken) authentication;
         String code = (String) authenticationToken.getPrincipal();
-        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=wx007de3f944b85ec6&secret=32d982af1871c587dddd7caa92d9e89e&js_code=" + code + "&grant_type=authorization_code";
+        String url = "https://api.weixin.qq.com/sns/jscode2session?appid="+appId+"&secret="+secret+"&js_code=" + code + "&grant_type=authorization_code";
         RestTemplate restTemplate = new RestTemplate();
         String jsonData = restTemplate.getForObject(url, String.class);
         Map map = (Map) JSON.parse(jsonData);
@@ -30,6 +37,12 @@ public class WechatMiniAuthenticationProvider implements AuthenticationProvider 
         WechatMiniAuthenticationToken authenticationResult = new WechatMiniAuthenticationToken(userId,true);
         return authenticationResult;
     }
+
+    public WechatMiniAuthenticationProvider(String appId,String secret){
+        this.appId=appId;
+        this.secret=secret;
+    }
+
 
     @Override
     public boolean supports(Class<?> authentication) {

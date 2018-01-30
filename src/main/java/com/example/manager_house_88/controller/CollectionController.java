@@ -15,8 +15,8 @@ public class CollectionController  {
     private CollectionService collectionService;
 
     @PostMapping("/save")
-    public Object save(Principal principal, @RequestParam("commodityid") String commodityId){
-        collectionService.save(principal.getName(),commodityId);
+    public Object save(Principal principal, @RequestParam("commodityid") String commodityId,@RequestParam(name="userid",required = false) String userId){
+        collectionService.save(userId,commodityId);
         return "操作成功!";
     }
 
@@ -36,7 +36,7 @@ public class CollectionController  {
     }
 
     @PostMapping("/getcommodities")
-    public Object getCommodities(Principal principal){
-      return collectionService.getCommodities(principal.getName());
+    public Object getCommodities(Principal principal,@RequestParam(name = "userid",required = false) String userId){
+      return collectionService.getCommodities(userId);
     }
 }

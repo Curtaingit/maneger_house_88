@@ -1,11 +1,13 @@
 package com.example.manager_house_88.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.User;
 import com.example.manager_house_88.javabean.Feedback;
 import com.example.manager_house_88.javabean.Invite;
 import com.example.manager_house_88.javabean.Message;
 import com.example.manager_house_88.repository.UserRepo;
+import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.service.UserService;
 import com.example.manager_house_88.utils.BeanCopyUtil;
 import org.springframework.beans.BeanUtils;
@@ -16,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.security.Key;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private CommodityService commodityService;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -59,9 +65,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<String> getHistory(String userId) {
-        List<String> rs = redisTemplate.opsForList().range(userId, 0, 15);
-        return rs;
+    public List<Commodity> getHistory(String userId) {
+        String key =userId+"history";
+        List<String> rs = redisTemplate.opsForList().range(key, 0, 15);
+        List<Commodity> commodityList =new ArrayList<>();
+        for (String commodityId:rs){
+            Commodity commodity = commodityService.findOne(commodityId);
+            commodityList.add(commodity);
+        }
+        return commodityList;
     }
 
     @Override

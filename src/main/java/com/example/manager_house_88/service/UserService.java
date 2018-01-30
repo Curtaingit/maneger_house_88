@@ -1,5 +1,6 @@
 package com.example.manager_house_88.service;
 
+import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.User;
 import com.example.manager_house_88.javabean.Feedback;
 import com.example.manager_house_88.javabean.Message;
@@ -32,7 +33,7 @@ public interface UserService {
 
     void addHistory(String userId,String commodityId);
 
-    List<String> getHistory(String userId);
+    List<Commodity> getHistory(String userId);
 
     void addMsg(String userId,String msg);
 

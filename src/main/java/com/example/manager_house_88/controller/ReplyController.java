@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
@@ -72,7 +73,7 @@ public class ReplyController {
     }
 
     @PostMapping("/findbyuserid")
-    public Object findByUserId(@RequestParam("userid") String userId){
+    public Object findByUserId(Principal principal,@RequestParam(name="userid",required = false) String userId){
         return replyService.findByUserId(userId);
     }
 

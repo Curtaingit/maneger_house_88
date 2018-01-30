@@ -88,6 +88,7 @@ public class test {
             System.out.println(feedback3);
         }
 
+
 //          redisTemplate.opsForList().trim("testsave",0,10);
 //          Object testsave =  redisTemplate.opsForList().rightPop("testsave");
 //          redisTemplate.opsForList().rightPop("testsave");

@@ -46,6 +46,12 @@ import java.util.List;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Value("${wechat.appId}")
+    private String appId;
+
+    @Value("${wechat.secret}")
+    private String secret;
+
     @Autowired
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
@@ -71,7 +77,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/agency/**","/agent/**","/collection/**","/comment/**",
-                        "/commodity/**","/customermanager/**","/document/**","/reply/**","/schedule/**","/user/**").authenticated()
+                        "/commodity/**","/customermanager/**","/document/**","/reply/**","/schedule/**","/user/**").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -94,7 +100,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
          auth.userDetailsService(this.adminservice);
-         auth.authenticationProvider(new WechatMiniAuthenticationProvider());
+         auth.authenticationProvider(new WechatMiniAuthenticationProvider(appId,secret));
     }
 
 
