@@ -1,6 +1,7 @@
 package com.example.manager_house_88.service;
 
 import com.example.manager_house_88.domain.Reply;
+import com.example.manager_house_88.vo.ReplyVO;
 import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +31,7 @@ public interface ReplyService {
 
     List<Reply> findAll(Sort sort);
 
-    List<Reply> findByUserId(String userId);
+    List<ReplyVO> findByUserId(String userId);
 
     Page<Reply> findAll(Pageable pageable);
 }

@@ -1,18 +1,27 @@
 package com.example.manager_house_88.service.impl;
 
+import com.example.manager_house_88.domain.Commodity;
+import com.example.manager_house_88.domain.CustomerManager;
 import com.example.manager_house_88.domain.Reply;
 import com.example.manager_house_88.enums.ReplyShowEnum;
 import com.example.manager_house_88.enums.ReplyStatusEnum;
 import com.example.manager_house_88.enums.ResultExceptionEnum;
 import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import com.example.manager_house_88.repository.ReplyRepo;
+import com.example.manager_house_88.service.CommodityService;
+import com.example.manager_house_88.service.CustomerManagerService;
 import com.example.manager_house_88.service.ReplyService;
+import com.example.manager_house_88.utils.BeanCopyUtil;
+import com.example.manager_house_88.vo.ReplyVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import sun.security.util.Resources_sv;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,6 +29,12 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Autowired
     private ReplyRepo replyRepo;
+
+    @Autowired
+    private CommodityService commodityService;
+
+    @Autowired
+    private CustomerManagerService customerManagerService;
 
     @Override
     public Reply findOne(String replyId) {
@@ -71,8 +86,24 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<Reply> findByUserId(String userId) {
-        return replyRepo.findByUserId(userId);
+    public List<ReplyVO> findByUserId(String userId) {
+
+        List<Reply> replyList = replyRepo.findByUserId(userId);
+        List<ReplyVO> replyVOList = new ArrayList<>();
+        ReplyVO replyVO = new ReplyVO();
+        for (Reply reply : replyList){
+            BeanUtils.copyProperties(reply,replyVO);
+            Commodity commodity = commodityService.findOne(reply.getCommodityId());
+            replyVO.setCommodityImage(commodity.getImages().split(",")[0]);
+            CustomerManager customerManager = customerManagerService.findOne(reply.getCustomerManagerId());
+            replyVO.setCustomerManagerImage(customerManager.getImage());
+            replyVO.setCustomerManagerName(customerManager.getName());
+            replyVO.setCustomerManagerTitle(customerManager.getTitle());
+            replyVO.setTime(String.valueOf(reply.getUpdatetime()));
+            replyVOList.add(replyVO);
+        }
+
+        return replyVOList;
     }
 
     @Override
