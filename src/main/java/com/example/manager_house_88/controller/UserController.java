@@ -17,7 +17,7 @@ import javax.annotation.security.PermitAll;
 import java.security.Principal;
 import java.util.List;
 
-@CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
+@CrossOrigin(origins = {}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS})
 @RequestMapping("/user")
 @RestController
 public class UserController {
@@ -26,18 +26,17 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/findall")
-    public Object findAll(@RequestParam(name = "sort",defaultValue = "createtime") String sortName,
-                          @RequestParam(name="size",required = false) Integer size,
-                          @RequestParam(name = "page",required = false) Integer page){
-        Sort sort =new Sort(Sort.Direction.DESC,sortName);
-        if(size==null||page==null){
-            return    userService.findAll(sort);
+    public Object findAll(@RequestParam(name = "sort", defaultValue = "createtime") String sortName,
+                          @RequestParam(name = "size", required = false) Integer size,
+                          @RequestParam(name = "page", required = false) Integer page) {
+        Sort sort = new Sort(Sort.Direction.DESC, sortName);
+        if (size == null || page == null) {
+            return userService.findAll(sort);
         }
-        Pageable pageable =new PageRequest(page-1,size,sort);
+        Pageable pageable = new PageRequest(page - 1, size, sort);
         return userService.findAll(pageable);
 
     }
-
 
 
 //    @PostMapping("/findone")
@@ -64,46 +63,57 @@ public class UserController {
 
 
     @PostMapping("/save")
-    public Object update(Principal principal, @RequestBody User user){
-        userService.update(principal,user);
+    public Object update(Principal principal, @RequestBody User user) {
+        userService.update(principal, user);
         return null;
     }
-
 
 
 //userId方法
 
     @PostMapping("/addhistory")
-    public Object addHistory(@RequestParam("userid") String userId ,@RequestParam("commodityid") String commodityId){
-        userService.addHistory(userId,commodityId);
+    public Object addHistory(@RequestParam("userid") String userId, @RequestParam("commodityid") String commodityId) {
+        userService.addHistory(userId, commodityId);
         return null;
     }
 
     @PostMapping("/addmsg")
-    public Object addMsg(@RequestParam("userid") String userId,String msg){
-        userService.addMsg(userId,msg);
+    public Object addMsg(@RequestParam("userid") String userId, String msg) {
+        userService.addMsg(userId, msg);
         return "操作成功";
     }
 
     @PostMapping("/getmsg")
-    public Object getMsg(@RequestParam("userid") String userId){
-       return userService.getMsg(userId);
+    public Object getMsg(@RequestParam("userid") String userId) {
+        return userService.getMsg(userId);
     }
 
 
     @PostMapping("/addfeedback")
-    public Object addFeedback(@RequestParam("userid")String userId,String msg){
-        userService.addFeedback(userId,msg);
+    public Object addFeedback(@RequestParam("userid") String userId, String msg) {
+        userService.addFeedback(userId, msg);
         return "操作成功!";
     }
 
     @PostMapping("/getfeedback")
-    public List<Feedback> getFeedback(){ ;
+    public List<Feedback> getFeedback() {
+        ;
         return userService.getFeedback();
     }
 
     @PostMapping("/gethistory")
-    public Object getHistory(@RequestParam("userid")String userId){
+    public Object getHistory(@RequestParam("userid") String userId) {
         return userService.getHistory(userId);
+    }
+
+    @RequestMapping("/invite")
+    public Object invite(Principal principal) {
+        return principal.getName();
+    }
+
+    @PostMapping("/into")
+    public Object into(Principal principal, @RequestParam("invitecode") String inviteCode, @RequestParam("commodityid") String commodityId) {
+        userService.into(principal.getName(), commodityId, inviteCode);
+        return null;
     }
 }

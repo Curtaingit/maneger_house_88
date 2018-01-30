@@ -10,8 +10,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import javax.annotation.PostConstruct;
-
 
 @Configuration
 @EnableCaching

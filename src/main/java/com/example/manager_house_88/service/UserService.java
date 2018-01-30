@@ -41,4 +41,6 @@ public interface UserService {
     void addFeedback(String userId,String msg);
 
     List<Feedback> getFeedback();
+
+    void into(String userId,String commodityId, String inviteCode);
 }

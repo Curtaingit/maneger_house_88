@@ -3,6 +3,7 @@ package com.example.manager_house_88.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.example.manager_house_88.domain.User;
 import com.example.manager_house_88.javabean.Feedback;
+import com.example.manager_house_88.javabean.Invite;
 import com.example.manager_house_88.javabean.Message;
 import com.example.manager_house_88.repository.UserRepo;
 import com.example.manager_house_88.service.UserService;
@@ -84,12 +85,12 @@ public class UserServiceImpl implements UserService {
         //todo  可以优化
         List<String> list = redisTemplate.opsForList().range(userId + "msg", 0, 20);
         List<Message> rs = new ArrayList<>();
-        for (String s:list){
+        for (String s : list) {
             JSONObject parse = (JSONObject) JSONObject.parse(s);
-            Message message =JSONObject.toJavaObject(parse,Message.class);
+            Message message = JSONObject.toJavaObject(parse, Message.class);
             rs.add(message);
         }
-        User user =userRepo.findOne(userId);
+        User user = userRepo.findOne(userId);
         user.setNewMsg(false);
         userRepo.save(user);
         return rs;
@@ -97,13 +98,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addFeedback(String userId, String msg) {
-        String key ="feedback";
-        Feedback feedback =  new Feedback();
+        String key = "feedback";
+        Feedback feedback = new Feedback();
         feedback.setMessage(msg);
         feedback.setUserId(userId);
         feedback.setCreateTime(String.valueOf(System.currentTimeMillis()));
         String s = JSONObject.toJSONString(feedback);
-        redisTemplate.opsForList().leftPush(key,s);
+        redisTemplate.opsForList().leftPush(key, s);
         List<String> rs = redisTemplate.opsForList().range(key, 0, 300);
         /*当记录超过300条时  对数据库进行删除*/
         if (rs.size() >= 30) {
@@ -112,12 +113,18 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     @Override
     public List<Feedback> getFeedback() {
 
-        return   redisTemplate.opsForList().range("feedback",0,300);
+        return redisTemplate.opsForList().range("feedback", 0, 300);
 
+    }
+
+    @Override
+    public void into(String userId, String commodityId, String inviteCode) {
+        Invite invite = new Invite(userId, commodityId,String.valueOf(System.currentTimeMillis()));
+        String rs = JSONObject.toJSONString(invite);
+        redisTemplate.opsForList().leftPush(inviteCode+"invite",rs);
     }
 
 
