@@ -47,8 +47,15 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<Reply> findByCommodityId(String commodityId) {
-        return replyRepo.findByCommodityId(commodityId);
+    public List<Reply> findByCommodityId(String commodityId) throws Exception {
+
+
+        List<Reply> replyList = replyRepo.findByCommodityId(commodityId);
+        if (replyList==null){
+            throw new Exception("该标的物还没有回复");
+        }
+
+        return replyList;
     }
 
     @Override
@@ -90,8 +97,8 @@ public class ReplyServiceImpl implements ReplyService {
 
         List<Reply> replyList = replyRepo.findByUserId(userId);
         List<ReplyVO> replyVOList = new ArrayList<>();
-        ReplyVO replyVO = new ReplyVO();
         for (Reply reply : replyList){
+            ReplyVO replyVO = new ReplyVO();
             BeanUtils.copyProperties(reply,replyVO);
             Commodity commodity = commodityService.findOne(reply.getCommodityId());
             replyVO.setCommodityImage(commodity.getImages().split(",")[0]);
@@ -99,7 +106,6 @@ public class ReplyServiceImpl implements ReplyService {
             replyVO.setCustomerManagerImage(customerManager.getImage());
             replyVO.setCustomerManagerName(customerManager.getName());
             replyVO.setCustomerManagerTitle(customerManager.getTitle());
-            replyVO.setTime(String.valueOf(reply.getUpdatetime()));
             replyVOList.add(replyVO);
         }
 

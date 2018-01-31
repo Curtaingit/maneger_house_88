@@ -36,25 +36,25 @@ public class ReplyController {
 
     /*查找标的物下的所有问答*/
     @PostMapping("/findbycommodityid")
-    public List<Reply> findByCommodityId(@RequestParam("commodityid") String commodityId) {
+    public Object findByCommodityId(@RequestParam("commodityid") String commodityId) throws Exception {
         return replyService.findByCommodityId(commodityId);
     }
 
     /*查找和客服经理有关的所有问答*/
     @PostMapping("/findbycustomermanagerid")
-    public List<Reply> findByCustomerManagerId(@RequestParam("customermanagerid") String customerManagerId) {
+    public Object findByCustomerManagerId(@RequestParam("customermanagerid") String customerManagerId) {
         return replyService.findByCustomerManagerId(customerManagerId);
     }
 
     /*查找标的物下应该被显示的问答*/
     @PostMapping("/findbycommodityidshow")
-    public List<Reply> findByIsShow(@RequestParam("commodityid") String commodityId) {
+    public Object findByIsShow(@RequestParam("commodityid") String commodityId) {
         return replyService.findByShowAndCommodityId(ReplyShowEnum.SHOW.getCode(),commodityId);
     }
 
     /*查找被回复或违背回复的所有问答*/
     @PostMapping("/findbyreply")
-    public List<Reply> findByIsReply(@RequestParam("status")Integer status) {
+    public Object findByIsReply(@RequestParam("status")Integer status) {
         return replyService.findByStatus(status);
     }
 
@@ -95,6 +95,7 @@ public class ReplyController {
         }
         Pageable pageable =new PageRequest(page-1,size,sort);
         return replyService.findAll(pageable);
+
     }
 
 }

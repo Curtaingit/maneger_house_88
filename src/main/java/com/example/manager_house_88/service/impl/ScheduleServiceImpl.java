@@ -2,6 +2,7 @@ package com.example.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
+import com.example.manager_house_88.enums.CommodityStatusEnum;
 import com.example.manager_house_88.enums.ResultExceptionEnum;
 import com.example.manager_house_88.enums.ScheduleEnum;
 import com.example.manager_house_88.exception.ManagerHouse88Exception;
@@ -32,12 +33,15 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     /*设置为中标*/
     @Override
+    @Transactional
     public void changeWin(String scheduleId) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         if (schedule==null){
             throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
         }
         String commodityId = schedule.getCommodityId();
+        Commodity commodity = commodityService.findOne(commodityId);
+        commodity.setStatus(CommodityStatusEnum.COMPETITIVE.getCode());
         List<Schedule> scheduleList = finByCommodityId(commodityId);
         for(Schedule sche : scheduleList){
             if (scheduleId.equals(sche.getId())){
@@ -55,6 +59,7 @@ public class ScheduleServiceImpl implements ScheduleService {
                 }
             }
         }
+        commodityService.save(commodity);
         scheduleRepo.save(schedule);
     }
 
@@ -69,6 +74,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    @Transactional
     public void changeAuditBail(String scheduleId) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         if (schedule==null){
@@ -77,8 +83,12 @@ public class ScheduleServiceImpl implements ScheduleService {
         if(!ScheduleEnum.PAY_DEPOSIT.getCode().equals(schedule.getProcess())){
            throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
         }
+        Commodity commodity = commodityService.findOne(schedule.getCommodityId());
+        /*报名人数增加*/
+        commodity.setEnrolment(commodity.getEnrolment()+1);
         changeProcess(scheduleId);
         schedule.setAuditBail(true);
+        commodityService.save(commodity);
         scheduleRepo.save(schedule);
     }
 
@@ -147,7 +157,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    @Transactional
     public void setAmount(String scheduleId, Long amount) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
         if (schedule==null){
@@ -174,6 +183,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     /*保存一条记录*/
     @Override
+    @Transactional
     public Schedule create(String commodityId, Schedule schedule, String userId) {
         Commodity commodity = commodityService.findOne(commodityId);
         Schedule rs =scheduleRepo.findByUserIdAndCommodityId(userId,commodityId);
@@ -183,10 +193,12 @@ public class ScheduleServiceImpl implements ScheduleService {
         if (rs!=null){
             return rs;
         }
+        commodity.setObserver(commodity.getObserver()+1);
         schedule.setProcess(ScheduleEnum.NEW.getCode());
         schedule.setUserId(userId);
         schedule.setCommodityId(commodityId);
         schedule.setProcessTime(String.valueOf(System.currentTimeMillis()));
+        commodityService.save(commodity);
         return scheduleRepo.save(schedule);
     }
 

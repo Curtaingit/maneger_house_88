@@ -23,16 +23,16 @@ public class ScheduleController {
        return scheduleService.findOne(scheduleId);
     }
 
-    @PostMapping("/create")
-    public Object save(@RequestParam("commodityid") String commodityId, @RequestBody Schedule schedule,Principal principal){
-        return scheduleService.create(commodityId,schedule,principal.getName());
-    }
-
 //    @PostMapping("/create")
-//    public Object save(@RequestParam("commodityid") String commodityId, @RequestBody Schedule schedule,@RequestParam("userid")String userId
-//    ){
-//        return scheduleService.create(commodityId,schedule,userId);
+//    public Object save(@RequestParam("commodityid") String commodityId, @RequestBody Schedule schedule,Principal principal){
+//        return scheduleService.create(commodityId,schedule,principal.getName());
 //    }
+
+    @PostMapping("/create")
+    public Object save(@RequestParam("commodityid") String commodityId, @RequestBody Schedule schedule,@RequestParam("userid")String userId
+    ){
+        return scheduleService.create(commodityId,schedule,userId);
+    }
 
     @PostMapping("/changewin")
     public Object changeWin(@RequestParam("scheduleid") String scheduleId){
@@ -47,17 +47,17 @@ public class ScheduleController {
         return scheduleService.resultPublicized(commodityId);
     }
 
-    @PostMapping("/findbyuserid")
-    public Object findByUserId(Principal principal){
-        return scheduleService.findByUserId(principal.getName());
-    }
-
-    //userId方法
 //    @PostMapping("/findbyuserid")
-//    public Object findByUserId(@RequestParam("userid") String userId
-//    ){
-//        return scheduleService.findByUserId(userId);
+//    public Object findByUserId(Principal principal){
+//        return scheduleService.findByUserId(principal.getName());
 //    }
+
+//    userId方法
+    @PostMapping("/findbyuserid")
+    public Object findByUserId(@RequestParam("userid") String userId
+    ){
+        return scheduleService.findByUserId(userId);
+    }
 
 
     @PostMapping("/setagency")

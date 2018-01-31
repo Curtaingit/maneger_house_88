@@ -18,7 +18,11 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -105,5 +109,31 @@ public class test {
 //          resultList1=(List<String>)redisTemplate.opsForList().range("testsave",0,20);
 //          System.out.println("resultList1:"+resultList1);
 
+
+
     }
+    @Test
+    public  void time(){
+/*        LocalDate date = LocalDate.now();
+        System.out.println(date);
+        Calendar calendar =  Calendar.getInstance();
+        calendar.get(Calendar.)
+        java.util.Date date1 = new java.util.Date();
+        System.out.println(date1);
+        calendar.set(calendar.get(Calendar.YEAR),calendar.get((Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)));
+        calendar.set(Calendar.HOUR, 24);
+//        calendar.set(date.getDayOfYear());
+
+        System.out.println(calendar.getTime());
+        System.out.println(calendar.getTimeInMillis());
+
+//        System.out.println(date);*/
+        LocalDate date = LocalDate.now();
+        date = date.plusDays(1);
+        ZoneId zoneId = ZoneId.systemDefault();
+        long time = date.atStartOfDay(zoneId).toEpochSecond();
+        System.err.println(time);
+        System.err.println(System.currentTimeMillis());
+    }
+
 }

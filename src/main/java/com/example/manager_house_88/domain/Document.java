@@ -40,7 +40,7 @@ public class Document extends BaseEntity {
     private String familySize;
 
     /*婚姻状况*/
-    private int maritalStatus;
+    private String maritalStatus;
 
     /*兴趣爱好*/
     private String hobby;

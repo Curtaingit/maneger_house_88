@@ -32,6 +32,9 @@ public class ReplyVO {
     /*答复*/
     private String answer;
 
-    /*时间*/
-    private String time;
+    /*创建时间*/
+    private long createtime;
+
+    /*更新时间*/
+    private long updatetime;
 }

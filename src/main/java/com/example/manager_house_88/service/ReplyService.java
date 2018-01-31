@@ -17,7 +17,7 @@ public interface ReplyService {
 
     void delete(String replyId);
 
-    List<Reply> findByCommodityId(String commodityId);
+    List<Reply> findByCommodityId(String commodityId) throws Exception;
 
     List<Reply> findByCustomerManagerId(String customerManagerId);
 

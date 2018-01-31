@@ -23,4 +23,6 @@ public class Collection extends BaseEntity {
     /*标的物id*/
     private String commodityId;
 
+
+
 }

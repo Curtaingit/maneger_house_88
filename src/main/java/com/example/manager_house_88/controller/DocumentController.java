@@ -54,6 +54,12 @@ public class DocumentController {
         return documentService.findByUserId(userId);
     }
 
+//    //userId方法
+//    @PostMapping("/findbyuserid")
+//    public Object findByUserId(@RequestParam("userid") String userId) {
+//        return documentService.findByUserId(userId);
+//    }
+//
 
 
     @PostMapping("/changestatus")
