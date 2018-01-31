@@ -74,7 +74,7 @@ public class ReplyController {
 
     @PostMapping("/findbyuserid")
     public Object findByUserId(Principal principal,@RequestParam(name="userid",required = false) String userId){
-        return replyService.findByUserId(userId);
+        return replyService.findByUserId(principal.getName());
     }
 
 

@@ -26,7 +26,7 @@ public class UploadImageController {
 
     @PostMapping("/deleteimage")
     public Object deleteImage(@RequestParam("imagename") String imageName){
-        File file = new File(path);
+        File file = new File(path+"imageName");
         file.delete();
         return "操作成功";
     }

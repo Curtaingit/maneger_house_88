@@ -37,6 +37,6 @@ public class CollectionController  {
 
     @PostMapping("/getcommodities")
     public Object getCommodities(Principal principal,@RequestParam(name = "userid",required = false) String userId){
-      return collectionService.getCommodities(userId);
+      return collectionService.getCommodities(principal.getName());
     }
 }

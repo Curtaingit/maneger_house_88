@@ -184,7 +184,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     /*保存一条记录*/
     @Override
     @Transactional
-    public Schedule create(String commodityId, Schedule schedule, String userId) {
+    public Schedule  create(String commodityId, Schedule schedule, String userId) {
         Commodity commodity = commodityService.findOne(commodityId);
         Schedule rs =scheduleRepo.findByUserIdAndCommodityId(userId,commodityId);
         if(commodity==null){

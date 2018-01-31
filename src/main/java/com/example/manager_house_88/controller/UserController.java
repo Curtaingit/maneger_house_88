@@ -39,27 +39,23 @@ public class UserController {
     }
 
 
-//    @PostMapping("/findone")
-//    public Object findone(Principal principal){
-//        return userService.findOne(principal);
-//    }
-//
-//    @PostMapping("/findhistory")
-//    public Object findHistory(Principal principal){
-//        return userService.findHistory(principal.getName());
-//    }
-//
-//    @PostMapping("/addhistory")
-//    public Object addHistory(Principal principal ,@RequestParam("commodityid") String commodityId){
-//        userService.addHistory(principal.getName(),commodityId);
-//        return null;
-//    }
-//
-//    @PostMapping("/addmsg")
-//    public Object addMsg(Principal principal,String msg){
-//        userService.addMsg(principal.getName(),msg);
-//        return "操作成功";
-//    }
+    @PostMapping("/findone")
+    public Object findone(Principal principal){
+        return userService.findOne(principal);
+    }
+
+
+    @PostMapping("/addhistory")
+    public Object addHistory(Principal principal ,@RequestParam("commodityid") String commodityId){
+        userService.addHistory(principal.getName(),commodityId);
+        return null;
+    }
+
+    @PostMapping("/addmsg")
+    public Object addMsg(Principal principal,String msg){
+        userService.addMsg(principal.getName(),msg);
+        return "操作成功";
+    }
 
 
     @PostMapping("/save")
@@ -71,39 +67,39 @@ public class UserController {
 
 //userId方法
 
-    @PostMapping("/addhistory")
-    public Object addHistory(@RequestParam("userid") String userId, @RequestParam("commodityid") String commodityId) {
-        userService.addHistory(userId, commodityId);
-        return null;
-    }
+//    @PostMapping("/addhistory")
+//    public Object addHistory(@RequestParam("userid") String userId, @RequestParam("commodityid") String commodityId) {
+//        userService.addHistory(userId, commodityId);
+//        return null;
+//    }
+//
+//    @PostMapping("/addmsg")
+//    public Object addMsg(@RequestParam("userid") String userId, String msg) {
+//        userService.addMsg(userId, msg);
+//        return "操作成功";
+//    }
 
-    @PostMapping("/addmsg")
-    public Object addMsg(@RequestParam("userid") String userId, String msg) {
-        userService.addMsg(userId, msg);
-        return "操作成功";
-    }
-
-    @PostMapping("/getmsg")
-    public Object getMsg(@RequestParam("userid") String userId) {
-        return userService.getMsg(userId);
-    }
+//    @PostMapping("/getmsg")
+//    public Object getMsg(@RequestParam("userid") String userId) {
+//        return userService.getMsg(userId);
+//    }
 
 
     @PostMapping("/addfeedback")
-    public Object addFeedback(@RequestParam("userid") String userId, String msg) {
-        userService.addFeedback(userId, msg);
+    public Object addFeedback(Principal principal, String msg) {
+        userService.addFeedback(principal.getName(), msg);
         return "操作成功!";
     }
 
     @PostMapping("/getfeedback")
     public List<Feedback> getFeedback() {
-        ;
+
         return userService.getFeedback();
     }
 
     @PostMapping("/gethistory")
-    public Object getHistory(@RequestParam("userid") String userId) {
-        return userService.getHistory(userId);
+    public Object getHistory(Principal principal) {
+        return userService.getHistory(principal.getName());
     }
 
     @RequestMapping("/invite")
