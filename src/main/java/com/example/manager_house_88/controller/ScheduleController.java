@@ -109,9 +109,10 @@ public class ScheduleController {
         return scheduleService.finByCommodityId(commodityId);
     }
 
+    //userid     K
     @PostMapping("/getschedule")
-    public Object getSchedule(Principal principal,@RequestParam("commodityid") String commodityId){
-        return scheduleService.getSchedule(principal.getName(),commodityId);
+    public Object getSchedule(Principal principal,@RequestParam("commodityid") String commodityId,@RequestParam(name = "userid",required = false)String userId){
+        return scheduleService.getSchedule(userId,commodityId);
     }
 
 

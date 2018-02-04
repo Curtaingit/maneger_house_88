@@ -1,6 +1,7 @@
 package com.example.manager_house_88.controller;
 
 import com.example.manager_house_88.domain.Comment;
+import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.repository.CommentRepo;
 import com.example.manager_house_88.service.CommentService;
 import com.example.manager_house_88.service.CommodityService;
@@ -60,8 +61,8 @@ public class CommentController {
     }
 
     @PostMapping("/findbyascriptionid")
-    public Object findByAscriptionId(@RequestParam("ascriptionid") String ascriptionId){
-       return commentService.findByAscriptionId(ascriptionId);
+    public Object findByAscriptionId(@RequestParam("ascriptionid") String ascriptionId,Principal principal,@RequestParam(name = "userid",required = false) String userId){
+       return commentService.findByAscriptionId(ascriptionId,userId);
     }
 
     @RequestMapping("/findall")
@@ -85,4 +86,17 @@ public class CommentController {
 
     }
 
+    @RequestMapping("/raiseliked")
+    public Object raiseLiked(@RequestParam("commentid")String commentId,Principal principal,@RequestParam(name = "userid",required = false) String userId){
+        commentService.raiseLiked(commentId,userId);
+        return null;
+    }
+
+
+    @RequestMapping("/findonebyuserid")
+    public Object findOneByUserId(@RequestParam("commentid")String commentId,@RequestParam("userid")String userId){
+
+        return commentService.findOneByUserId(userId,commentId);
+
+    }
 }

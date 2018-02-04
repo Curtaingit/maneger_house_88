@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.criteria.CriteriaBuilder;
 
 /*评论*/
 
@@ -21,7 +20,7 @@ public class Comment extends BaseEntity {
     private String content;
 
     /*审核状态*/
-    private int auditStatus = CommentEnum.WAITAUDITSTATUS.getCode();
+    private int auditStatus = CommentEnum.WAIT_AUDIT_STATUS.getCode();
 
     /*点赞数*/
     private int liked;
@@ -43,5 +42,8 @@ public class Comment extends BaseEntity {
 
     /*评论的状态  精选  or  普通*/
     private int commentStatus = CommentEnum.GENERAL.getCode();
+
+    /*用户是否点赞*/
+    private String praise;
 
 }

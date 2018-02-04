@@ -136,4 +136,13 @@ public class test {
         System.err.println(System.currentTimeMillis());
     }
 
+
+    @Test
+    public  void redisSet(){
+        redisTemplate.opsForValue().set("testSet111","111");
+        System.out.println(redisTemplate.opsForValue().get("testSet111"));
+        redisTemplate.opsForValue().set("testSet111","222");
+        System.out.println(redisTemplate.opsForValue().get("testSet111"));
+    }
+
 }

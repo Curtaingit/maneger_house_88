@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/agency")
 @CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
-public class AgencyController {
+public class   AgencyController {
 
     @Autowired
     private AgencyService agencyService;

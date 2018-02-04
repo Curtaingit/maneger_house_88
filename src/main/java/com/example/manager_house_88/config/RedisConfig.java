@@ -19,7 +19,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
             CacheManager cacheManager = new RedisCacheManager(redisTemplate);
             return cacheManager;
         }
-        @Bean
+        @Bean("redisTemplate")
         public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
             RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
             redisTemplate.setConnectionFactory(factory);

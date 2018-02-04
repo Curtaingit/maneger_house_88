@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @EnableOAuth2Client
 @EnableJpaAuditing
 @SpringBootApplication
+@EnableScheduling
 public class ManagerHouse88Application {
 
 	public static void main(String[] args) {

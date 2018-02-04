@@ -8,6 +8,8 @@ import com.example.manager_house_88.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +36,12 @@ public class CollectionServiceImpl implements CollectionService {
         return collectionRepo.save(collection);
     }
 
+    @Transactional
     @Override
-    public void delete(String collection) {
-         collectionRepo.delete(collection);
+    public void delete(String userId, String commodityId) {
+        collectionRepo.removeByUserIdAndCommodityId(userId, commodityId);
     }
+
 
     @Override
     public List<Commodity> getCommodities(String userId) {

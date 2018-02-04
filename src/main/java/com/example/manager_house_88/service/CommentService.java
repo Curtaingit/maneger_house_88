@@ -23,7 +23,7 @@ public interface CommentService {
     void changeAuditStatus(String commentId);
 
     /*点赞*/
-    void raiseLiked(String commentId);
+    void raiseLiked(String commentId,String userId);
 
     /*设置评论为精选*/
     void changeCommentStatus(String commentId);
@@ -34,10 +34,11 @@ public interface CommentService {
     Comment findOne(String commentId);
 
     /*查询对某个用户或某个经纪人的所有评论*/
-    List<Comment> findByAscriptionId(String ascriptionId);
+    List<Comment> findByAscriptionId(String ascriptionId,String userId);
 
     List<Comment> findAll(Sort sort);
 
     Page<Comment> findAll(Pageable pageable);
 
+    Comment findOneByUserId(String userId, String commentId);
 }

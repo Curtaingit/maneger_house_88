@@ -62,7 +62,9 @@ urlpath: https://www.embracex.com/gcsweixin/house/login/wechat
 #imagepath: /home/cx/jAVA/shop/image/
 #
 #imageurl: https://www.embracex.com/gcsweixin/shop/image/
-imagepath: /home/cx/jAVA/images/
+imagepath: /home/cx/JAVA/images/
 
 imageurl: https://www.embracex.com/gcsweixin/house/image/
+
+videopath: /home/cx/JAVA/video/
 

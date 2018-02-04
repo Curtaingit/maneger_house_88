@@ -19,7 +19,7 @@ import java.util.Set;
 @Setter
 @Bostype("A04")
 @Entity(name = "t_commodity")
-public class  Commodity extends BaseEntity{
+public class   Commodity extends BaseEntity{
 
     /*标的物图片*/
     @Column(length = 1024)

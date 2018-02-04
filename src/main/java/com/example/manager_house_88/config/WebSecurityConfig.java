@@ -5,6 +5,8 @@ import com.example.manager_house_88.authwechat.*;
 import com.example.manager_house_88.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+
+import java.io.File;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -78,6 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/agency/**","/agent/**","/collection/**","/comment/**",
                         "/commodity/**","/customermanager/**","/document/**","/reply/**","/schedule/**","/user/**").permitAll()
+               // .antMatchers("/agency/**").hasAnyRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")

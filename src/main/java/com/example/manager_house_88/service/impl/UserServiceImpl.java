@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
+
         return userRepo.save(user);
     }
 
@@ -134,9 +135,33 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void into(String userId, String commodityId, String inviteCode) {
+        List<String> stringList = redisTemplate.opsForList().range(inviteCode+"invite",0,3000);
+
+        for (String s :stringList){
+            JSONObject parse = (JSONObject) JSONObject.parse(s);
+            Invite invite = JSONObject.toJavaObject(parse, Invite.class);
+            if (invite.getUserId().equals(userId)){
+                return;
+            }
+        }
         Invite invite = new Invite(userId, commodityId,String.valueOf(System.currentTimeMillis()));
         String rs = JSONObject.toJSONString(invite);
         redisTemplate.opsForList().leftPush(inviteCode+"invite",rs);
+
+
+    }
+
+    @Override
+    public Object getInviteList(Principal principal) {
+        List<String> stringList = redisTemplate.opsForList().range(principal.getName()+"invite",0,3000);
+        List<Invite> invites = new ArrayList<>();
+        for (String s :stringList){
+            JSONObject parse = (JSONObject) JSONObject.parse(s);
+            Invite invite = JSONObject.toJavaObject(parse, Invite.class);
+            invites.add(invite);
+        }
+        return invites;
+
     }
 
 

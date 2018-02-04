@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -88,6 +90,17 @@ public class ScheduleServiceImpl implements ScheduleService {
         commodity.setEnrolment(commodity.getEnrolment()+1);
         changeProcess(scheduleId);
         schedule.setAuditBail(true);
+
+        List<Schedule> scheduleList = scheduleRepo.findByCommodityId(schedule.getCommodityId());
+        if (scheduleList.size()==1){
+            LocalDate date = LocalDate.now();
+            date = date.plusDays(8);
+
+            ZoneId zoneId = ZoneId.systemDefault();
+            long time = date.atStartOfDay(zoneId).toEpochSecond();
+            commodity.setAuctionTime(time*1000);
+        }
+
         commodityService.save(commodity);
         scheduleRepo.save(schedule);
     }
@@ -184,7 +197,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     /*保存一条记录*/
     @Override
     @Transactional
-    public Schedule  create(String commodityId, Schedule schedule, String userId) {
+    public Schedule create(String commodityId, Schedule schedule, String userId) {
         Commodity commodity = commodityService.findOne(commodityId);
         Schedule rs =scheduleRepo.findByUserIdAndCommodityId(userId,commodityId);
         if(commodity==null){

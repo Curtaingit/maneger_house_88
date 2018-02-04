@@ -21,7 +21,7 @@ import java.util.List;
  * Created by cx on 18-1-10.
  */
 
-@Service
+@Service("commodityService")
 public class CommodityServiceImpl implements CommodityService {
 
     @Autowired

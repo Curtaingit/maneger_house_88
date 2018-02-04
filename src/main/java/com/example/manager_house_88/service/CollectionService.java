@@ -11,7 +11,7 @@ public interface CollectionService {
 
     Collection save(String userId ,String commodityId);
 
-    void delete(String collectionId);
+    void delete(String userId,String commodityId);
 
     List<Commodity> getCommodities(String userId);
 }

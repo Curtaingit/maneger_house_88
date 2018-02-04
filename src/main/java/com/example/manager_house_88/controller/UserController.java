@@ -5,6 +5,7 @@ import com.example.manager_house_88.domain.User;
 import com.example.manager_house_88.javabean.Feedback;
 import com.example.manager_house_88.service.UserService;
 import com.example.manager_house_88.utils.ResultVOUtil;
+import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -111,5 +112,15 @@ public class UserController {
     public Object into(Principal principal, @RequestParam("invitecode") String inviteCode, @RequestParam("commodityid") String commodityId) {
         userService.into(principal.getName(), commodityId, inviteCode);
         return null;
+    }
+
+    @RequestMapping("getinvitelist")
+    public Object getInviteList(Principal principal){
+        return userService.getInviteList(principal);
+    }
+
+    @RequestMapping("getnowtime")
+    public Object getNowTime(){
+        return System.currentTimeMillis();
     }
 }

@@ -11,4 +11,5 @@ import java.util.List;
 public interface CollectionRepo extends JpaRepository<Collection,String> {
 
     List<Collection> findByUserId(String userId);
+    void  removeByUserIdAndCommodityId(String userId,String commodityId);
 }

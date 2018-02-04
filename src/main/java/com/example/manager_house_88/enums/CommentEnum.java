@@ -8,11 +8,11 @@ import lombok.Getter;
 public enum CommentEnum {
 
 
-    AGENTTYPE(1,"经纪人"),
-    COMMODITYTYPE(2,"标的物"),
+    AGENT_TYPE(1,"经纪人"),
+    COMMODITY_TYPE(2,"标的物"),
 
-    WAITAUDITSTATUS(3,"等待审核"),
-    AGREEAUDITSTATUS(4,"审核成功"),
+    WAIT_AUDIT_STATUS(3,"等待审核"),
+    AGREE_AUDIT_STATUS(4,"审核成功"),
 
     GENERAL(5,"普通评论"),
     NOBLE(6,"精选评论");

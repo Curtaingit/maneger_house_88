@@ -2,6 +2,7 @@ package com.example.manager_house_88.authwechat;
 
 import com.example.manager_house_88.domain.User;
 import com.example.manager_house_88.repository.UserRepo;
+import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.service.UserService;
 import com.example.manager_house_88.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class WechatMiniUserInfo {
 
     public String getId(String openid) {
         UserService userService = (UserService) SpringUtil.getBean("userService");
+     //   CommodityService commodityService = (CommodityService) SpringUtil.getBean("CommodityService");
         User user;
         user = userService.findByOpenid(openid);
         if (user == null) {

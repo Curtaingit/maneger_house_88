@@ -44,4 +44,6 @@ public interface UserService {
     List<Feedback> getFeedback();
 
     void into(String userId,String commodityId, String inviteCode);
+
+    Object getInviteList(Principal principal);
 }
