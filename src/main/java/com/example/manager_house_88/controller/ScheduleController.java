@@ -106,7 +106,7 @@ public class ScheduleController {
 
     @PostMapping("/findbycommodityid")
     public Object findByCommodityId(@RequestParam("commodityid") String commodityId){
-        return scheduleService.finByCommodityId(commodityId);
+        return scheduleService.findByCommodityId(commodityId);
     }
 
     //userid     K

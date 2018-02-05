@@ -16,7 +16,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.security.Principal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service("scheduleService")
 public class ScheduleServiceImpl implements ScheduleService {
 
     @Autowired
@@ -44,7 +43,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         String commodityId = schedule.getCommodityId();
         Commodity commodity = commodityService.findOne(commodityId);
         commodity.setStatus(CommodityStatusEnum.COMPETITIVE.getCode());
-        List<Schedule> scheduleList = finByCommodityId(commodityId);
+        List<Schedule> scheduleList = findByCommodityId(commodityId);
         for(Schedule sche : scheduleList){
             if (scheduleId.equals(sche.getId())){
                 sche.setWin(true);
@@ -91,8 +90,8 @@ public class ScheduleServiceImpl implements ScheduleService {
         changeProcess(scheduleId);
         schedule.setAuditBail(true);
 
-        List<Schedule> scheduleList = scheduleRepo.findByCommodityId(schedule.getCommodityId());
-        if (scheduleList.size()==1){
+        /*第一个人完成报名开标倒计时*/
+        if (getCompleteBidding(commodity.getId())==1){
             LocalDate date = LocalDate.now();
             date = date.plusDays(8);
 
@@ -148,7 +147,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<Schedule> finByCommodityId(String commodityId) {
+    public List<Schedule> findByCommodityId(String commodityId) {
 
        List<Schedule> schedules = scheduleRepo.findByCommodityId(commodityId);
         if (schedules==null){
@@ -236,5 +235,15 @@ public class ScheduleServiceImpl implements ScheduleService {
         return rs;
     }
 
-
+    @Override
+    public Integer getCompleteBidding(String commodityId) {
+        List<Schedule> scheduleList = scheduleRepo.findByCommodityId(commodityId);
+        Integer count = 0;
+        for(Schedule schedule : scheduleList){
+            if (ScheduleEnum.COMPLETE_JOIN.getCode().equals(schedule.getProcess())){
+                count++;
+            }
+        }
+        return count;
+    }
 }

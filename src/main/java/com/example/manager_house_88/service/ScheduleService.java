@@ -41,11 +41,14 @@ public interface ScheduleService {
     /*上传保证金图片*/
     void uploadBailImage(String scheduleId, String bailImage);
 
-    List<Schedule> finByCommodityId(String commodityId);
+    List<Schedule> findByCommodityId(String commodityId);
 
     void setAgency(String scheduleId, String agencyId);
 
     Schedule getSchedule(String userId,String commodityId);
 
     List<Schedule> resultPublicized(String commodityId);
+
+    Integer getCompleteBidding(String commodityId);
+
 }

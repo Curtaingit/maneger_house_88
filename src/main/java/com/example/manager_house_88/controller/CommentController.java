@@ -62,7 +62,7 @@ public class CommentController {
 
     @PostMapping("/findbyascriptionid")
     public Object findByAscriptionId(@RequestParam("ascriptionid") String ascriptionId,Principal principal,@RequestParam(name = "userid",required = false) String userId){
-       return commentService.findByAscriptionId(ascriptionId,userId);
+       return commentService.findByAscriptionId(ascriptionId,principal.getName());
     }
 
     @RequestMapping("/findall")
@@ -88,15 +88,15 @@ public class CommentController {
 
     @RequestMapping("/raiseliked")
     public Object raiseLiked(@RequestParam("commentid")String commentId,Principal principal,@RequestParam(name = "userid",required = false) String userId){
-        commentService.raiseLiked(commentId,userId);
+        commentService.raiseLiked(commentId,principal.getName());
         return null;
     }
 
 
     @RequestMapping("/findonebyuserid")
-    public Object findOneByUserId(@RequestParam("commentid")String commentId,@RequestParam("userid")String userId){
+    public Object findOneByUserId(@RequestParam("commentid")String commentId,@RequestParam(name = "userid",required = false)String userId,Principal principal){
 
-        return commentService.findOneByUserId(userId,commentId);
+        return commentService.findOneByUserId(principal.getName(),commentId);
 
     }
 }

@@ -64,4 +64,7 @@ public class   Commodity extends BaseEntity{
     /*客服经理id*/
     private String customerManagerId;
 
+    /*视频*/
+    private String video;
+
 }
