@@ -92,6 +92,15 @@ public class CommodityServiceImpl implements CommodityService {
         commodityRepo.save(commodity);
     }
 
+    @Override
+    public Commodity findByNumber(String number) {
+        Commodity commodity =commodityRepo.findByNumber(number);
+        if (commodity==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST);
+        }
+        return commodity;
+    }
+
     /*设置标的物详情*/
     @Override
     public void setDetail(String commodityId, String detail) {

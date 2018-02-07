@@ -41,4 +41,5 @@ public interface CommodityService {
     /*修改房屋进度*/
     void changeState(String commodityId, Integer state);
 
+    Commodity findByNumber(String number);
 }

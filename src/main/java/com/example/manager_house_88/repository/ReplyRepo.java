@@ -25,4 +25,6 @@ public interface ReplyRepo  extends JpaRepository<Reply, String> {
 
     Page<Reply> findAll(Pageable pageable);
 
+    Reply findByNumber(String number);
+
 }

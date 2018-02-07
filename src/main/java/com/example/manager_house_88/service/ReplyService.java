@@ -34,4 +34,6 @@ public interface ReplyService {
     List<ReplyVO> findByUserId(String userId);
 
     Page<Reply> findAll(Pageable pageable);
+
+    Reply findByNumber(String number);
 }

@@ -17,6 +17,7 @@ public enum ResultExceptionEnum {
     PARAMETER_NOT_TRUE(19,"参数不正确"),
     CODE_NOT_TRUE(20,"验证码不正确"),
     DO_NOT_PASS(21,"验证不通过"),
+    CUSTOMER_MANAGER_NOT_EXIST(22,"专家不存在")
     ;
 
     private Integer code;

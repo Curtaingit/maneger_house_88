@@ -98,4 +98,10 @@ public class ReplyController {
 
     }
 
+    @PostMapping("/findbynumber")
+    public Object findByNumber(String number){
+        return replyService.findByNumber(number);
+    }
+
+
 }

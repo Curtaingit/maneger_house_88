@@ -42,4 +42,10 @@ public class CustomerManagerController {
                          @RequestBody CustomerManager customerManager){
         return customerManagerService.update(customerManagerId,customerManager);
     }
+
+    @PostMapping("/findbynumber")
+    public Object findByNumber(String number){
+        return customerManagerService.findByNumber(number);
+    }
+
 }

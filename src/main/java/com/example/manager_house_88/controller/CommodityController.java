@@ -88,6 +88,12 @@ public class CommodityController {
         return "操作成功";
     }
 
+    @PostMapping("/findbynumber")
+    public Object findByNumber(String number){
+        return commodityService.findByNumber(number);
+    }
+
+
 
 
 }

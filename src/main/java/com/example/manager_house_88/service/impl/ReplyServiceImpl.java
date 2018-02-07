@@ -76,6 +76,15 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
+    public Reply findByNumber(String number) {
+        Reply  reply =replyRepo.findByNumber(number);
+        if (reply==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.REPLY_NOT_EXIST);
+        }
+        return reply;
+    }
+
+    @Override
     public void changeShow(String replyId) {
         Reply reply = replyRepo.findOne(replyId);
         if (reply==null){

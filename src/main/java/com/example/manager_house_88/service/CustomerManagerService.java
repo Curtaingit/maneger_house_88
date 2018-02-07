@@ -15,4 +15,6 @@ public interface CustomerManagerService {
     CustomerManager save(CustomerManager customerManager);
 
     CustomerManager update(String customerManagerId, CustomerManager customerManager);
+
+    CustomerManager findByNumber(String number);
 }

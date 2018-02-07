@@ -17,4 +17,5 @@ import java.util.List;
 public interface CommodityRepo extends JpaRepository<Commodity, String> {
         List<Commodity> findByStatus(String status);
         Page<Commodity> findAll(Pageable pageable);
+        Commodity findByNumber(String number);
 }

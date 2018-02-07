@@ -1,6 +1,8 @@
 package com.example.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.CustomerManager;
+import com.example.manager_house_88.enums.ResultExceptionEnum;
+import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import com.example.manager_house_88.repository.CustomerManagerRepo;
 import com.example.manager_house_88.service.CustomerManagerService;
 import org.springframework.beans.BeanUtils;
@@ -42,5 +44,14 @@ public class CustomerManagerServiceImpl implements CustomerManagerService {
         BeanUtils.copyProperties(customerManager,rs);
         return customerManagerRepo.save(rs);
 
+    }
+
+    @Override
+    public CustomerManager findByNumber(String number) {
+        CustomerManager  customerManager =customerManagerRepo.findByNumber(number);
+        if (customerManager==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.CUSTOMER_MANAGER_NOT_EXIST);
+        }
+        return customerManager;
     }
 }

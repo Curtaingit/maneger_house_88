@@ -125,9 +125,7 @@ public class CommentServiceImpl implements CommentService {
     public void raiseLiked(String commentId, String userId) {
         //判断用户是否点赞
         String key = userId + commentId;
-
         String likedKey = commentId + "liked";
-
         if (redisTemplate.hasKey(key)) {
             String isPraise = (String) redisTemplate.opsForValue().get(key);
             //1表示用户已经点赞  那么就要取消赞
@@ -139,10 +137,8 @@ public class CommentServiceImpl implements CommentService {
                 RaiseLikedUtil.raise(key,likedKey);
             }
         } else {
-
             // 创建用户点赞记录
             redisTemplate.opsForValue().set(key, CommentPraiseEnum.PRAISE.getMsg());
-
             //评论的总赞数加1
             RaiseLikedUtil.raise(key,likedKey);
 
@@ -207,7 +203,6 @@ public class CommentServiceImpl implements CommentService {
                 comment.setPraise(CommentPraiseEnum.DISPRAISE.getMsg());
             }
         }
-
         return commentList;
     }
 
