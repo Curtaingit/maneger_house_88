@@ -13,7 +13,10 @@ public enum ResultExceptionEnum {
     USER_NOT_EXIST(15, "用户不存在"),
     COMMENT_NOT_EXIST(16,"评论不存在"),
     PROCESS_NOT_TRUE(17,"进度不正确"),
-    REPLY_NOT_EXIST(18,"答复记录不存在")
+    REPLY_NOT_EXIST(18,"答复记录不存在"),
+    PARAMETER_NOT_TRUE(19,"参数不正确"),
+    CODE_NOT_TRUE(20,"验证码不正确"),
+    DO_NOT_PASS(21,"验证不通过"),
     ;
 
     private Integer code;

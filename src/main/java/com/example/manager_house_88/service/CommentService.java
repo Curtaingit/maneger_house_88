@@ -41,4 +41,6 @@ public interface CommentService {
     Page<Comment> findAll(Pageable pageable);
 
     Comment findOneByUserId(String userId, String commentId);
+
+    Comment findByNumber(String number);
 }

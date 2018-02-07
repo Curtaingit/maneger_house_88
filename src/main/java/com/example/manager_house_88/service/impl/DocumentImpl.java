@@ -46,9 +46,15 @@ public class DocumentImpl implements DocumentService {
         if (schedule==null){
             throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
         }
+        if (ScheduleEnum.NEW.getCode().equals(schedule.getProcess())){
+            String processTime = schedule.getProcessTime();
+            schedule.setProcessTime(processTime+","+processTime);
+        }
         schedule.setProcess(ScheduleEnum.SUBMIT_DOCUMENT.getCode());
         document.setScheduleId(scheduleId);
         Document rs = documentRepo.save(document);
+        String processTime = schedule.getProcessTime();
+        schedule.setProcessTime(processTime+","+String.valueOf(System.currentTimeMillis()));
         schedule.setDocumentId(rs.getId());
         scheduleService.save(schedule);
         return rs;

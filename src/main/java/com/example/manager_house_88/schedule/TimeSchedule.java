@@ -22,7 +22,7 @@ import java.util.List;
 
 @Component
 @Slf4j
-public class CommoditySchedule {
+public class TimeSchedule {
 
 
     /*定时任务  每天23时59分59秒执行*/
@@ -63,6 +63,7 @@ public class CommoditySchedule {
             String likedKey = comment.getId() + "liked";
             String liked = (String) redisTemplate.opsForValue().get(likedKey);
             comment.setLiked(Integer.valueOf(liked));
+            commentService.save(comment);
         }
 
     }

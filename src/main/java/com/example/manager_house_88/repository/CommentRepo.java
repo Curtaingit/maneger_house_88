@@ -19,4 +19,7 @@ public interface CommentRepo extends JpaRepository<Comment,String> {
     List<Comment> findByAscriptionId(String ascriptionId);
 
     Page<Comment> findAll(Pageable pageable);
+
+    Comment findByNumber(String number);
+
 }

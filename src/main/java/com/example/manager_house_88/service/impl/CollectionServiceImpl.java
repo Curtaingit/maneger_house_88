@@ -2,6 +2,8 @@ package com.example.manager_house_88.service.impl;
 
 import com.example.manager_house_88.domain.Collection;
 import com.example.manager_house_88.domain.Commodity;
+import com.example.manager_house_88.enums.ResultExceptionEnum;
+import com.example.manager_house_88.exception.ManagerHouse88Exception;
 import com.example.manager_house_88.repository.CollectionRepo;
 import com.example.manager_house_88.service.CollectionService;
 import com.example.manager_house_88.service.CommodityService;
@@ -30,10 +32,14 @@ public class CollectionServiceImpl implements CollectionService {
 
     @Override
     public Collection save(String userId, String commodityId) {
+        if(userId==null&&commodityId==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.PARAMETER_NOT_TRUE.getMessage());
+        }else {
         Collection collection =new Collection();
         collection.setUserId(userId);
         collection.setCommodityId(commodityId);
         return collectionRepo.save(collection);
+    }
     }
 
     @Transactional

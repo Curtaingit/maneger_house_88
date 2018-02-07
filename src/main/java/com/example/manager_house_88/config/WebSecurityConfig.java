@@ -48,10 +48,10 @@ import java.util.List;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Value("${wechat.appId}")
+    @Value("${wechatmini.appId}")
     private String appId;
 
-    @Value("${wechat.secret}")
+    @Value("${wechatmini.secret}")
     private String secret;
 
     @Autowired

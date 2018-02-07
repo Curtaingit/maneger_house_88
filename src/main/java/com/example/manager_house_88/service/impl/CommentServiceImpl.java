@@ -50,6 +50,15 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public Comment findByNumber(String number) {
+        Comment comment =commentRepo.findByNumber(number);
+        if (comment==null){
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMENT_NOT_EXIST);
+        }
+        return comment;
+    }
+
+    @Override
     public List<Comment> findAll(Sort sort) {
         return commentRepo.findAll();
     }

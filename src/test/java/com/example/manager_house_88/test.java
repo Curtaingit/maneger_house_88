@@ -3,7 +3,10 @@ package com.example.manager_house_88;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.aliyuncs.exceptions.ClientException ;
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.example.manager_house_88.javabean.Feedback;
+import com.example.manager_house_88.utils.AliyunMessageUtil;
 import com.example.manager_house_88.utils.DesUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,18 +15,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -145,4 +144,40 @@ public class test {
         System.out.println(redisTemplate.opsForValue().get("testSet111"));
     }
 
+    @Test
+    public void sendMsg() throws ClientException {
+        String phoneNumber = "18267921108" ;
+        String randomNum = createRandomNum(6);
+        String jsonContent = "{\"code\":\"" + randomNum + "\"}";
+
+
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("phoneNumber", phoneNumber);
+        paramMap.put("msgSign", "温州房产圈");
+        paramMap.put("templateCode", "SMS_125025751");
+        paramMap.put("jsonContent", jsonContent);
+        SendSmsResponse sendSmsResponse = AliyunMessageUtil.sendSms(paramMap);
+        if(!(sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK"))) {
+            if(sendSmsResponse.getCode() == null) {
+                System.out.println("sss");
+            }
+            if(!sendSmsResponse.getCode().equals("OK")) {
+                System.out.println("no");
+            }
+        }
+    }
+
+    /**
+     * 生成随机数
+     * @param num 位数
+     * @return
+     */
+    public static String createRandomNum(int num){
+        String randomNumStr = "";
+        for(int i = 0; i < num;i ++){
+            int randomNum = (int)(Math.random() * 10);
+            randomNumStr += randomNum;
+        }
+        return randomNumStr;
+    }
 }

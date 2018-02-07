@@ -12,4 +12,8 @@ public class ManagerHouse88Exception extends RuntimeException {
         super(exceptionEnum.getMessage());
     }
 
+    public ManagerHouse88Exception(ResultExceptionEnum exceptionEnum,String msg){
+        super(exceptionEnum.getMessage()+", "+msg);
+    }
+
 }

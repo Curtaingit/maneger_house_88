@@ -22,8 +22,8 @@ spring:
       indent-output: true
   http:
     multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
+      max-file-size: 100MB
+      max-request-size: 100MB
     encoding:
       enabled: true
 
@@ -32,30 +32,15 @@ server:
   context-path: /house
   port: 8080
 
-
+#微信公众号
 wechat:
-#    appId:                        wx80684f34298ce2d7
-#    secret:                       a73ba9a5f6d09d9e7d698ab8ee213b78
-#    token: 24c12d745036aff81725d2e82b5a4dba
-#    aesKey: bo3ruxQphpvh2j7LuYWFFOWboCf0WNq4D2Pgnpe4MdU
-#    mchId: 10024153
-#    mchKey: braggadocio345l6ackadaisicalness
-#    keyPath: /home/cx/jAVA/shop/src/main/resources/static/h5.p12
-#    notifyUrl: https://www.embracex.com/gcsweixin/shop/pay/notify
+  appId: wx6facec47c2fca33b
+  secret: 2dea3ec6a647f1dd73a0e0e87f0524ef
+
+#微信小程序
+wechatmini:
     appId: wx007de3f944b85ec6
     secret: 32d982af1871c587dddd7caa92d9e89e
-    client:
-#       clientId: wx80684f34298ce2d7
-#       clientSecret: a73ba9a5f6d09d9e7d698ab8ee213b78
-#       accessTokenUri: https://api.weixin.qq.com/sns/jscode2session
-#  获取code
-#  userAuthorizationUri: https://open.weixin.qq.com/connect/oauth2/authorize
-       authenticationScheme: query
-       clientAuthenticationScheme: form
-       scope: snsapi_userinfo
-    resource:
-      userInfoUri: https://api.weixin.qq.com/sns/userinfo?lang=zh_CN&openid=$openid$
-    accpetcode_url: https://www.embracex.com/gcsweixin/shop/login/wechat
 
 urlpath: https://www.embracex.com/gcsweixin/house/login/wechat
 
@@ -66,5 +51,6 @@ imagepath: /home/cx/JAVA/images/
 
 imageurl: https://www.embracex.com/gcsweixin/house/image/
 
-videopath: /home/cx/JAVA/video/
+videopath: /home/cx/JAVA/videos/
+
 

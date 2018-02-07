@@ -49,7 +49,7 @@ public class UserController {
     @PostMapping("/addhistory")
     public Object addHistory(Principal principal ,@RequestParam("commodityid") String commodityId){
         userService.addHistory(principal.getName(),commodityId);
-        return null;
+        return  "操作成功";
     }
 
     @PostMapping("/addmsg")
@@ -57,6 +57,11 @@ public class UserController {
         userService.addMsg(principal.getName(),msg);
         return "操作成功";
     }
+        @PostMapping("/getmsg")
+    public Object getMsg(@RequestParam(name="userid",required = false) String userId,Principal principal) {
+        return userService.getMsg(principal.getName());
+    }
+
 
 
     @PostMapping("/save")

@@ -99,4 +99,9 @@ public class CommentController {
         return commentService.findOneByUserId(principal.getName(),commentId);
 
     }
+
+    @PostMapping("/findbynumber")
+    public Object findByNumber(String number){
+        return commentService.findByNumber(number);
+    }
 }

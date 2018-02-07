@@ -36,7 +36,7 @@ public class CommodityServiceImpl implements CommodityService {
     public Commodity findOne(String commodityId) {
         Commodity commodity = commodityRepo.findOne(commodityId);
         if(commodity==null){
-            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST);
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST,"method = commodity_findOne, commodityId = " + commodityId );
         }
         commodity.setSort(commodity.getSort() + 1);
         commodityRepo.save(commodity);
@@ -86,7 +86,7 @@ public class CommodityServiceImpl implements CommodityService {
     public void changeState(String commodityId, Integer state) {
         Commodity commodity = commodityRepo.findOne(commodityId);
         if(commodity==null){
-            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST);
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST,"method = changeState, commodityId = " + commodityId);
         }
         commodity.setState(state);
         commodityRepo.save(commodity);
@@ -111,7 +111,7 @@ public class CommodityServiceImpl implements CommodityService {
     public Commodity update(String commodityId, Commodity commodity) {
         Commodity rs = commodityRepo.findOne(commodityId);
         if(rs==null){
-            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST);
+            throw new ManagerHouse88Exception(ResultExceptionEnum.COMMODITY_NOT_EXIST+"method = update, commodityId = " + commodityId);
         }
         BeanUtils.copyProperties(commodity,rs,BeanCopyUtil.getNullPropertyNames(commodity));
         return commodityRepo.save(rs);

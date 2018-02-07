@@ -19,20 +19,20 @@ public class CollectionController  {
     //userid     K
     @PostMapping("/save")
     public Object save(Principal principal, @RequestParam("commodityid") String commodityId,@RequestParam(name="userid",required = false) String userId){
-        collectionService.save(userId,commodityId);
+        collectionService.save(principal.getName(),commodityId);
         return "操作成功!";
     }
 
     //userid     K
     @PostMapping("/delete")
     public Object delete(Principal principal,@RequestParam("commodityid") String commodityId,@RequestParam(name = "userid",required = false) String userId){
-        collectionService.delete(userId,commodityId);
+        collectionService.delete(principal.getName(),commodityId);
         return "操作成功!";
     }
 
     //userid     K
     @PostMapping("/getcommodities")
     public Object getCommodities(Principal principal,@RequestParam(name = "userid",required = false) String userId){
-      return collectionService.getCommodities(userId);
+      return collectionService.getCommodities(principal.getName());
     }
 }
