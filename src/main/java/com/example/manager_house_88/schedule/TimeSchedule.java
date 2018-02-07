@@ -6,6 +6,7 @@ import com.example.manager_house_88.domain.Commodity;
 import com.example.manager_house_88.domain.Schedule;
 import com.example.manager_house_88.enums.CommentEnum;
 import com.example.manager_house_88.enums.CommodityStatusEnum;
+import com.example.manager_house_88.enums.UserMessageEnum;
 import com.example.manager_house_88.service.CommentService;
 import com.example.manager_house_88.service.CommodityService;
 import com.example.manager_house_88.service.ScheduleService;
@@ -26,7 +27,7 @@ public class TimeSchedule {
 
 
     /*定时任务  每天23时59分59秒执行*/
-    @Scheduled(cron = "58 59 23 * * ?")
+    @Scheduled(cron = "03 46 16 * * ?")
     public void updateCommodityStatus() {
         CommodityService commodityService = (CommodityService) SpringUtil.getBean("commodityService");
         ScheduleService scheduleService = (ScheduleService) SpringUtil.getBean("scheduleService");
@@ -43,9 +44,9 @@ public class TimeSchedule {
                 commodityService.save(commodity);
                 List<Schedule> scheduleList = scheduleService.findByCommodityId(commodity.getId());
                 for (Schedule schedule : scheduleList) {
-                    userService.addMsg(schedule.getUserId(), commodity.getDescription() + "已开标");
+                    userService.addMsg(schedule.getUserId(), "尊敬的用户：您参与竞拍的房屋已开始竞价,房屋名称:"+commodity.getDescription()+"房屋编号:"+commodity.getNumber() + "。"+"竞价将在24小时后结束。");
                 }
-                log.info(commodity.getDescription() + "已开标");
+                log.info(commodity.getDescription() + "开始竞价");
             }
 
         }

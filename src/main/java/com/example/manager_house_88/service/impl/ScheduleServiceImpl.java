@@ -58,12 +58,13 @@ public class ScheduleServiceImpl implements ScheduleService {
                     throw new ManagerHouse88Exception(ResultExceptionEnum.PROCESS_NOT_TRUE);
                 }
                 scheduleRepo.save(sche);
-
+                userService.addMsg(sche.getUserId(),"尊敬的用户：恭喜您成功中标,您中标的房屋名称:"+commodity.getDescription()+"，房屋编号:"+commodity.getNumber()+"。");
             } else {
                 if (schedule.getProcess() >= ScheduleEnum.COMPLETE_JOIN.getCode()) {
                     sche.setProcess(ScheduleEnum.REFUND.getCode());
                     sche.setProcessTime(schedule.getProcessTime() + "," + String.valueOf(System.currentTimeMillis()));
                     scheduleRepo.save(sche);
+                    userService.addMsg(sche.getUserId(),"尊敬的用户：很遗憾您未中标,您未中标的房屋名称:"+commodity.getDescription() +"，房屋编号:"+commodity.getNumber()+"。");
                 }
             }
         }
@@ -106,12 +107,9 @@ public class ScheduleServiceImpl implements ScheduleService {
             long time = date.atStartOfDay(zoneId).toEpochSecond();
             commodity.setAuctionTime(time * 1000);
         }
-
         commodityService.save(commodity);
         scheduleRepo.save(schedule);
-
-        userService.addMsg(schedule.getUserId(), UserMessageEnum.COMMODITY_3.getMsg());
-
+        userService.addMsg(schedule.getUserId(), "尊敬的用户：恭喜您报名成功,您报名竞价的房屋名称:"+commodity.getDescription()+"，房屋编号:"+commodity.getNumber()+"。");
     }
 
     @Override
@@ -181,7 +179,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void setAmount(String scheduleId, Long amount) {
         Schedule schedule = scheduleRepo.findOne(scheduleId);
-
         if (schedule == null) {
             throw new ManagerHouse88Exception(ResultExceptionEnum.SCHEDULE_NOT_EXIST);
         } else if (!ScheduleEnum.COMPLETE_JOIN.getCode().equals(schedule.getProcess())) {
@@ -196,6 +193,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         schedule.setAmount(amount);
         changeProcess(scheduleId);
         scheduleRepo.save(schedule);
+        userService.addMsg(schedule.getUserId(),"尊敬的用户：恭喜您竞价成功,您参与竞价的房屋名称:"+commodity.getDescription()+"，房屋编号:"+commodity.getNumber()+"。");
     }
 
 

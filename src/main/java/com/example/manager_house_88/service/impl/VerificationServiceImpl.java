@@ -35,7 +35,7 @@ public class VerificationServiceImpl implements VerificationService {
         Map<String, String> paramMap = new HashMap<>();
         paramMap.put("phoneNumber", number);
         paramMap.put("msgSign", "温州房产圈");
-        paramMap.put("templateCode", "SMS_125025751");
+        paramMap.put("templateCode", "SMS_125025793");
         paramMap.put("jsonContent", jsonContent);
         SendSmsResponse sendSmsResponse = AliyunMessageUtil.sendSms(paramMap);
         if (!(sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK"))) {

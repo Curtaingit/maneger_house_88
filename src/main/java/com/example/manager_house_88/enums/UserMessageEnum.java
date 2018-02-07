@@ -5,13 +5,11 @@ import lombok.Getter;
 @Getter
 public enum UserMessageEnum {
 
-    COMMODITY_1("您参与的房屋已开标!"),
+    COMMODITY_1("您参与的房屋:"),//1
 
-    COMMODITY_2("您参与的房屋已结束竞拍"),
+    COMMODITY_2("恭喜您中"),
 
-    COMMODITY_3("您已成功报名参与名为"),
-
-    SCHEDULE_MESSAGE_ONE("您已完成报名!"),
+    SCHEDULE_MESSAGE_ONE("您已成功报名参与竞拍,该房屋名称:"),//1
 
     ;
 
