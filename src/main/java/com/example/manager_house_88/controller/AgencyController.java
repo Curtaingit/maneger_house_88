@@ -18,6 +18,8 @@ import java.util.List;
 @CrossOrigin(origins = {},methods ={RequestMethod.GET,RequestMethod.POST, RequestMethod.OPTIONS})
 public class   AgencyController {
 
+
+
     @Autowired
     private AgencyService agencyService;
 
@@ -30,7 +32,9 @@ public class   AgencyController {
             return  agencyService.findAll(sort);
         }
         Pageable pageable =new PageRequest(page-1,size,sort);
+
         return agencyService.findAll(pageable);
+
     }
 
     @PostMapping("/findone")

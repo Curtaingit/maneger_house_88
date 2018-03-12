@@ -38,7 +38,6 @@ public class UploadFileServiceImpl implements UploadFileService {
     @Override
     public String uploadImage(MultipartFile file) {
         String fileName = KeyUtil.genUniqueKey() + file.getOriginalFilename();
-        String d = file.getName();
         try {
             FileUtil.uploadFile(file.getBytes(), imagepath, fileName);
         } catch (Exception e) {

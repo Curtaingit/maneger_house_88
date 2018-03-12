@@ -11,11 +11,31 @@ public class ManagerHouse88ApplicationTests {
 
 	@Test
 	public void contextLoads() {
-
-		 String rs =InvitationCodeUtil.toSerialCode(100L);
-		System.out.println(rs);
-
-
+		System.out.println("sss/.".replaceAll("/.","a"));
+		System.out.println(new V().aa());
 	}
+
+
+	abstract class A{
+		abstract int aa();
+
+		void aa(int i){
+			System.out.println("sss");
+		};
+	}
+
+	 class V extends A{
+
+
+		 @Override
+		 int aa() {
+			 try {
+			 	return 0;
+			 }finally {
+				 System.out.println("Sss");
+
+			 }
+		 }
+	 }
 
 }

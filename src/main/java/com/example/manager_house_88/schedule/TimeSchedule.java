@@ -27,7 +27,7 @@ public class TimeSchedule {
 
 
     /*定时任务  每天23时59分59秒执行*/
-    @Scheduled(cron = "03 46 16 * * ?")
+    @Scheduled(cron = "14 47 14 * * ?")
     public void updateCommodityStatus() {
         CommodityService commodityService = (CommodityService) SpringUtil.getBean("commodityService");
         ScheduleService scheduleService = (ScheduleService) SpringUtil.getBean("scheduleService");

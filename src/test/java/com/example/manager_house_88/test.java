@@ -167,6 +167,14 @@ public class test {
         }
     }
 
+
+    @Test
+    public void a() throws ClientException {
+        Integer integer = new Integer(9);
+        boolean b = integer instanceof Object;
+       Map map = new HashMap();
+       map.put(null,null);
+    }
     /**
      * 生成随机数
      * @param num 位数
@@ -180,4 +188,5 @@ public class test {
         }
         return randomNumStr;
     }
+
 }
